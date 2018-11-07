@@ -1,0 +1,76 @@
+<view class="page-body">
+  <view class="page-section tc">
+    <video id="myVideo" src="https://images.veg.kim/video/mgdatapriceLow.mp4" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+    <view class="page__bd page__bd_spacing">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <button ontap="goHome" class="go-home label">
+              <text class="title">{{slogan.title}}</text>
+              <image src="/images/use/weappgreen.png"></image>
+            </button>
+          </view>
+        </view>
+
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <button class="bshare" size="mini" open-type="share">
+              <image src="/images/use/shares.png"></image>
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page m-body">
+      <view class="page__hd">
+        <view class="page__desc">{{slogan.newsSlogan}}</view>
+      </view>
+
+      <view class="page__bd">
+        <!-- <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder">
+              <input placeholder="请吐槽或发表您的建议，好建议是动力。" bindblur="bindInputBlur" bindinput="Keysummary" class="message" value="{{inputValue}}"></input>
+            </view>
+          </view>
+
+        </view> -->
+      </view>
+
+      <view class="page__bd page__bd_spacing content">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="introduce">
+              <text>{{slogan.notice}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="weui-flex">
+          <view class="weui-flex__item" bindtap="openlocationS">
+            <view class="gray address label">地址：
+              <image src="/images/use/dh.png"></image>{{slogan.header_indicator_dots}}</view>
+          </view>
+        </view>
+        <view class="weui-flex">
+          <view class="weui-flex__item" bindtap="openlocationQ">
+            <view class="gray address label">　　　
+              <image src="/images/use/dh.png"></image>{{slogan.header_duration}}</view>
+          </view>
+        </view>
+        <view class="weui-flex">
+          <view class="weui-flex__item" bindtap="makePhoneCall">
+            <view class="gray phone label">联系：
+              <image src="/images/use/phone.png"></image>{{slogan.shop_auto_play}}(微信)</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+          <navigator url="../about/about" hover-class="none"  class="weui-footer__link">苗果科技</navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2018-2022 veg.kim</view>
+      </view>
+    </view>
+  </view>
+</view>

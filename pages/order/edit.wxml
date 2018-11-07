@@ -1,0 +1,96 @@
+<!-- pages/edit-resume-base/edit-resume-base.wxml -->
+<form class='info_Form' bindsubmit="formSubmit">
+<view class="weui-cells__title">农户信息</view>
+  <view class="item-cell item-cell-input">
+    <view class="item-cell-bd">
+      <text>客户</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input placeholder-style="color:#999;" maxlength="12" name='name' value="{{order.name}}" placeholder="客户姓名" />
+    </view>
+  </view>
+  <view class="item-cell item-cell-input">
+    <view class="item-cell-bd">
+      <text>电话</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input type="number" maxlength="11" name='phone' value="{{order.phone}}" placeholder="联系方式" />
+    </view>
+  </view>
+  <view class="item-cell item-cell-input">
+    <view class="item-cell-bd">
+      <text>地址</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input placeholder-style="color:#999;" name='address' value="{{order.address}}" placeholder="送货地址" />
+    </view>
+  </view>
+
+  <view class="item-cell item-cell-access">
+    <view class="item-cell-bd">
+      <text>品种</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input placeholder="选择" value="{{vkind}}—{{vtp.name}}" bindfocus="open" />
+      <input name='tag_id' value='{{vtp.id}}' hidden='true'></input>
+    </view>
+  </view>
+  <view class="item-cell item-cell-input">
+    <view class="item-cell-bd">
+      <text>数量</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input placeholder-style="color:#999;" maxlength="12" name='counts' value="{{order.counts}}" placeholder="请输入数量" />
+    </view>
+  </view>
+  <view class="item-cell item-cell-input">
+    <view class="item-cell-bd">
+      <text>单价</text>
+    </view>
+    <view class="item-cell-ft blue">
+      <input placeholder-style="color:#999;" maxlength="12" name='unit_price' value="{{order.unit_price}}" placeholder="请输入单价" />
+    </view>
+  </view>
+  <view class="item-cell item-cell-access">
+    <view class="item-cell-bd">
+      <text>用苗日期</text>
+    </view>
+    <picker class="item-cell-ft blue" mode="date" value="{{order.end_at}}" start="2018-05-01" end="2019-01-01" bindchange="bindDateChangeEnd">
+      <view class="picker">{{order.end_at==null?pend_at:order.end_at}}</view>
+      <input name='end_at' value='{{order.end_at}}' hidden='true'></input>
+    </picker>
+  </view>
+  <view class="item-cell item-cell-access">
+    <view class="item-cell-bd">
+      <text>播种日期</text>
+    </view>
+    <picker class="item-cell-ft blue" mode="date" value="{{order.start_at}}" start="2018-05-01" end="2019-01-01" bindchange="bindDateChangeStart">
+      <view class="picker">{{order.start_at==null?pstart_at:order.start_at}}</view>
+      <input name='start_at' value='{{order.start_at}}' hidden='true'></input>
+    </picker>
+  </view>
+  <view class="item-cells memo">
+    <view class="item-cell-textarea">
+      <textarea bindinput="countSelfFun" class="item-textarea" name='note_sell' value="{{order.note_sell}}" placeholder="备注信息" maxlength="30" />
+    </view>
+  </view>
+
+  <view class="btn-box">
+    <button class="btn-sure m-b" size="default" hover-class="btn-sure-hover" formType="submit">保 存</button>
+  </view>
+</form>
+
+<view wx:if="{{condition}}" class="citypicker">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="getSort" class="citybody">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="open" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{vkinds}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{vtps}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item.name}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

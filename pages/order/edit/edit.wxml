@@ -1,0 +1,147 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-cells__title">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">苗子信息，合同号：
+          <text class="orange">{{orderId}}</text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder fl_r orange">{{totalPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">选择品种</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker orange">
+            <view wx:if="{{listId !=''}}">
+            {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
+            </view>
+            <view wx:if="{{listId ==''}}">
+            {{sort}}-{{prod.title}}
+            </view>  
+            </view>
+          </picker>
+        </view>
+        <view class="fui-cell-group fui-cell-click">
+          <navigator class="fui-cell" hover-class="none" url="../../product/add/product">
+          <!--新增-->
+            <image class="fui-cell-icon add-product" src="/images/use/add.png"></image>
+            <view class="fui-cell-text">新增品种</view>
+          </navigator>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">送苗日期</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{endDate}}" start="2015-09-01" end="2917-09-01" bindchange="bindendDateChange">
+            <view class="weui-input"><text class="orange">{{endDate}} </text><text class="orange">{{weekDay}}</text></view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">数量(株)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input orange" type="number" bindinput="listenerCountsInput" value="{{Counts}}" placeholder="如：2000" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">单价(元)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input orange" type="digit" bindinput="listenerUnitPriceInput" value="{{UnitPrice}}" placeholder="如：1.5" />
+        </view>
+      </view>
+    </view>
+
+
+    <view class="weui-cells__title">农户信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">选择农户</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd" bindtap="addPhoneUser">
+
+          <view hidden="{{user.userName !=''}}">
+            <!-- <input class="weui-input" placeholder="真实姓名" value="{{user.name}}"/> -->
+            <text class="location-text">点击新增或选择</text>
+          </view>
+          <view class="user-content" hidden="{{user.userName ==''}}">
+            {{user.userName}}，{{user.phoneNumber}}，{{user.address}}{{user.detailInfo}}
+          </view>
+        </view>
+        <view class="fui-cell-group fui-cell-click" bindtap="addPhoneUser">
+          <navigator class="fui-cell" hover-class="none">
+            <image class="fui-cell-icon add-user" src="/images/use/user.png"></image>
+          </navigator>
+        </view>
+      </view>
+      <!-- <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">手机号</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="输入手机号"  value="{{user.phoneNumber}}"/>
+        </view>
+      </view> -->
+      <!-- <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">大棚坐标</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd" bindtap="moveToLocation">
+          <view hidden="{{mobileLocation.address !=''}}">
+            <text class="location-text">选择坐标，准确导航</text>
+          </view>
+          <view class="location-content" hidden="{{mobileLocation.address ==''}}">
+            {{mobileLocation.latitude}},{{mobileLocation.longitude}}
+          </view>
+        </view>
+        <view class="fui-cell-group fui-cell-click" bindtap="moveToLocation">
+          <navigator class="fui-cell" hover-class="none">
+            <image class="fui-cell-icon add-address" src="/images/use/address.png"></image>
+          </navigator>
+        </view>
+      </view> -->
+    </view>
+    <view class="weui-cells__title">备注</view>
+    <view class="textarea-wrp">
+      <textarea style="height: 3.5em" bindinput="listenerNoteSellInput" value="{{note_sell}}" placeholder="填写更多备注信息，如：嫁接，第3代品种，7包。" />
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" bindtap="updateOrder">保存</button>
+    </view>
+  </view>
+</view>

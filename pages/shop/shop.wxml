@@ -1,0 +1,198 @@
+<view class="page">
+  <view class="weui-panel__bd">
+    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <navigator url="../detail/album?id={{shopEn.id}}">
+          <image class="weui-media-box__thumb" src="{{shopEn.avatar}}" />
+        </navigator>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{shopEn.title}}</view>
+        <view class="weui-media-box__desc">
+          动态
+          <text class="orange f16">{{shopEn.dynamic_count}}</text> / 相片
+          <text class="orange f16">{{shopEn.pic_count}}</text>
+        </view>
+        <view class="weui-media-box__desc">
+          查看:{{shopEn.click_count}}次 / 已有{{shopEn.followers_count}}人收藏
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="page__bd page__bd_spacing money-box">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder money">
+          <view class="gray">
+            <image src="../../images/use/unPayment.png"></image>+
+          </view>
+          <view>
+            <text class="green f14">{{moneyCount.unPayment}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder money">
+          <view class="gray">
+            <image src="../../images/use/payment.png"></image>=
+          </view>
+          <view>
+            <text class="orange f14">{{moneyCount.payment}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder money">
+          <view class="">
+            <image src="../../images/use/money.png"></image>
+          </view>
+          <view>
+            <text class="f14">{{moneyCount.money}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <text class="notice gray f12">注：以上数据为合同订单统计数据</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="echarts">
+  <view class="page__bd page__bd_spacing bg-white">
+    <view class="weui-flex miao">
+      <view class="weui-flex__item">
+        <view class="placeholder label">
+          <image src="../../images/use/seedling.png"></image>
+          <text>订单</text>
+          <text class="order-text gray f12">{{moneyCount.ordersCount}}个</text>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder label">
+          <image src="../../images/use/seedlingGreen.png"></image>
+          <text>育苗</text>
+          <text class="order-text gray f12">{{moneyCount.seedCount}}棵</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-flex">
+      <view class="container">
+        <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="page" wx:if="{{prodSeller}}">
+  <view class="page__bd prod">
+    <view class="weui-flex">
+      <view class="">
+        <view class="prod-list">
+          <view class="sort-title">
+            <text class="sort-text">我的品种</text>
+          </view>
+          <view wx:key="*this" wx:for="{{prodSeller}}" wx:for-index="index" wx:if="{{index}}" class="sortp">
+            <text class="stext">{{item.title}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="page">
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex">
+      <view class="address" bindtap="navto">
+        <view class="placeholder icon">
+          <image src="../../images/use/introduce.png"></image>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">
+          苗厂简介
+          <text class="f12 gray">(限500字，请直接编辑)：</text>
+
+          <textarea placeholder="请填写一句话简介.." maxlength='500' name='summary' value='{{shopEn.summary}}' bindblur="summaryUpdate" class="summary-update"></textarea>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <navigator url="../user/security/security">
+      <view class="weui-flex label">
+        <view class="address security">
+          <view class="placeholder icon">
+            <image class="fui-cell-icon" src="/images/use/security.png"></image>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            安全设置
+            <text class="fui-cell-remark"></text>
+          </view>
+        </view>
+        <view>
+          <view class="placeholder icon">
+            <image class="fui-cell-icon" src="/images/x_right.png"></image>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <navigator url="../user/code/code">
+      <view class="weui-flex label">
+        <view class="address security">
+          <view class="placeholder icon">
+            <image class="fui-cell-icon" src="/images/use/weapp.png"></image>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            苗厂小程序码
+            <text class="fui-cell-remark"></text>
+          </view>
+        </view>
+        <view>
+          <view class="placeholder icon">
+            <image class="fui-cell-icon" src="/images/x_right.png"></image>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex">
+      <view class="address" bindtap="navto">
+        <view class="placeholder icon">
+          <image src="../../images/use/address.png"></image>
+        </view>
+      </view>
+      <view class="weui-flex__item" bindtap="navto">
+        <view class="placeholder">
+          {{shopEn.address}}
+        </view>
+      </view>
+      <view class="label phone" bindtap="makePhoneCall">
+        <view class="placeholder icon">
+          <image src="../../images/use/phoneOrange.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="../about/about" hover-class="none"  class="weui-footer__link">苗果科技</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © 2018-2022 veg.kim</view>
+</view>

@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view>
+    <view class="succ-box"></view>
+    <view class="success">
+      <!-- <image class="title" src="../../images/success-title.png"></image> -->
+      <view class="jiajinbi">
+        <image class="icons" src="../../images/logo.png"></image>
+      </view>
+      <view class="jieshi fc">苗果申请获得以下权限:</view>
+      <view class="jieshi">获得您的微信公开信息(头像、昵称等)</view>
+      <button class="btn" wx:if="{{canIUse}}" open-type="getUserInfo" loading='{{butn_show_loading}}' bindgetuserinfo="bindGetUserInfo">授权登录</button>
+      <view wx:else>请升级微信版本</view>
+    </view>
+  </view>
+
+</view>

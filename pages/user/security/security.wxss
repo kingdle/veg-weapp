@@ -1,0 +1,45 @@
+.page-security {
+}
+
+.weui-cell {
+  padding: 5px 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.border-red {
+  border-bottom: 1px solid #f06307;
+}
+
+.weui-label {
+  width: 105px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.weui-cell__bd {
+  flex: 1;
+}
+
+.weui-input {
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+}
+
+.weui-agree__text {
+  text-align: left;
+  font-size: 12px;
+  margin: 8px;
+  line-height: 1.2em;
+  color: #999;
+}
+
+.weui-btn {
+  width: 96%;
+  background: #f85e13;
+  color: #fff;
+  margin-top: 30rpx;
+}

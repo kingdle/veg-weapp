@@ -1,0 +1,70 @@
+<view class='container'>
+  <form class='info_Form' bindsubmit="formSubmit">
+
+    <view class='inputGroup'>
+      <view class='input_item_container mt5'>
+        <view class='input_item_container_title'>
+          <text class="orange sign">*</text>
+          <text class="label-text">苗厂名称</text>
+        </view>
+        <input disabled="{{namecan}}" placeholder="请填写苗场名称" maxlength='20' name='title' value='{{shop.title}}' bindinput="Keytitle"></input>
+      </view>
+      <view class='input_item_container' hidden="true">
+        <input name='villageInfo' value='{{shop.villageInfo}}' />
+        <input name="address" value='{{shop.address}}' />
+        <input name="longitude" value='{{shop.longitude}}' />
+        <input name="latitude" value='{{shop.latitude}}' />
+        <input name="country" value='{{shop.country}}' />
+        <input name="province" value='{{shop.province}}' />
+        <input name="cityInfo" value='{{shop.cityInfo}}' />
+        <input name="id" value='{{shop.id}}' />
+      </view>
+      <view class='input_item_container'>
+        <view class='input_item_container_title'>
+          <!-- <text class="orange sign">*</text> -->
+          <text class="label-text">简介</text>
+        </view>
+        <textarea placeholder="请填写一句话简介.." maxlength='200' name='summary' value='{{shop.summary}}' bindinput="Keysummary"></textarea>
+      </view>
+      <view class='input_item_container'>
+        <view class='input_item_container_title'>
+          <text class="label-text">联系电话</text>
+        </view>
+        <input class="input_item_phone" disabled="true" placeholder="请返回重新授权获取" maxlength='11' name='phone' value='{{shop.user.phone}}'></input>
+      </view>
+      <view class="mpi">
+        <text class="mte">地址:{{shop.address}},</text>
+        <text class="mte"> 村庄:{{shop.villageInfo}}。</text>
+        <text class="mte"> (默认为手机当前所在位置，入驻过程中有问题请加18661737287微信)</text>
+      </view>
+    </view>
+
+    <view class="mp">
+      <!--<span class="mtop">
+      {{loginUser.nickName}}-{{shop.longitude}},{{shop.latitude}}</span>
+      -->
+      <map id="map4select" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="17" style="width:{{map_width}}px;height:{{map_height}}px;z-index:1;" bindregionchange="regionchange" controls="{{controls}}"></map>
+    </view>
+    <view class="footer">
+      <view class="footfixed tc">
+        <view class="fl_l w17 font_12 hui03 df">
+          <view class="df_1 l_h15 pt5 bre">
+            <view bindtap="toBack">
+              <image class="icon_kf" src="/images/use/back.png"></image>
+              <view class="dbtext">返回</view>
+            </view>
+          </view>
+        </view>
+        <view class="fl_l w83">
+          <view class="bg_cheng white w100 w50 fl_l">
+            <button class="ad-btn bg_cheng white" loading='{{butn_show_loading}}' formType="submit">
+              <image hidden='{{butn_show_loading}}' class="bphone" src="/images/use/save.png"></image>
+              <block class="btext"> 保存</block>
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </form>
+</view>

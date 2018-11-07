@@ -1,0 +1,41 @@
+<import src="../common/comtemp.wxml"  />
+
+<!--<view class='fixed'>
+  <view class='sortview ' wx:if="{{fixTop<scrollTop}}">
+    <button id="1" bindtap="setSort" class="sortbtn {{isNew?'sorthover':''}}">最新的</button>
+    <view class="leftline"></view>
+    <button id="0" bindtap="setSort" class="sortbtn {{isNew?'':'sorthover'}}">最近的</button>
+  </view>
+</view>-->
+<view class="index">
+  <view class="nav-scroll">
+    <scroll-view class="scroll-header" scroll-x="true" style="width: 100%">
+      <text wx:for="{{sortKind}}" wx:key="id" id="{{item.id}}" catchtap="getSort"
+            class="nav-name {{item.id == currentId ? 'nav-hover' : ''}}">
+      {{item.name}}
+      </text>
+    </scroll-view>
+  </view>
+  <view class="Rollswiper">
+    <button class="mini-btn {{typeId=='all' ? 'select-btn' : ''}}" id="all" catchtap="getType" size="mini">
+    {{ "全部" }}
+    </button>
+    <button wx:for="{{sortType}}" wx:key="id" id="{{item.id}}" catchtap="getType"
+            class="mini-btn {{item.id == typeId ? 'select-btn' : ''}}" size="mini">{{item.name}}</button>
+  </view>
+</view>
+
+
+<view class='con'>
+  <!--<view class='sortview'>
+    <button id="1" bindtap="setSort" class="sortbtn {{isNew?'sorthover':''}}">最新的</button>
+    <view class="leftline"></view>
+    <button id="0" bindtap="setSort" class="sortbtn {{isNew?'':'sorthover'}}">最近的</button>
+  </view>-->
+  <template is="ub-list" data="{{news:newsList}}"  />
+  <!-- 是否底部 -->
+  <view class="as-more" hidden="{{!isEnd}}">
+    <text class="more">已显示全部，共{{endPage}}页</text>
+  </view>
+</view>
+<template is="addnews" data="{{userData}}"  />

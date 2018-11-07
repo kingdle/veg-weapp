@@ -1,0 +1,136 @@
+@import "../common/comtemp.wxss";
+
+.page{
+  background-color: #f6f6f6;
+}
+.scroll-view_ {
+  white-space: nowrap;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-bottom: #e5e5e4 solid 1rpx;
+}
+
+.banner-scroll {
+  margin-top: 2px;
+}
+
+.banner-scroll repeat {
+  margin-bottom: 15rpx;
+}
+
+.scroll-header {
+  display: flex;
+  white-space: nowrap;
+  background-color: #F6F6F6;
+  height: 42px;
+  line-height: 12px;
+}
+
+.nav-name {
+  display: inline-block;
+  margin: 0 5px;
+  font-size: 32rpx;
+  padding: 2rpx 18rpx 30rpx;
+  margin-top: 10rpx;
+}
+
+.nav-hover {
+  color: #f85e13;
+  background-color: #fff;
+  font-weight: 500;
+  border-radius:5%;
+  border:1rpx solid #eee;
+  /*border-top:1rpx solid #f85e13;*/
+}
+
+.title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  font-size: 12rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  width: 100%;
+}
+
+.Rollswiper {
+  min-height: 80rpx;
+  background-color: #fff;
+  padding: 10px 10px 5px 10px;
+}
+
+button[size=mini] {
+  display: inline-block;
+  line-height: 1.8;
+  font-size: 12px;
+  padding: 0 22rpx;
+}
+
+button::after {
+  border: none;
+  color: #636363;
+}
+
+.mini-btn {
+  margin-top:0;
+  margin-bottom:0;
+  margin-right:10rpx;
+  border:#e5e5e4 solid 1px;
+  border-radius:20px;
+
+}
+
+.select-btn {
+  color: #fff;
+  background-color: #f85e13;
+  border: #f85e13 solid 1px;
+}
+
+.index{
+  /* border-bottom:1rpx solid #ddd;
+  box-shadow:0 2px 3px #eee; */
+  margin-bottom:26rpx;
+}
+
+.con {
+  /* border-top: 1rpx solid #eee; */
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.sortbtn {
+  background-color: #fff;
+  display: inline-block;
+  width: 48%;
+  border-radius: 0;
+  border-bottom: 1rpx solid #e3e3e3;
+  color: #676767;
+}
+
+.leftline {
+  border-right: 1rpx solid #e9e9e9;
+  height: 38px;
+  width: 1rpx;
+  display: inline-block;
+  margin-bottom:12rpx;
+}
+
+.sortview {
+  width: 100vw;
+  color: #b3b3b3;
+  background-color: #fff;
+  height: 48px;
+  padding:0 1%;
+}
+
+.sorthover {
+  border-bottom: 5rpx solid #f85e13;
+  font-weight: 500;
+  color: #222;
+}

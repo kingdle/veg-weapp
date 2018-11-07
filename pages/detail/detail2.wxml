@@ -1,0 +1,126 @@
+<import src="../common/comtemp.wxml" />
+<import src="../common/dlist.wxml" />
+<!--<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
+-->
+<!-- 店铺详情页面 -->
+<view class="wrapper">
+  <!-- 首图 -->
+  <!--<view class="top">
+    <view class="pic">
+      <view class="head-pic">
+        <view wx:key="*this" wx:for="{{shopPics}}" wx:for-index="index" wx:if="{{index<8}}" class="assess-p">
+          <image bindtap='toPic1' data-src="{{item.pic}}!mp.v1080" class="assess-pimg" src="{{item.pic}}!mp.v100"></image>
+        </view>
+      </view>
+    </view>
+    <navigator hidden="{{shopEn.pic_count<8}}" class='photos' url="../detail/album?id={{shopEn.id}}">
+      <text class="photos-name">查看全部</text>
+    </navigator>
+  </view>-->
+  <!-- 门店信息 -->
+  <view class="store-info">
+    <view class="info-ul">
+      <view class="info-li">
+        <view class="head-img">
+          <image class="portrait" src="{{shopEn.avatar}}"></image>
+        </view>
+        <view class="mt15">
+          <text class="dis-b">{{shopEn.title}}</text>
+        </view>
+        <button class="bshare" size="mini" open-type="share" >
+          <image src="/images/use/share.png" class="fxpic"></image>
+        </button>
+      </view>
+      <view class="info-li">
+        <image class="location" src="{{img_url}}use/cun.png"></image>
+        <view class="info-span">{{shopEn.villageInfo}}</view>
+      </view>
+      <view class="info-li" bindtap='navto'>
+        <image class="location" src="{{img_url}}use/location.png"></image>
+        <view class="info-span">{{shopEn.address}} </view>
+        <image class="location fr" src="{{img_url}}use/dh.png"></image>
+      </view>
+      <view class="info-li">
+        <image class="location" src="{{img_url}}use/introduce.png"></image>
+        <view class="info-span w90">{{shopEn.summary}}</view>
+      </view>
+    </view>
+  </view>
+
+  
+  <!-- 评价列表 -->
+  <!--<view class="content">
+    <view class="comment">
+      <view class="news">
+        <image class="time" src="{{img_url}}use/xinxi.png"></image>
+        <text class="news-title">最新动态</text>
+      </view>
+    </view>
+  </view>-->
+  <!--<template is="news-list" data="{{news:shopNews}}" />-->
+  <!-- 是否底部 -->
+  <!--<view class="as-more" hidden="{{!isEnd}}">
+    <text class="more">已显示全部，共{{nextPage}}页</text>
+  </view>-->
+</view>
+
+<template is="dlist" data="{{shopNews:shopNews,shopPics:shopPics,currentTab:currentTab}}" />
+
+<!--</scroll-view>
+-->
+<view class="footer">
+  <!--- 底部开始 -->
+  <!--<view class="back-top {{scrollDown?'scrolled':''}}">
+<image bindtap="makePhoneCall" class="back" src="{{img_url}}detail/phone.png"></image>
+</view>
+-->
+  <!--- 底部开始 -->
+  <view class="footfixed tc">
+    <view class="fl_l w17 font_12 hui03 df">
+      <view class="df_1 l_h15 pt5 bre">
+        <view bindtap="toHome">
+          <image class="icon_kf" src="../../images/use/back.png"></image>
+          <view class="dbtext">返回</view>
+        </view>
+      </view>
+      <!--<view class="df_1 l_h15 pt5">
+  <contact-button type="default-light" session-from="productId_{{itemData.id}}" class="ke">
+    <image class="icon_kf" src="../../images/icons/kefu.png" style="margin-right:20px;"></image>
+    <view class="dbtext" style="line;margin-top:7rpx">客服</view>
+  </contact-button>
+</view>
+-->
+    </view>
+    <block wx:if="{{userData.phone==null||userData.phone==''}}">
+      <view class="fl_l w83">
+        <!--<view class="w50 fl_l ">
+  <button class="ad-btn bg_cheng white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='1'>发送订单</button>
+</view>
+-->
+        <view class="bg_cheng white w100 w50 fl_l">
+          <button class="ad-btn bg_cheng white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='0'>
+            <image class="bphone" src="/images/use/tel.png"></image>
+            <block class="btext">电话联系</block>
+          </button>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="fl_l w83">
+        <!--<view class="w50 fl_l " bindtap="makeOrder">
+<button form-type='submit' class="ad-btn bg_cheng white">发送订单</button>
+</view>
+-->
+        <view class="bg_cheng white w100 w50 fl_l" bindtap="makePhoneCall" data-status="1">
+          <button class="ad-btn bg_cheng white">
+            <image class="bphone" src="/images/use/tel.png"></image>
+            <block class="btext">电话联系</block>
+          </button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view hidden="{{showAdd}}">
+  <template is="addnews" data="{{userData}}" />
+</view>

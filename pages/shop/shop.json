@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的苗厂",
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
+}

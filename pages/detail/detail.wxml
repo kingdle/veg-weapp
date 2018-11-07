@@ -1,0 +1,196 @@
+<import src="../common/comtemp.wxml" />
+
+<!-- 店铺详情页面 -->
+<view class="wrapper">
+  <view class="weui-panel__bd">
+    <view hover-class="none" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <navigator hover-class="none" url="../detail/album?id={{shopEn.id}}">
+          <image class="weui-media-box__thumb" src="{{shopAvatar}}" />
+          <view wx:if="{{shopEn.pic_count !='0'}}" class="weui-badge" style="position: absolute;left: 5.7em;top:6em;">{{shopEn.pic_count}}</view>
+        </navigator>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title {{shopEn.title.length>='9' ? 'if16' : ''}}">{{shopEn.title}}</view>
+        <view class="weui-media-box__desc">
+          {{shopEn.villageInfo}}
+        </view>
+        <view class="weui-media-box__desc label">
+          <image class="see-counts" src="/images/use/see-hot.png"></image>
+          <text class="orange f16">{{shopEn.click_count}}次</text>
+          <text class="orange f16"> / 已有{{shopEn.followers_count}}人收藏</text>
+        </view>
+        <view class="weui-badge-share" style="position: absolute;right: 1.2em;top:3.6em;">
+          <view wx:if="{{favorites==''}}" class="bshare label" bindtap="favoriteShop" id="{{shopEn.id}}">
+            <image src="/images/use/thumbs.png"></image>
+            <text>收藏</text>
+          </view>
+          <view wx:if="{{favorites!=''}}" class="bshare label" bindtap="destroyFavorites" id="{{shopEn.id}}">
+            <image src="/images/use/thumbs-up1.png"></image>
+            <text>已收藏</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="info-li">
+    <image class="location" src="/images/use/introduce.png"></image>
+    <view class="info-span w90">{{shopEn.summary==null?'请在【我的苗厂】中添加简介信息':shopEn.summary}}</view>
+  </view>
+  <!-- 首图 -->
+  <!-- <view class="top">
+    <view class="pic">
+      <view class="head-pic">
+        <view wx:key="*this" wx:for="{{shopPics}}" wx:for-index="index" wx:if="{{index<4}}" class="assess-p">
+          <image bindtap='toPic1' data-src="{{item.pic}}!mp.v1080" class="assess-pimg" src="{{item.pic}}!mp.v100"></image>
+        </view>
+      </view>
+    </view>
+    <navigator hidden="{{shopEn.pic_count<4}}" class='photos' url="../detail/album?id={{shopEn.id}}">
+      <text class="photos-name">查看相册</text>
+    </navigator>
+  </view> -->
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex">
+      <view class="address" bindtap="navto">
+        <view class="placeholder icon">
+          <image src="../../images/use/dh.png"></image>
+        </view>
+      </view>
+      <view class="weui-flex__item" bindtap="navto">
+        <view class="placeholder address-text">
+          {{shopEn.province}}{{shopEn.cityInfo}}{{shopEn.address}}
+        </view>
+        <!-- <view class="village">
+          {{shopEn.villageInfo}}
+        </view> -->
+      </view>
+      <view class="label phone" bindtap="makePhoneCall">
+        <view class="placeholder icon">
+          <image src="../../images/use/phoneOrange.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评价列表 -->
+  <view class="content">
+    <view class="comment">
+      <view class="news label">
+        <image class="time" src="/images/use/xinxi.png"></image>
+        <text class="news-title">最新动态</text>
+        <text class="news-count　gray f12">共{{shopEn.dynamic_count}}条</text>
+        <text class="news-count　gray f12">　(注:请在【苗子】中发动态)</text>
+      </view>
+    </view>
+  </view>
+  <!-- <template is="news-shop" data="{{news:shopNews}}" /> -->
+  <view class="assess">
+    <view class="assess-ul">
+      <view class="assess-li" wx:for="{{shopNews}}" wx:key="*this">
+        <view class="head-md">
+          <text class="name-day">{{item.day}}</text>
+          <text class="name-month">{{item.month}}月</text>
+          <text class="name-year">{{item.year}}年</text>
+        </view>
+        <view class="head-right">
+          <view class="contents">
+            <view class="dynamic-content">
+              <text>{{item.content}}</text>
+            </view>
+            <view hidden="{{item.video_thumbnail==null}}" class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
+              <view class='pc iconfont f36 icon-play icon-videoPlay zIndex1'></view>
+              <image src="{{item.video_thumbnail}}!mp.v200260"></image>
+            </view>
+            <view class="assess-pic" wx:if="{{item.pic}}">
+              <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="*this">
+                <image bindtap="toPic2" data-src="{{item}}" class="assess-pimg" src="{{item}}!mp.v9080"></image>
+              </view>
+            </view>
+            <view class="listbottom tagp" wx:if="{{item.sorts !=''}}">
+              <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+                <text class="stext">{{item.title}}</text>
+              </view>
+            </view>
+            <view class="com-time">
+              <text class="fl_l assess-time">{{item.fdate}}</text>
+            </view>
+            <view class="answers-container" wx:if="{{item.answers!=''}}">
+              <view class="answer-list" wx:for="{{item.answers}}" wx:key="*this">
+                <text class="answer-user">{{item.user.nickname}}</text>
+                <text class="answer-body">: {{item.body}}</text>
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 是否底部 -->
+  <view class="as-more" hidden="{{!isEnd}}">
+    <text class="more">已显示全部，共{{nextPage-1}}页</text>
+  </view>
+</view>
+<!--</scroll-view>
+-->
+<view class="footer">
+  <!--- 底部开始 -->
+  <!--<view class="back-top {{scrollDown?'scrolled':''}}">
+<image bindtap="makePhoneCall" class="back" src="/images/detail/phone.png"></image>
+</view>
+-->
+  <!--- 底部开始 -->
+  <view class="footfixed tc">
+    <view class="fl_l w50 font_12 hui03 df">
+      <view class="df_1 l_h15 pt5 bre">
+        <view bindtap="toHome">
+          <image class="icon_kf" src="../../images/icons/seedling.png"></image>
+          <view class="dbtext">苗子</view>
+        </view>
+      </view>
+      <view class="df_1 l_h15 pt5">
+        <button class="ke" open-type="share">
+          <image class="icon_kf" src="../../images/use/shares3.png"></image>
+          <view class="dbtext" style="line;margin-bottom:7rpx">分享</view>
+        </button>
+      </view>
+
+    </view>
+    <block wx:if="{{userData.phone==null||userData.phone==''}}">
+      <view class="fl_l w50">
+        <view class="white w100 fl_l">
+          <button class="ad-btn bg_cheng white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='0'>
+            <image class="bphone" src="/images/use/tel.png"></image>
+            <block class="btext">打电话</block>
+          </button>
+        </view>
+        <!-- <view class="w50 fl_l ">
+          <button class="ad-btn bg_green white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='1'>
+            <image class="bphone" src="/images/use/bi.png"></image>
+            <block class="btext">订苗</block>
+          </button>
+        </view> -->
+
+      </view>
+    </block>
+    <block wx:else>
+      <view class="fl_l w50">
+        <view class="white w100 fl_l" bindtap="makePhoneCall" data-status="1">
+          <button class="ad-btn bg_cheng white">
+            <image class="bphone" src="/images/use/tel.png"></image>
+            <block class="btext">打电话</block>
+          </button>
+        </view>
+        <!-- <view class="w50 fl_l " bindtap="makeOrder">
+          <button form-type='submit' class="ad-btn bg_green white">
+            <image class="bphone" src="/images/use/bi.png"></image>
+            <block class="btext">订苗</block>
+          </button>
+        </view> -->
+      </view>
+    </block>
+  </view>
+</view>
+<!-- <view hidden="{{showAdd}}">
+  <template is="addnews" data="{{userData}}" />
+</view> -->

@@ -1,0 +1,17 @@
+<view class="page-security">
+  <view class="weui-cell">
+    <view class="weui-label">密码</view>
+    <input class="weui-input" placeholder="密码不少于6位" type="password" bindinput="listenerPasswordInput" />
+
+  </view>
+  <view class="weui-cell">
+    <view class="weui-label">确认密码</view>
+    <input class="weui-input" placeholder="输入确认密码" type="password" bindinput="listenerPasswordConfirmInput" />
+  </view>
+
+  <button class="weui-btn" bindtap="listenerSave">保存</button>
+  <view class="weui-agree__text">
+    设置密码后，您的合同信息更加安全。该密码用于后期合同清单维护、管理、导出及硬件设备管理验证凭证，请妥善保管。
+  </view>
+
+</view>

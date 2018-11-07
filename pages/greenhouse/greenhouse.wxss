@@ -1,0 +1,9 @@
+.container{
+  
+}
+.container video{
+  width: 100%;
+}
+.greenhouse{
+  padding: 20rpx;
+}

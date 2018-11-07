@@ -1,0 +1,295 @@
+<!-- loading 和列表部分 -->
+<template name="loadings">
+  <view class="tips {{loading ? 'hide': ''}}">
+    <image src="../../images/loading.gif" mode="aspectFit" />
+    <text>{{loadtxt}}...</text>
+  </view>
+  <loading hidden="{{loading}}">{{loadtxt}}...</loading>
+</template>
+<!-- 新增动态 -->
+<template name="addnews">
+  <navigator class='mb10' url="../news/news" hover-class="navigator-hover">
+    <image src="../../images/add.png" class="img-plus-style" bindtap="addnews" hidden="{{userData.is_active==0}}"></image>
+  </navigator>
+</template>
+<!-- 新增订单 -->
+<template name="addorder">
+  <navigator class='mb10' url="../order/add/order" hover-class="navigator-hover">
+    <image src="../../images/order.png" class="img-plus-style" hidden="{{userData.is_active==0}}"></image>
+  </navigator>
+</template>
+<!-- 首页推荐 -->
+<template name="shoptop">
+  <block>
+    <navigator class='mb10' url="../detail/detail" hover-class="navigator-hover">
+      <image src="https://lorempixel.com/220/220/?37654" class="pic"></image>
+      <view class="brand_item">
+        <view class="right_cont">
+          <view class="li_title">
+            <text class="title">苗果商家</text>
+            <image src="/images/detail/rz.png" class="rzpic"></image>
+          </view>
+          <!-- <text class="comment">
+          <text class="star">
+            <text class="star_span"></text>
+          </text>
+        </text>
+        <view class="discount">
+          <text class="dlt">8.8</text>
+          <text class="drt">折</text>
+        </view>
+        -->
+          <view class="other">
+            <text class="olt">育苗场</text>
+            <text class="ort">
+            南城区|{{'<'}}100m</text>
+          </view>
+          <view class="price">
+            <view class="price1">
+              <text class="coupon1">满</text>
+              <text class="dispan">满100减10,满200减20</text>
+            </view>
+            <!-- <view class="price2">
+            <text class="coupon2">券</text>
+            <text class="dispan">100元代金券</text>
+          </view>
+          -->
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  <block>
+    <navigator class='mb10' url="../detail/detail" hover-class="navigator-hover">
+      <image src="https://lorempixel.com/220/220/?37654" class="pic"></image>
+      <view class="brand_item">
+        <view class="right_cont">
+          <view class="li_title">
+            <text class="title">苗果商家</text>
+            <image src="/images/detail/rz.png" class="rzpic"></image>
+          </view>
+          <!-- <text class="comment">
+        <text class="star">
+          <text class="star_span"></text>
+        </text>
+      </text>
+      <view class="discount">
+        <text class="dlt">8.8</text>
+        <text class="drt">折</text>
+      </view>
+      -->
+          <view class="other">
+            <text class="olt">育苗场</text>
+            <text class="ort">
+          南城区|{{'<'}}100m</text>
+          </view>
+          <view class="price">
+            <view class="price1">
+              <text class="coupon1">满</text>
+              <text class="dispan">满100减10,满200减20</text>
+            </view>
+            <!-- <view class="price2">
+          <text class="coupon2">券</text>
+          <text class="dispan">100元代金券</text>
+        </view>
+        -->
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  <block>
+    <navigator class='mb10' url="../detail/detail" hover-class="navigator-hover">
+      <image src="https://lorempixel.com/220/220/?37654" class="pic"></image>
+      <view class="brand_item">
+        <view class="right_cont">
+          <view class="li_title">
+            <text class="title">苗果商家</text>
+            <image src="/images/detail/rz.png" class="rzpic"></image>
+          </view>
+          <!-- <text class="comment">
+      <text class="star">
+        <text class="star_span"></text>
+      </text>
+    </text>
+    <view class="discount">
+      <text class="dlt">8.8</text>
+      <text class="drt">折</text>
+    </view>
+    -->
+          <view class="other">
+            <text class="olt">育苗场</text>
+            <text class="ort">
+        南城区|{{'<'}}100m</text>
+          </view>
+          <view class="price">
+            <view class="price1">
+              <text class="coupon1">满</text>
+              <text class="dispan">满100减10,满200减20</text>
+            </view>
+            <!-- <view class="price2">
+        <text class="coupon2">券</text>
+        <text class="dispan">100元代金券</text>
+      </view>
+      -->
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</template>
+<!-- 动态列表 -->
+<template name="news-list">
+  <view class="assess">
+    <view class="assess-ul">
+      <view class="assess-li" wx:for="{{news}}" wx:key="*this">
+        <view class="head-img">
+          <image class="portrait" src="{{item.shop.avatar}}"></image>
+        </view>
+        <view class="head-right">
+          <view class="head-name">
+            <text class="name-h nfont">{{item.shop.title}}</text>
+            <view class="name-pic"></view>
+          </view>
+          <view class="com-time">
+            <text class="fl_l assess-time">{{item.fdate}}</text>
+          </view>
+          <text class="cfont">{{item.content}}</text>
+          <view class="assess-pic">
+            <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="*this">
+              <image bindtap="toPic2" data-src="{{item}}" class="assess-pimg" src="{{item}}!mp.v100"></image>
+            </view>
+          </view>
+          <view class="listbottom tagp">
+            <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+              <text class="stext">{{item.title}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 首页苗子列表 -->
+<template name="ub-list">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{news}}" wx:key="id">
+        <view class="listBox">
+          <view class="boxPic">
+            <navigator class='shop-url' hover-class="none" url="../detail/detail?id={{item.shop.id}}">
+              <image class="listAvatar" src="{{item.shop.avatar}}" />
+              <view class="listNickname ">
+                <text class="nfont fl_l">{{item.shop.title}}</text>
+                <text class="fl_r cdate">{{item.shop.distance}} {{item.shop.villageInfo}}</text>
+              </view>
+              <view class="listAddress font-28">
+                <text class="fl_l">{{item.fdate}}</text>
+              </view>
+              <view class="listIntro cfont">
+                <text>{{item.content}}</text>
+              </view>
+            </navigator>
+            <view wx:for="{{item.pic}}" wx:for-index="index" wx:if="{{index<8}}" wx:key="*this" class="listImg">
+              <image src="{{item}}!mp.v200" class="listImgText" bindtap="toPic2" data-src="{{item}}" />
+            </view>
+            <view class="pbbt" hidden="{{item.sorts.length==0}}"></view>
+            <view class="listbottom font-28 tagp" hidden="{{item.sorts.length==0}}">
+              <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+                <text class="stext">{{item.title}}</text>
+              </view>
+            </view>
+            <view class="listbottom font-28">
+              <view class="listbottom" wx:if="{{thumbs_answer=='0'}}">
+                <view class="message" data-dynamic="{{item}}" bindtap="thumbsAnswer">
+                  <image src="../../images/use/message.png"></image>
+                  {{thumbs_answer}}
+                </view>
+              </view>
+              <view class="listbottom" wx:if="{{thumbs_answer=='1'}}">
+                <view class="thumbs" data-dynamic="{{item}}" bindtap="thumbs">
+                  <image src="../../images/use/thumbs.png"></image>
+                </view>
+                <view class="answer" data-dynamic="{{item}}" bindtap="answer">
+                  <text class="answer-text">评论</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+<!-- 苗厂页动态列表 -->
+<template name="news-shop">
+  <view class="assess">
+    <view class="assess-ul">
+      <view class="assess-li" wx:for="{{news}}" wx:key="*this">
+        <view class="head-md">
+          <text class="name-day">{{item.day}}</text>
+          <text class="name-month">{{item.month}}月</text>
+          <text class="name-year">{{item.year}}年</text>
+        </view>
+        <view class="head-right">
+          <view class="contents">
+            <view class="dynamic-content">
+              <text>{{item.content}}</text>
+            </view>
+            <view class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
+                <view class='pc iconfont f36 icon-play icon-videoPlay zIndex1'></view>
+                <image src="{{item.video_thumbnail}}!mp.v200260"></image>
+            </view>
+            <view class="assess-pic" wx:if="{{item.pic}}">
+              <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="*this">
+                <image bindtap="toPic2" data-src="{{item}}" class="assess-pimg" src="{{item}}!mp.v100"></image>
+              </view>
+            </view>
+            <view class="listbottom tagp" wx:if="{{item.sorts !=''}}">
+              <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+                <text class="stext">{{item.title}}</text>
+              </view>
+            </view>
+            <view class="com-time">
+              <text class="fl_l assess-time">{{item.fdate}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 检索 -->
+<template name="searchTxt">
+  <block wx:for="{{ranking}}" wx:key="section">
+    <view class="search-rank">
+      <view class="searchTxt">{{item.section}}</view>
+      <view class="cont">
+        <navigator url="../Play/play?name={{item.bigTitle}}">
+          <view class="fl leside">
+            <image src="{{item.bigImgea}}" />
+            <view class="contText">
+              <text>{{item.bigTitle}}</text>
+              <text class="ft10">{{item.bigSubtitle}}</text>
+            </view>
+            <view class="rankOne">1</view>
+          </view>
+        </navigator>
+        <view class="fl riside">
+          <block wx:for="{{item.rankArr}}">
+            <navigator url="../Play/play?name={{item.title}}">
+              <view class="riside-l {{ index == (3) ? 'mb0':'' }}">
+                <text class="l-text">{{index+2}}</text>
+                <view class="l-mess">
+                  <text class="messText1">{{item.title}}</text>
+                  <text class="messText2">{{item.subtitle}}</text>
+                </view>
+              </view>
+            </navigator>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</template>

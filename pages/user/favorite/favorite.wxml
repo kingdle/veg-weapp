@@ -1,0 +1,48 @@
+<view class="page__bf">
+
+  <block wx:if="{{shopList !=''}}" wx:key="*this" wx:for="{{shopList}}">
+    <view class="weui-panel__bd">
+      <navigator url="../../detail/detail?id={{item.id}}" hover-class="navigator-hover">
+        <view hover-class="changestyle" class="weui-media-box weui-media-box_appmsg">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image wx:if="{{item.avatar!=null}}" class="weui-media-box__thumb" src="{{item.avatar}}!mp.v200"></image>
+            <image wx:if="{{item.avatar==null}}" class="weui-media-box__thumb" src="/images/use/logo.png"></image>
+            <!-- <view class="weui-badge orange" style="position: absolute;top: 1.6em;right: 1em;"></view> -->
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title {{orderData.id==item.id?'orange':''}}">
+              {{item.title}}
+            </view>
+            <view class="weui-media-box__desc">{{item.province}}{{item.cityInfo}}{{item.address}}
+            </view>
+            <!-- <view class="weui-media-box__desc">{{item.user.phone}}
+            </view> -->
+            <view class="weui-media-box__desc">
+              <text class="fui-cell-title">距您：{{item.distance}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </block>
+  <view wx:if="{{shopList ==''}}" class="no-orders">
+    您还没有收藏任何育苗厂
+  </view>
+</view>
+
+<view class="weui-flex">
+  <view>
+    <view class="placeholder"></view>
+  </view>
+  <view class="weui-flex__item footer">
+    <view class="placeholder gray">
+    <navigator url="../../about/about" hover-class="none"  class="weui-footer__link label">
+      <image class="fui-cell-icon" src="/images/use/logo.png"></image>
+      <text class="footer-text">苗果科技提供技术支持</text>
+      </navigator>
+    </view>
+  </view>
+  <view>
+    <view class="placeholder"></view>
+  </view>
+</view>

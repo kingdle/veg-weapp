@@ -1,0 +1,16 @@
+<import src="../../wxSearch/wxSearch.wxml"  />
+<view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{wxSearchData.value}}"
+                   bindfocus="wxSerchFocus" bindinput="wxSearchInput" bindblur="wxSearchBlur"  />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+    </view>
+    <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
+</view>
+<template is="wxSearch" data="{{wxSearchData}}"  />
+

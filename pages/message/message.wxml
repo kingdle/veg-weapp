@@ -1,0 +1,94 @@
+<view class="page-body">
+  <view class="page-section tc">
+    <!-- <video id="myVideo" src="https://images.veg.kim/video/mgdatapriceLow.mp4" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video> -->
+    <view class="page m-body">
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder">
+              <button ontap="goHome" class="go-home label">
+                <text class="title">{{slogan.title}}</text>
+                <image src="/images/use/wechat.png"></image>
+              </button>
+            </view>
+          </view>
+
+          <view class="weui-flex__item">
+            <view class="placeholder">
+            <navigator url="../introduce/introduce" hover-class="navigator-hover">
+              <button class="bshare" size="mini" >
+                <text class="gray">详细介绍</text>
+              </button>
+              </navigator>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="page__hd">
+        <view class="page__desc">借力微信在农户中的普及率，帮助育苗厂建立与农户互动连接，全面赋予农户辨别市场变化能力，赋能苗厂微信运营能力。</view>
+      </view>
+      
+      <view class="page__bd">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder">
+              <textarea placeholder="请吐槽或发表您的建议，好建议是动力。" bindblur="bindInputBlur" bindinput="Keysummary" class="message" value="{{inputValue}}"></textarea>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <view class="page__bd page__bd_spacing messages-list">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder label">
+              <image src="/images/use/m-message.png"></image>
+              <text class="orange pl5">{{meta.total}}</text>
+              <text class="gray"> 条建议</text>
+            </view>
+          </view>
+          <view>
+            <view class="placeholder">
+              <!-- <image src="/images/use/m-download.png"></image> -->
+            </view>
+          </view>
+          <view>
+            <view class="placeholder label">
+              <button class="bshare" size="mini" open-type="share">
+                <image src="/images/use/m-share.png"></image>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="page__bf">
+        <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscroll="scroll" bindscrolltolower="pullUpLoad">
+
+          <block wx:key="*this" wx:for="{{messageData}}">
+            <view class="weui-panel__bd">
+              <navigator url="" hover-class="changestyle" class="weui-media-box weui-media-box_appmsg">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{item.avatar}}"></image>
+                  <view wx:if="{{item.is_adopt=='T'}}" class="weui-badge orange" style="position: absolute;top: 1.2em;left: 3.5em;">采纳</view>
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title {{orderData.id==item.id?'orange':''}}">
+                    {{item.nickname}}
+                  </view>
+                  <view class="weui-media-box__desc">{{item.content}}
+                  </view>
+                  <view class="weui-media-box__desc">
+                    {{item.created_at}}
+                  </view>
+                </view>
+              </navigator>
+            </view>
+          </block>
+        </scroll-view>
+        <view class="as-more">
+          <text class="more">已显示全部建议</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

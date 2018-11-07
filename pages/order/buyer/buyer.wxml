@@ -1,0 +1,46 @@
+<view class="page__bf">
+
+  <block wx:if="{{pastOrder.data !=''}}" wx:key="*this" wx:for="{{pastOrder}}">
+    <view class="weui-panel__bd">
+      <view hover-class="changestyle" class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image wx:if="{{item.prod.pic!=null}}" class="weui-media-box__thumb" src="{{item.prod.pic}}!mp.v200"></image>
+          <image wx:if="{{item.prod.pic==null}}" class="weui-media-box__thumb" src="/images/use/logo.png"></image>
+          <view wx:if="{{item.payment==0}}" class="weui-badge orange" style="position: absolute;top: 1.6em;right: 1em;">未结账</view>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title {{orderData.id==item.id?'orange':''}}">
+            合同号:{{item.id}}
+          </view>
+          <view class="weui-media-box__desc">育苗厂:{{item.shop.title}}
+          </view>
+          <view class="weui-media-box__desc">品种:{{item.prod.title}} 数量:{{item.counts}}株
+          </view>
+          <view class="weui-media-box__desc">
+            <text class="fui-cell-title">{{item.end_at}}送苗</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{pastOrder.data ==''}}" class="no-orders">
+    订单为空，请联系育苗厂通过苗果【新建合同】添加
+  </view>
+</view>
+
+<view class="weui-flex">
+  <view>
+    <view class="placeholder"></view>
+  </view>
+  <view class="weui-flex__item footer">
+    <view class="placeholder gray">
+      <navigator url="../../about/about" hover-class="none" class="weui-footer__link label">
+        <image class="fui-cell-icon" src="/images/use/logo.png"></image>
+        <text class="footer-text">苗果科技提供技术支持</text>
+      </navigator>
+    </view>
+  </view>
+  <view>
+    <view class="placeholder"></view>
+  </view>
+</view>

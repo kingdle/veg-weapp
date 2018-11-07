@@ -1,0 +1,11 @@
+<view class="wrapper">
+  <view class="head-pic">
+    <view wx:key="*this" wx:for="{{shopPics}}" wx:for-index="index" class="assess-p">
+      <image bindtap='toPic1' data-src="{{item.pic}}!mp.v1080" class="assess-pimg" src="{{item.pic}}!mp.v300"></image>
+    </view>
+  </view>
+     <!-- 是否底部 -->
+  <view class="as-more" hidden="{{!isEnd}}">
+    <text class="more">已显示全部，共{{nextPage}}页</text>
+  </view>
+</view>

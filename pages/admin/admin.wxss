@@ -1,0 +1,269 @@
+page {
+  background: #fff;
+  min-height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  padding-top: 30rpx;
+}
+.orange{
+  color: #f85e13;
+}
+.fb-type {
+  height: 104rpx;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.fb-type .type-label {
+  height: 36rpx;
+  flex: 1;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.fb-type .type-icon {
+  height: 36rpx;
+  width: 36rpx;
+}
+
+.parea {
+  background: #fff;
+  padding: 10rpx 30rpx 50rpx 30rpx;
+}
+
+.clear {
+  padding: 0 30rpx;
+}
+
+.clearline {
+  border-bottom: 1rpx solid #eee;
+}
+
+.fb-body {
+  background: #fff;
+  height: 220rpx;
+  padding: 20rpx 30rpx 64rpx 30rpx;
+}
+
+.fb-body .content {
+  width: 100%;
+  height: 100%;
+  color: #333;
+  line-height: 40rpx;
+  font-size: 36rpx;
+}
+
+.text-count {
+  padding-top: 10rpx;
+  line-height: 30rpx;
+  float: right;
+  color: #666;
+  font-size: 24rpx;
+}
+.text-progress {
+  padding-top: 10rpx;
+  line-height: 30rpx;
+  float: left;
+  color: #666;
+  font-size: 24rpx;
+}
+.fb-mobile {
+  height: 162rpx;
+  width: 100%;
+}
+
+.fb-mobile .label {
+  height: 58rpx;
+  width: 100%;
+  padding-top: 14rpx;
+  padding-bottom: 11rpx;
+  color: #7f7f7f;
+  font-size: 24rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  line-height: 33rpx;
+}
+
+.fb-mobile .mobile-box {
+  height: 104rpx;
+  width: 100%;
+  color: #333;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-size: 24rpx;
+  background: #fff;
+  position: relative;
+}
+
+.fb-mobile .mobile {
+  position: absolute;
+  top: 27rpx;
+  left: 30rpx;
+  height: 50rpx;
+  width: 100%;
+  color: #333;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 43rpx;
+  right: 30rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.fb-btn {
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  background: #f85e13;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  color: #fff;
+  font-size: 28rpx;
+  z-index: 99;
+}
+
+.img {
+  width: 24%;
+  height: 170rpx;
+  padding-right: 1%;
+}
+.video-dynamic{
+  width: 40%;
+  height: 360rpx;
+  padding-right: 1%;
+}
+.pspan {
+  position: relative;
+}
+
+.delarea {
+  width: 90rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 5rpx;
+}
+.progress {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 5rpx;
+}
+
+.closeImg {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  position: absolute;
+  right: 5rpx;
+  /*top: 5rpx;*/
+}
+
+.citypicker {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: #111;
+}
+
+.citybody {
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+  /*background-color: #f85e13;*/
+}
+
+picker-view-column {
+  text-align: center;
+}
+
+picker-view-column view {
+  color: #000;
+}
+
+.cityheader {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 5;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #828282;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: #f85e13;
+}
+
+.section .picker {
+  background-color: #fff;
+  border-bottom: 2px #ccc solid;
+  border-top: 2px #d9d9d9 solid;
+  padding: 20rpx;
+}
+
+.ty {
+  padding: 10rpx 30rpx;
+  font-size: 13px;
+  color: #333;
+  height: 28px;
+  display: inline-block;
+  min-width: 90%;
+}
+
+.tylab {
+  color: #777;
+  font-size: 14px;
+}
+
+.tyunit {
+  background-color: #f8f8f8;
+  border: 1rpx solid #e5e5e5;
+  margin: 5rpx 10rpx 2rpx 0;
+  border-radius: 10px;
+  display: inline-block;
+  line-height: 1.2;
+  /*height: 60px;*/
+}
+
+.tyitem {
+  /* letter-spacing: 3rpx; */
+  margin: 2px 8px;
+  color: #2c2c2b;
+}
+
+.tfleft {
+  text-align: left;
+}
+
+.warn {
+  color: #f85e13;
+}
+
+.type-name {
+  color: #2c2c2b;
+}
+.footer{
+  margin-bottom: 50px;
+}

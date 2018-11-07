@@ -1,0 +1,82 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-cells__title">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">品种信息</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder fl_r orange">{{totalPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">选择分类</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="weui-input picker orange">
+              {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">品种</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input orange" bindinput="listenerTitleInput" placeholder="如：齐达利" value="{{title}}" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">单价(元)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input orange" type="digit" bindinput="listenerUnitPriceInput" placeholder="如：1.5" value="{{unitPrice}}" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">更多说明</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="listenerIntroduceInput" placeholder="如：大西红柿，粉色" value="{{introduce}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">上传品种图片</view>
+    <view class="parea" hidden="{{condition}}">
+      <span class="pspan" wx:for="{{pics}}" wx:key="*this">
+        <image src="{{item}}" class="img" mode="widthFix"></image>
+        <span class="delarea" bindtap='deleteImg' data-index="{{index}}">
+          <image class='closeImg' src='./../../../images/del.png' />
+        </span>
+      </span>
+      <text class="orange ">*</text>
+      <image src="./../../../images/s.png" bindtap="chooseimage" class="img" mode="widthFix"></image>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" bindtap="addProduct">保存</button>
+    </view>
+  </view>
+</view>

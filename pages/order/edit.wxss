@@ -1,0 +1,203 @@
+/* pages/edit-resume-base/edit-resume-base.wxss */
+
+/*@import "/style/item-cells.wxss";
+@import "/style/blue-btn.wxss"; */
+
+page {
+  background: #fff;
+}
+
+text {
+  color: #666;
+}
+
+view {
+  color: #222;
+}
+
+input {
+  color: #222;
+}
+
+/*编辑布局通用部分*/
+
+.item-cells {
+  background-color: #fff;
+  color: #666;
+  margin-top: 20rpx;
+}
+
+.item-cells.no-top {
+  margin-top: 0;
+}
+
+.item-cell {
+  padding: 30rpx 28rpx 30rpx 28rpx;
+  display: flex;
+}
+
+.item-cell-textarea {
+  padding: 0 28rpx 30rpx 28rpx;
+}
+
+.item-textarea {
+  width: 100%;
+  height: 50rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.item-textarea.big {
+  height: 280rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.item-textarea.bg {
+  background-color: #fafafa;
+}
+
+.textarea-count {
+  background-color: #fafafa;
+  line-height: 1.4;
+  text-align: right;
+  padding: 0 20rpx 10rpx 0;
+  color: #999;
+}
+
+.item-cell-bd {
+  flex: 1;
+}
+
+.item-cell-ft {
+  position: relative;
+}
+
+.item-cell.item-cell-input {
+  padding: 22rpx 28rpx 22rpx 28rpx;
+}
+
+.item-cell-input .item-cell-bd {
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+.item-cell-input input {
+  width: 320rpx;
+  height: auto;
+  text-align: right;
+}
+
+.item-cell.item-cell-image {
+  padding: 12rpx 28rpx 12rpx 28rpx;
+}
+
+.item-cell-image .item-cell-bd {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.item-cell-image image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 120rpx;
+}
+
+.item-cell-access .item-cell-ft {
+  padding-right: 40rpx;
+  width: 320rpx;
+  text-align: right;
+}
+
+.item-cell-access .item-cell-ft::after {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  right: 4rpx;
+  margin-top: -10rpx;
+}
+
+.btn-box {
+  padding: 0 28rpx;
+  margin-top: 80rpx;
+  box-sizing: border-box;
+}
+
+.m-b {
+  margin-bottom: 40rpx;
+}
+
+.btn-sure {
+  color: #fff;
+  background-color: #f85e13;
+}
+
+.citypicker {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: #111;
+}
+
+.citybody {
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+
+picker-view-column {
+  text-align: center;
+}
+
+picker-view-column view {
+  color: #000;
+}
+
+.cityheader {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 5;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #828282;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: #10ff10;
+}
+
+.section .picker {
+  background-color: #fff;
+  border-bottom: 2px #ccc solid;
+  border-top: 2px #d9d9d9 solid;
+  padding: 20rpx;
+}
+
+.memo {
+  border-top: 1px #e8e8e8 solid;
+  padding-top: 10px;
+}
+
+.weui-cells__title {
+  margin-top: 0.77em;
+  margin-bottom: 0.3em;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #999;
+  font-size: 14px;
+}

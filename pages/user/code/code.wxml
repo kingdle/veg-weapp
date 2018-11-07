@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="weapp">
+    <navigator url="../../detail/detail?id={{shop.id}}" hover-class="navigator-hover">
+      <image class="userinfo-avatar" src="{{shop.code}}!mp.v200" ></image>
+    </navigator>
+    <view class="code">{{shop.title}} <text wx:if="{{shop.code =='https://images.veg.kim/mp/mg-code-mp.jpg'}}">
+      您的小程序码未生成
+    </text></view>
+    
+  </view>
+
+
+  <view class="userinfo" bindtap="openAddress">
+      <image class="userinfo-phone" src="../../../images/use/dh.png"></image>
+      <view class="address-text">{{shop.province}}{{shop.cityInfo}}{{shop.address}}</view>
+  </view>
+  <view class="userinfo" bindtap="makePhoneCall">
+      <image class="userinfo-phone" src="../../../images/use/phone.png"></image>
+      <view>育苗厂手机号：{{shop.user.phone}}</view>
+  </view>
+
+
+  <view class="userinfo" bindtap="makePhoneCallMiaoguo">
+    <image class="userinfo-avatar" src="{{shop.avatar}}!mp.v200" background-size="cover"></image>
+    <view>
+      <text class="userinfo-nickname">苗果期待与您合作：</text>
+      <text class="userinfo-nickname">18661737287(同微信)</text>
+    </view>
+  </view>
+</view>

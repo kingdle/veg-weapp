@@ -1,0 +1,78 @@
+<import src="../common/comtemp.wxml"  />
+<!-- pages/user/dingdan.wxml -->
+<template name="dlist">
+  <view class="c_t60"></view>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list swiper-left {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+      <image class="swtime" src="/images/use/xinxi.png"></image>
+      动态</view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+        <image class="swtime" src="/images/use/xc.png"></image>
+        相册</view>
+      </view>
+      <swiper current="{{currentTab}}" class="swiper-box" style="height:100%" duration="300"
+              bindchange="bindChange">
+        <!-- 待确认 -->
+        <swiper-item>
+          <view class="search_no" wx:if="{{!shopNews.length}}">
+            <view class="font_14">
+              <image class="scimg" src="/images/search_no.png"></image>
+            </view>
+            <text>暂未发布动态/(ㄒoㄒ)/~~</text>
+          </view>
+          
+            <scroll-view scroll-y="true" bindscroll="listscroll" class="assess-ul">
+              <view class="assess-li" wx:for="{{shopNews}}" wx:key="*this">
+                <view class="head-img">
+                  <image class="portrait" src="{{item.shop.avatar}}"></image>
+                </view>
+                <view class="head-right">
+                  <view class="head-name">
+                    <text class="name-h nfont">{{item.shop.title}}</text>
+                    <view class="name-pic"></view>
+                  </view>
+                  <view class="com-time">
+                    <text class="fl_l assess-time">{{item.fdate}}</text>
+                  </view>
+                  <text class="cfont">{{item.content}}</text>
+                  <view class="assess-pic">
+                    <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="*this">
+                      <image bindtap="toPic2" data-src="{{item}}" class="assess-pimg" src="{{item}}!mp.v100"></image>
+                    </view>
+                  </view>
+                  <view class="pbbt"></view>
+                  <view class="listbottom font-28 tagp">
+                    <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+                      <text class="stext">{{item.title}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+
+          <view class="as-more" hidden="{{!isEnd}}">
+            <text class="more">已显示全部，共{{nextPage}}页</text>
+          </view>
+        </swiper-item>
+        <!-- 已确认 -->
+        <swiper-item>
+          <view class="search_no" wx:if="{{!shopPics.length}}">
+            <view class="font_14">
+              <image class="scimg" src="/images/search_no.png"></image>
+            </view>
+            <text>暂未上传图片/(ㄒoㄒ)/~~</text>
+          </view>
+          <view class="pwrapper">
+            <view class="head-pic">
+              <view wx:key="*this" wx:for="{{shopPics}}" wx:for-index="index" class="assess-p">
+                <image bindtap='toPic1' data-src="{{item.pic}}!mp.v1080" class="assess-pimg" src="{{item.pic}}!mp.v100"></image>
+              </view>
+            </view>
+            <!-- 是否底部 -->
+            <view class="as-more" hidden="{{!isEnd}}">
+              <text class="more">已显示全部，共{{nextPage}}页</text>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </template>
