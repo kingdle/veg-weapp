@@ -69,7 +69,7 @@
       <view class="weui-flex__item">
         <view class="placeholder label">
           <image src="../../images/use/seedling.png"></image>
-          <text>订单</text>
+          <text>合同订单</text>
           <text class="order-text gray f12">{{moneyCount.ordersCount}}个</text>
         </view>
       </view>
@@ -77,7 +77,7 @@
         <view class="placeholder label">
           <image src="../../images/use/seedlingGreen.png"></image>
           <text>育苗</text>
-          <text class="order-text gray f12">{{moneyCount.seedCount}}棵</text>
+          <text class="order-text gray f12">{{moneyCount.seedCount}}株</text>
         </view>
       </view>
     </view>

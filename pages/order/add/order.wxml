@@ -136,8 +136,8 @@
     <view class="weui-btn-area">
       <button class="weui-btn" bindtap="addOrder">保存</button>
     </view>
-    <view class="remarks">
+    <!-- <view class="remarks">
       注：农户打开苗果小程序，会看到其在您苗厂所购品种、数量、送苗时间，看不到对应价位信息。
-    </view>
+    </view> -->
   </view>
 </view>

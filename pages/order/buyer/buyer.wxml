@@ -1,5 +1,7 @@
 <view class="page__bf">
-
+<view wx:if="{{pastOrder.data !=''}}" class="text-orders">
+    注：以下为根据您的手机号获取的历史订单！
+  </view>
   <block wx:if="{{pastOrder.data !=''}}" wx:key="*this" wx:for="{{pastOrder}}">
     <view class="weui-panel__bd">
       <view hover-class="changestyle" class="weui-media-box weui-media-box_appmsg">
@@ -24,7 +26,7 @@
     </view>
   </block>
   <view wx:if="{{pastOrder.data ==''}}" class="no-orders">
-    订单为空，请联系育苗厂通过苗果【新建合同】添加
+    订单为空，请联系育苗厂通过苗果添加
   </view>
 </view>
 

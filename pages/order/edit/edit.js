@@ -234,8 +234,8 @@ Page({
         }
         // let mobileLocation = {
         //   address:'',
-        //   sellerLongitude: app.globalData.locationInfo.location.lng,
-        //   sellerLatitude: app.globalData.locationInfo.location.lat,
+        //   sellerLongitude: wx.getStorageSync('location').location.lng,
+        //   sellerLatitude: wx.getStorageSync('location').location.lat,
         // };
         that.setData({
           // mobileLocation: mobileLocation,
@@ -296,8 +296,8 @@ Page({
     if (this.data.mobileLocation.latitude == '' || this.data.mobileLocation.longitude == '') {
       let mobileLocation = {
         address: '',
-        longitude: app.globalData.locationInfo.location.lng,
-        latitude: app.globalData.locationInfo.location.lat,
+        longitude: wx.getStorageSync('location').location.lng,
+        latitude: wx.getStorageSync('location').location.lat,
         is_true_location: '1'
       };
       this.setData({
@@ -315,8 +315,8 @@ Page({
     data.cityName = this.data.user.cityName
     data.countyName = this.data.user.countyName
     data.detailInfo = this.data.user.detailInfo
-    data.longitude = app.globalData.locationInfo.location.lng
-    data.latitude = app.globalData.locationInfo.location.lat
+    data.longitude = wx.getStorageSync('location').location.lng
+    data.latitude = wx.getStorageSync('location').location.lat
     data.note_sell = this.data.note_sell
     data.is_true_location = this.data.mobileLocation.is_true_location
     console.log(data)

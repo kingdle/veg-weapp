@@ -12,9 +12,9 @@
   padding-left: 15rpx;
 }
 .f12{
-  font-size: 12px;
+  font-size: 24rpx;
   float: right;
-  padding-top: 5px;
+  padding-top: 10rpx;
 
 }
 .label {
@@ -24,21 +24,24 @@
 
 video {
   width: 100%;
-  top: -7px;
+  top: -14rpx;
 }
 .m-body{
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 .bshare {
   background: none;
   border : none;
   float: right;
-  padding: 5px 10px 0 0 !important;
+  padding: 10rpx 20rpx 0 0 !important;
+  font-size:36rpx;
 }
-
+.bshare text{
+  font-size: 26rpx;
+}
 .bshare image {
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 button::after{ border: none; }
 .weui-cells {
@@ -63,16 +66,16 @@ button::after{ border: none; }
 }
 
 .page__hd {
-  padding: 5px 1em;
+  padding: 10rpx 1em;
 }
 
 .message {
   border: 1px solid #f1f1f1;
   color: rgb(24, 25, 26);
-  height: 80px;
-  line-height: 32px;
-  padding: 10px;
-  margin-bottom: 10px;
+  height: 160rpx;
+  line-height: 64rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
   width: 95%;
 }
 
@@ -82,7 +85,7 @@ button::after{ border: none; }
 
 .page__title {
   text-align: left;
-  font-size: 20px;
+  font-size: 40rpx;
   font-weight: 400;
 }
 .weixinlogo{
@@ -91,8 +94,8 @@ button::after{ border: none; }
   float: left;
 }
 .weixinlogo image{
-  width: 20px;
-  height: 20px;
+  width: 40rpx;
+  height: 40rpx;
 }
 .wx-title{
   padding-left:0;
@@ -100,27 +103,29 @@ padding-right:0;
 line-height:1.4;
 }
 .page__desc {
-  margin-top: 2px;
+  margin-top: 4rpx;
   color: #888;
   text-align: left;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 24rpx;
+  line-height: 32rpx;
 }
 .go-home {
-  width: 190px;
-  height: 30px;
-  line-height: 30px;
+  width: 380rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   padding-left: 0px;
-  padding-top: 10px;
+  padding-top: 20rpx;
 }
-
+.go-home .title{
+  font-size: 36rpx;
+}
 .go-home image {
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 .placeholder {
-  margin: 0 5px;
-  padding: 0 10px;
+  margin: 0 10rpx;
+  padding: 0 20rpx;
   text-align: left;
   /* background-color: #ebebeb; */
   /* height: 2.3em; */
@@ -129,8 +134,8 @@ line-height:1.4;
 }
 
 .placeholder image {
-  width: 20px;
-  height: 20px;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .weui-flex__item {
@@ -140,7 +145,7 @@ line-height:1.4;
 }
 
 .weui-media-box {
-  padding: 15px;
+  padding: 30rpx;
   position: relative;
 }
 
@@ -152,7 +157,7 @@ line-height:1.4;
   height: 1px;
   border-top: 1rpx solid #e5e5e5;
   color: #e5e5e5;
-  left: 15px;
+  left: 30rpx;
 }
 
 .weui-media-box:first-child:before {
@@ -161,7 +166,7 @@ line-height:1.4;
 
 .weui-media-box__title {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 32rpx;
   width: auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -173,7 +178,7 @@ line-height:1.4;
 
 .weui-media-box__desc {
   color: #999;
-  font-size: 13px;
+  font-size: 26rpx;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -184,9 +189,9 @@ line-height:1.4;
 }
 
 .weui-media-box__info {
-  margin-top: 15px;
-  padding-bottom: 5px;
-  font-size: 13px;
+  margin-top: 30rpx;
+  padding-bottom: 10rpx;
+  font-size: 26rpx;
   color: #cecece;
   line-height: 1em;
   list-style: none;
@@ -204,7 +209,7 @@ line-height:1.4;
 }
 
 .weui-media-box__title_in-text {
-  margin-bottom: 8px;
+  margin-bottom: 16rpx;
 }
 
 .weui-media-box_appmsg {
@@ -222,15 +227,15 @@ line-height:1.4;
   height: 100%;
   vertical-align: top;
   border-radius: 50%;
-  border-bottom: 2px solid #fff;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 4rpx solid #fff;
+  box-shadow: 6rpx 6rpx 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .weui-media-box__hd_in-appmsg {
   margin-right: 0.8em;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
 }
 
@@ -248,12 +253,12 @@ line-height:1.4;
 .weui-badge {
   display: inline-block;
   padding: 0.15em 0.4em;
-  min-width: 8px;
-  border-radius: 18px;
+  min-width: 16rpx;
+  border-radius: 36rpx;
   background-color: #f06307;
   color: #fff;
   line-height: 1.2;
   text-align: center;
-  font-size: 12px;
+  font-size: 24rpx;
   vertical-align: middle;
 }

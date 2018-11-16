@@ -1,39 +1,62 @@
-import newData from '../../utils/DataURL.js';
+import getData from '../../utils/DataURL.js';
 var conf = require('../../config');
+var maps = ['52YBZ-SNZ6X-TCO4C-7KBUO-IXAI5-CIFVP', 'CQTBZ-G7G6S-PK2OI-6RTUX-7WVRK-K6BOB',
+  'MHTBZ-BHOKW-T43RD-RSR2R-L2NJT-UDFIB',
+  'OF7BZ-HRBC6-SRGS4-MVBTO-MR2KS-ZFBMI',
+  '4BIBZ-J3FW6-NHHSL-EAZH3-L5FOJ-XVBWZ'
+];
+var mapi = 0;
 var app = getApp()
 Page({
   data: {
     userData: {},
-    userInfo: {},
     shop: {},
+    configs:{},
   },
   onLoad: function () {
     var that = this;
     that.setData({
-      userData: app.globalData.userData,
-      userInfo: app.globalData.userInfo,
+      userData: wx.getStorageSync("userData"),
+      shop: wx.getStorageSync("shopData"),
     })
-    if(app.globalData.userData.is_active=='1'){
-      that.getShop()
-    }
-
+    that.Config()
   },
-  getUData: function () {
-    let self = this;
-    let aa = self.data.userData;
-    self.setData({
-      userData: app.globalData.userData,
-    });
-  },
-  
   onShow: function () {
-    let self = this;
-    self.getUData();
-    if (app.globalData.userData.is_active == '1') {
-      self.getShop();
-    }
+    this.setData({
+      userData: wx.getStorageSync("userData"),
+      shop: wx.getStorageSync("shopData"),
+    })
+    
   },
-  
+  Config: function () {
+    let pa = {
+      API_URL: conf.configUrl,
+    };
+    getData.result(pa).then(res => {
+      if (res.statusCode == 200) {
+        //写入缓存
+        wx.setStorageSync('configs', res.data)
+        this.setData({
+          configs: res.data[0]
+        })
+      } else {
+        wx.showToast({
+          title: '未获取配置信息',
+          // icon: 'success',
+          duration: 1000
+        })
+      }
+    })
+  },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading();
+    var self = this;
+    self.onLoad()
+    wx.hideLoading();
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh();
+  },
   getPhoneNumber: function (e) {
     let self = this;
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
@@ -57,7 +80,7 @@ Page({
             method: "POST"
           };
 
-          newData.result(param).then(res => {
+          getData.result(param).then(res => {
             let pno = res.data.phoneNumber;
             let da = {};
             da.phoneNumber = res.data.phoneNumber;
@@ -66,7 +89,7 @@ Page({
               data: da,
               method: "POST"
             };
-            newData.result(pa).then(res => {
+            getData.result(pa).then(res => {
               if (res.data.status_code == 200) {
                 //写入缓存
                 getApp().globalData.userData.phone = pno;
@@ -74,7 +97,7 @@ Page({
                 self.register();
               } else {
                 wx.showToast({
-                  title: '手机号码保存失败，请重试！',
+                  title: '保存失败',
                   // icon: 'success',
                   duration: 1000
                 })
@@ -87,20 +110,44 @@ Page({
     }
   },
   register: function () {
-    wx.navigateTo({
-      url: '../user/me/me'
-    })
+    let redirectUrl = '/pages/user/register/register'
+    if (wx.getStorageSync('location')) {
+      wx.navigateTo({
+        url: redirectUrl
+      })
+    } else {
+      this.getLocationInfo(redirectUrl)
+    }
+  },
+  toOrderList: function () {
+    let redirectUrl = '/pages/order/order'
+    if (wx.getStorageSync('location')) {
+      wx.navigateTo({
+        url: redirectUrl
+      })
+    } else {
+      this.getLocationInfo(redirectUrl)
+    }
+  },
+  addOrder: function () {
+    let redirectUrl = '/pages/order/add/order'
+    if (wx.getStorageSync('location')) {
+      wx.navigateTo({
+        url: redirectUrl
+      })
+    } else {
+      this.getLocationInfo(redirectUrl)
+    }
   },
   getShop: function () {
     let that = this;
     let param = {
       API_URL: conf.userShop,
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       if (res.statusCode == 200) {
-        let pp = res.data;
         that.setData({
-          shop: pp
+          shop: res.data
         })
       }else{
         that.setData({
@@ -108,20 +155,24 @@ Page({
         })
       }
     })
-    
   },
   navTo: function () {
     let self = this;
     let param = {
       API_URL: conf.prodEcharts + '/' + self.data.shop.id,
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       app.globalData.product = res.data.prod
       app.globalData.counts = res.data.counts
     })
-    wx.navigateTo({
-      url: "../shop/shop?id=" + self.data.shop.id
-    })
+    let redirectUrl = "../shop/shop?id=" + self.data.shop.id
+    if(wx.getStorageSync('location')){
+      wx.navigateTo({
+        url: redirectUrl
+      })
+    }else{
+      this.getLocationInfo(redirectUrl)
+    }
   },
   changeImage: function () {
     var that = this
@@ -199,6 +250,137 @@ Page({
   FavoriteShops: function(){
     console.log(app.globalData.userData)
 
+  },
+  makePhoneCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: this.data.configs.btnRegisterName
+    })
+  },
+  getLocationInfo: function (redirectUrl) {
+    var that = this;
+    wx.getLocation({
+      type: 'gcj02', // 默认为 wgs84 返回 gps 坐标
+      success: function (res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        that.doLocal(latitude, longitude, redirectUrl);
+      },
+      fail: function (e) {
+        if (e.errMsg == 'getLocation:fail auth deny') {
+          wx.showModal({
+            title: '请授权获取地理位置',
+            content: '点击“确定”，选择“使用我的地理位置”，享受精准服务。',
+            success: function (res) {
+              if (res.cancel) {
+                console.info("取消授权");
+                wx.navigateBack();
+                if (that.UNfGetLocal) {
+                  that.UNfGetLocal(true);
+                }
+              } else if (res.confirm) {
+                //village_LBS(that);
+                wx.openSetting({
+                  success: function (data) {
+                    if (data.authSetting["scope.userLocation"] == true) {
+                      wx.getLocation({
+                        type: 'gcj02', // 默认为 wgs84 返回 gps 坐标
+                        success: function (res) {
+                          var latitude = res.latitude;
+                          var longitude = res.longitude;
+                          that.doLocal(latitude, longitude, redirectUrl);
+                        }
+                      })
+                    } else {
+                      wx.navigateBack();
+                      console.info("授权设置界面未授权");
+                      if (that.UNfGetLocal) {
+                        that.UNfGetLocal(true);
+                      }
+                      wx.showToast({
+                        title: '请授权地理位置',
+                        image: '/images/use/tip.png',
+                        duration: 4000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          var latitude = 36.817967;
+          var longitude = 118.938926;
+          that.doLocal(latitude, longitude);
+        }
+      },
+      complete: function (e) {
+        // complete
+      }
+    })
+  },
+  doLocal: function (latitude, longitude, redirectUrl) {
+    var that = this;
+    var mapUrl = 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=' + maps[mapi];
+    wx.request({
+      url: mapUrl,
+      data: {},
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.status == 121) {
+          mapi++;
+          that.data.globalData.mapKey = maps[mapi + 1];
+          that.doLocal(latitude, longitude);
+        }
+        that.setData({
+          globalData: res.data,
+          location: res.data.result
+        })
+        wx.setStorageSync('location', res.data.result)
+        if (redirectUrl != undefined) {
+          wx.navigateTo({
+            url: redirectUrl
+          })
+        }
+        let data = {
+          country: res.data.result.address_component.nation,
+          province: res.data.result.address_component.province,
+          city: res.data.result.address_component.city,
+          district: res.data.result.address_component.district,
+          town: res.data.result.address_reference.town.title,
+          address: res.data.result.address,
+          street: res.data.result.address_component.street,
+          street_number: res.data.result.address_reference.landmark_l2.title,
+          crossroad: res.data.result.address_reference.crossroad ? res.data.result.address_reference.crossroad.title : '',
+          nation_code: res.data.result.ad_info.nation_code,
+          adcode: res.data.result.ad_info.adcode,
+          city_code: res.data.result.ad_info.city_code,
+          latitude: res.data.result.location.lat,
+          longitude: res.data.result.location.lng,
+          location_title: res.data.result.address_reference.street ? res.data.result.address_reference.street.title : '',
+          location_dir_desc: res.data.result.address_reference.street ? res.data.result.address_reference.street._dir_desc : '',
+          live_place: res.data.result.address + res.data.result.address_reference.town.title,
+          villageInfo: res.data.result.address_reference.landmark_l2.title
+        };
+        let param = {
+          API_URL: conf.weappupdateUrl,
+          data: data,
+          method: "POST"
+        };
+
+        getData.result(param).then(response => {
+          wx.setStorageSync('userData', response.data.data)
+          that.setData({
+            userData: response.data.data,
+          })
+        })
+
+      },
+      fail: function () {
+
+      },
+    })
   },
   onShareAppMessage: function () {
     return {

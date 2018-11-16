@@ -9,8 +9,10 @@
         </view>
       </view>
       <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="weui-search-bar__text">搜索</view>
+        <view class="weui-search-bar__text label">
+        <icon class="weui-icon-search" type="search" size="16"></icon>
+        <text>搜索育苗厂</text>
+        </view>
       </label>
     </view>
     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
@@ -35,7 +37,7 @@
             <!-- <view class="weui-media-box__desc">{{item.user.phone}}
             </view> -->
             <view class="weui-media-box__desc">
-              <text class="fui-cell-title">距您：{{item.distance}}</text>
+            <text wx:if="{{location.location.lat!=undefind}}">距您：{{item.distance}}</text>
             </view>
           </view>
         </view>

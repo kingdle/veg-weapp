@@ -293,8 +293,8 @@ Page({
     if (this.data.mobileLocation.latitude == '' || this.data.mobileLocation.longitude == ''){
       let mobileLocation = {
         address: '',
-        longitude: app.globalData.locationInfo.location.lng,
-        latitude: app.globalData.locationInfo.location.lat,
+        longitude: wx.getStorageSync('location').latitude,
+        latitude: wx.getStorageSync('location').longitude,
         is_true_location:'1'
       };
       this.setData({

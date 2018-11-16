@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "育苗厂通讯录"
+  "navigationBarTitleText": "育苗厂通讯录",
+  "enablePullDownRefresh": true
 }

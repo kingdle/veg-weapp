@@ -10,27 +10,32 @@ Page({
     meta: [],
     inputShowed: false,
     inputVal: "",
-    loading:false
+    loading:false,
+    location:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function() {
+    this.setData({
+      location:wx.getStorageSync('location')
+    })
     this.loadShopList()
   },
   loadShopList: function() {
     let that = this;
     let data = {};
-    data.latitude = wx.getStorageSync('locLat');
-    data.longitude = wx.getStorageSync('locLng');
+    if (wx.getStorageSync('location')){
+      data.latitude = wx.getStorageSync('location').location.lat;
+      data.longitude = wx.getStorageSync('location').location.lng;
+    }
     let param = {
       API_URL: conf.shopNearUrl,
       method: "POST",
       data: data
     };
     newData.result(param).then(res => {
-      console.log(res.data)
       if (res.data.status_code != 401) {
         that.setData({
           shopList: res.data.data,
@@ -61,8 +66,10 @@ Page({
   inputTyping: function (e) {
     let that = this;
     let data = {};
-    data.latitude = wx.getStorageSync('locLat');
-    data.longitude = wx.getStorageSync('locLng');
+    if (wx.getStorageSync('location')) {
+      data.latitude = wx.getStorageSync('location').location.lat;
+      data.longitude = wx.getStorageSync('location').location.lng;
+    }
     data.queryText = e.detail.value
     let param = {
       API_URL: conf.shopQuery,
@@ -115,7 +122,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
     this.loadShopList()
+    // 隐藏加载框
+    wx.hideLoading();
+    // 隐藏导航栏加载框  
+    wx.hideNavigationBarLoading();
+    // 停止下拉动作  
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -130,8 +145,10 @@ Page({
     console.log(that.data.meta.path)
     if (page < that.data.meta.last_page) {
       let data = {};
-      data.latitude = wx.getStorageSync('locLat');
-      data.longitude = wx.getStorageSync('locLng');
+      if (wx.getStorageSync('location')) {
+        data.latitude = wx.getStorageSync('location').location.lat;
+        data.longitude = wx.getStorageSync('location').location.lng;
+      }
       let param = {
         API_URL: conf.shopNearUrl + '?page=' + (page + 1),
         method: "POST",

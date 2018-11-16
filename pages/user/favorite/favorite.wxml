@@ -32,7 +32,11 @@
 
 <view class="weui-flex">
   <view>
-    <view class="placeholder"></view>
+    <view class="placeholder">
+    <view class="as-more" hidden="{{!isEnd}}">
+      <text class="more">已显示全部，共{{endPage}}页</text>
+    </view>
+    </view>
   </view>
   <view class="weui-flex__item footer">
     <view class="placeholder gray">

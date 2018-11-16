@@ -5,10 +5,10 @@
   <view class="weui-panel__bd">
     <view hover-class="none" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-        <navigator hover-class="none" url="../detail/album?id={{shopEn.id}}">
-          <image class="weui-media-box__thumb" src="{{shopAvatar}}" />
+        <!-- <navigator hover-class="none" url="../detail/album?id={{shopEn.id}}"> -->
+          <image bindtap="showPics" id="{{shopEn.id}}" data-piccount="{{shopEn.pic_count}}" class="weui-media-box__thumb" src="{{shopAvatar}}" />
           <view wx:if="{{shopEn.pic_count !='0'}}" class="weui-badge" style="position: absolute;left: 5.7em;top:6em;">{{shopEn.pic_count}}</view>
-        </navigator>
+        <!-- </navigator> -->
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title {{shopEn.title.length>='9' ? 'if16' : ''}}">{{shopEn.title}}</view>
@@ -17,8 +17,8 @@
         </view>
         <view class="weui-media-box__desc label">
           <image class="see-counts" src="/images/use/see-hot.png"></image>
-          <text class="orange f16">{{shopEn.click_count}}次</text>
-          <text class="orange f16"> / 已有{{shopEn.followers_count}}人收藏</text>
+          <text class="f16">{{shopEn.click_count}}次</text>
+          <text class="f16"> / 已有{{shopEn.followers_count}}人收藏</text>
         </view>
         <view class="weui-badge-share" style="position: absolute;right: 1.2em;top:3.6em;">
           <view wx:if="{{favorites==''}}" class="bshare label" bindtap="favoriteShop" id="{{shopEn.id}}">
@@ -33,7 +33,7 @@
       </view>
     </view>
   </view>
-  <view class="info-li">
+  <view class="info-li" wx:if="{{shopEn.summary!=null}}">
     <image class="location" src="/images/use/introduce.png"></image>
     <view class="info-span w90">{{shopEn.summary==null?'请在【我的苗厂】中添加简介信息':shopEn.summary}}</view>
   </view>
@@ -72,14 +72,14 @@
       </view>
     </view>
   </view>
-  <!-- 评价列表 -->
+  <!-- 动态列表 -->
   <view class="content">
     <view class="comment">
       <view class="news label">
         <image class="time" src="/images/use/xinxi.png"></image>
         <text class="news-title">最新动态</text>
         <text class="news-count　gray f12">共{{shopEn.dynamic_count}}条</text>
-        <text class="news-count　gray f12">　(注:请在【苗子】中发动态)</text>
+        <text wx:if="{{shopData.id == shopId}}" class="news-notice　orange f12"> 请点击苗子返回首页发动态</text>
       </view>
     </view>
   </view>
@@ -128,7 +128,7 @@
   </view>
   <!-- 是否底部 -->
   <view class="as-more" hidden="{{!isEnd}}">
-    <text class="more">已显示全部，共{{nextPage-1}}页</text>
+    <text class="more">已显示全部，共{{endPage}}页</text>
   </view>
 </view>
 <!--</scroll-view>

@@ -1,5 +1,5 @@
 .page_body {
-  margin-top: 105rpx;
+  margin-top: 95rpx;
 }
 
 .weui-panel__bd {
@@ -7,7 +7,7 @@
 }
 
 .weui-media-box {
-  padding: 15px;
+  padding: 30rpx;
   position: relative;
 }
 
@@ -17,7 +17,7 @@
 
 .weui-media-box__title {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 32rpx;
   width: auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -28,7 +28,7 @@
 
 .weui-media-box__desc {
   color: #999;
-  font-size: 13px;
+  font-size: 26rpx;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -38,9 +38,9 @@
 }
 
 .weui-media-box__info {
-  margin-top: 15px;
-  padding-bottom: 5px;
-  font-size: 13px;
+  margin-top: 30rpx;
+  padding-bottom: 10rpx;
+  font-size: 26rpx;
   color: #cecece;
   line-height: 1em;
   list-style: none;
@@ -58,7 +58,7 @@
 }
 
 .weui-media-box__title_in-text {
-  margin-bottom: 8px;
+  margin-bottom: 16rpx;
 }
 
 .weui-media-box_appmsg {
@@ -68,7 +68,7 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  border-bottom: 5px solid #f8f8f8;
+  border-bottom: 10rpx solid #f8f8f8;
 }
 
 .weui-media-box__thumb {
@@ -77,22 +77,22 @@
   vertical-align: top;
   border-radius: 50%;
   border-bottom: 2px solid #fff;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 6rpx 6rpx 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .weui-media-box__hd_in-appmsg {
   margin-right: 0.8em;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
 }
 
 .weui-media-box__hd_in-appmsg {
   margin-right: 0.8em;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
 }
 
@@ -110,8 +110,8 @@
 .weui-badge {
   display: inline-block;
   padding: 0.15em 0.4em;
-  min-width: 8px;
-  border-radius: 18px;
+  min-width: 16rpx;
+  border-radius: 36rpx;
   background-color: #f06307;
   color: #fff;
   line-height: 1.2;
@@ -127,8 +127,8 @@
 .note-seller {
   text-align: left;
   margin-left: 6rpx;
-  padding: 8px 0;
-  font-size: 12px;
+  padding: 16rpx 0;
+  font-size: 24rpx;
   line-height: 1.2em;
 }
 
@@ -155,7 +155,7 @@
 }
 
 .footer-text {
-  font-size: 14px;
+  font-size: 28rpx;
   color: #999;
 }
 
@@ -167,7 +167,7 @@
 
 .searchbar-result {
   margin-top: 0;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .searchbar-result:before {
@@ -175,7 +175,7 @@
 }
 
 .weui-cell {
-  padding: 12px 15px 12px 35px;
+  padding: 24rpx 30rpx 24rpx 70rpx;
 }
 
 .search-bar {
@@ -187,14 +187,14 @@
 
 .weui-search-bar {
   position: relative;
-  padding: 8px 10px;
+  padding: 16rpx 20rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   box-sizing: border-box;
-  background-color: #efeff4;
-  border-top: 1rpx solid #d7d6dc;
-  border-bottom: 1rpx solid #d7d6dc;
+  background-color: #faf9fe;
+  /* border-top: 1rpx solid #d7d6dc;
+  border-bottom: 1rpx solid #d7d6dc; */
 }
 
 .weui-search-bar__form {
@@ -202,15 +202,15 @@
   -webkit-box-flex: 1;
   -webkit-flex: auto;
   flex: auto;
-  border-radius: 5px;
+  border-radius: 10rpx;
   background: #fff;
   border: 1rpx solid #e6e6ea;
 }
 
 .weui-search-bar__box {
   position: relative;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
   width: 100%;
   box-sizing: border-box;
   z-index: 1;
@@ -218,8 +218,8 @@
 
 .weui-icon-search_in-box {
   position: absolute;
-  left: 10px;
-  top: 7px;
+  left: 20rpx;
+  top: 14rpx;
 }
 
 icon {
@@ -230,14 +230,14 @@ icon {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 7px 8px;
+  padding: 14rpx 16rpx;
   font-size: 0;
 }
 
 .weui-search-bar__input {
-  height: 28px;
-  line-height: 28px;
-  font-size: 14px;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
 }
 
 .weui-search-bar__label {
@@ -247,16 +247,16 @@ icon {
   bottom: 0;
   left: 0;
   z-index: 2;
-  border-radius: 3px;
+  border-radius: 6rpx;
   text-align: center;
   justify-content:center;
   color: #9b9b9b;
   background: #fff;
-  line-height: 28px;
+  line-height: 56rpx;
 }
 
 .weui-icon-search {
-  margin-right: 8px;
+  margin-right: 16rpx;
   margin-top: 5rpx;
   font-size: inherit;
 }
@@ -264,13 +264,13 @@ icon {
 .weui-search-bar__text {
   display: inline-block;
   margin-top: -3rpx;
-  font-size: 14px;
+  font-size: 28rpx;
   vertical-align: middle;
 }
 
 .weui-search-bar__cancel-btn {
-  margin-left: 10px;
-  line-height: 28px;
+  margin-left: 20rpx;
+  line-height: 56rpx;
   color: #09bb07;
   white-space: nowrap;
 }

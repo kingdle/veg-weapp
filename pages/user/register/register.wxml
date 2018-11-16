@@ -1,0 +1,63 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-cells__title">基本信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">名称</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindtap="setUsername" bindinput="listenerUsernameInput" placeholder="如：**有限公司" value="{{username}}" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="label-text">电话</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <button wx:if="{{userData.phone==null ||userData.phone==''}}" class="get-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+            <text class="ad-btn-font">点击获取</text>
+          </button>
+          <button wx:if="{{userData.phone!=null}}" class="get-phone">
+            <text class="ad-btn-font">{{userData.phone}}</text>
+          </button>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">地址</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindtap="setlocation" bindinput="listenerAddressInput" placeholder="请选择位置" value="{{address}}" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">社区</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="listenerVillageInfoInput" placeholder="如：北慈村" value="{{villageInfo}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">苗厂简介</view>
+    <view class="parea">
+      <textarea bindinput="listenerSummaryInput" style="height: 6em" value="{{summary}}" placeholder="请填写苗厂的简介" />
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" bindtap="addOrder">入驻</button>
+    </view>
+  </view>
+</view>

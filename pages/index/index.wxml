@@ -1,138 +1,71 @@
-<!-- <import src="../common/comtemp.wxml" /> -->
 <view class="container">
-  
+  <!-- 系统通知 -->
+  <block wx:key="*this" wx:if="{{notice!=''}}" wx:for="{{notice}}">
+    <van-notice-bar scrollable="false" mode="closeable" text="{{item}}" />
+  </block>
+  <!-- 操作通知 -->
+  <van-notify id="custom-selector" />
+  <!-- 消息通知 -->
+  <van-dialog use-slot show="{{ show }}" confirm-button-open-type="getUserInfo" bind:getuserinfo="getUserInfo">
+    <view class="to-login">{{ message }}</view>
+  </van-dialog>
   <!-- 滚动图 -->
   <view>
-    <swiper class="banner" indicator-dots="{{headerindicatorDots}}" autoplay="{{headerautoplay}}" interval="{{headerinterval}}" duration="{{headerduration}}" circular="{{headercircular}}">
-      <navigator url="/pages/{{introduce}}" hover-class="none">
+    <swiper class="banner">
+      <!-- <navigator url="/pages/{{slogan.host}}" hover-class="none"> -->
         <block wx:for="{{slide}}" wx:key="*this">
           <swiper-item>
-            <image bindtap="tapBanner" src="{{item}}" />
+            <image bindtap="toShopList" data-url="{{slogan.host}}" src="{{item}}" />
           </swiper-item>
         </block>
-      </navigator>
+      <!-- </navigator> -->
     </swiper>
   </view>
   <!-- 搜索 -->
-  <view class="page__bd search-bar">
-    <view class="weui-search-bar">
-      <view class="weui-search-bar__form">
-        <view class="weui-search-bar__box">
-          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="找苗" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="inputConfirm"/>
-          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-            <icon type="clear" size="14"></icon>
-          </view>
+  <van-search value="{{ inputVal }}" placeholder="找苗" use-action-slot bind:search="onSearch" bind:change="inputTyping" background="#faf9fe">
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+  <!-- 功能 -->
+  <view class="fun-button">
+    <van-row>
+      <van-col span="10" custom-class="module-title">
+        <text class="title-text">{{slogan.newsTitle}}</text>
+        <!-- <van-button type="default" round bind:click="showNotify">
+          <van-icon custom-class="icon-truck" name="logistics" size="16px" /> 找大车
+        </van-button> -->
+      </van-col>
+      <van-col span="6" custom-class="dark">
+        <!-- <van-button type="primary" bind:click="showNotify" round>
+          <van-icon custom-class="icon" name="point-gift" size="14px" /> 苗厂
+        </van-button> -->
+      </van-col>
+      <van-col span="8" custom-class="dark">
+        <view hidden="{{userData.is_active==1}}">
+          <block wx:if="{{userData.phone==null||userData.phone==''}}">
+            <button class="add-btn label" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+              <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
+              <text class="ad-btn-font">入驻发动态</text>
+            </button>
+          </block>
+          <block wx:else>
+            <button class="add-btn label" bindtap="navto">
+              <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
+              <text class="ad-btn-font">入驻发动态</text>
+            </button>
+          </block>
         </view>
-        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-          <icon class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text">找苗</view>
-        </label>
-      </view>
-      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-    </view>
+        <view wx:if="{{userData.is_active==1}}">
+          <button class="add-dynamic label" bindtap='addDynamic'>
+            <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
+            <text class="ad-btn-font">发动态</text>
+          </button>
+        </view>
+      </van-col>
+    </van-row>
   </view>
-  <!-- 附近 -->
-  <!-- <view class="index-body">
-    <view class="list-container">
-      <view class="big-photo-list">
-        <view class="card">
-          <view class="card-hd">
-            <text class="card-title">{{slogan.title}}</text>
-            <text class="card-op">{{slogan.slogan}}</text>
-          </view>
-          <view class="card-bd">
-            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{shopautoplay}}" interval="{{shopinterval}}" duration="{{shopduration}}" circular="{{shopcircular}}">
-              <block wx:for="{{shopList}}" wx:key="">
-                <swiper-item>
-                  <view wx:for="{{item}}" wx:key="" class="shop">
-                    <navigator wx:if="{{slogan.btn_order == 'T'}}" url="../detail/detail?id={{item.id}}" hover-class="navigator-hover">
-                      <image class="shop-avatar" src="{{item.avatar}}!mp.v164144"></image>
-                      <view class="shop-name">{{item.title}}</view>
-                      <view class="shop-village-info">{{item.villageInfo}}</view>
-                     
-                      <view wx:if="{{item.dynamic_count !=0}}" class="shop-count">
-                        动态
-                        <text class="shop-dynamic">{{item.dynamic_count}}</text> /{{item.pic_count}}
-                      </view>
-                      <view wx:if="{{item.dynamic_count ==0}}" class="shop-count">
-                      </view>
-                    </navigator>
-                    <navigator wx:if="{{slogan.btn_order == 'F'}}" url="" hover-class="navigator-hover">
-                      <image class="shop-avatar" src="{{item.avatar}}!mp.v160.140"></image>
-                      <view class="shop-name">{{item.title}}</view>
-                      <view class="shop-village-info">{{item.villageInfo}}</view>
-                     
-                      <view wx:if="{{item.dynamic_count !=0}}" class="shop-count">
-                        动态
-                        <text class="shop-dynamic">{{item.dynamic_count}}</text> /{{item.pic_count}}
-                      </view>
-                      <view wx:if="{{item.dynamic_count ==0}}" class="shop-count">
-                      </view>
-                    </navigator>
-                  </view>
-                </swiper-item>
-              </block>
-            </swiper>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view> -->
-  <!-- 公告 -->
-  <!-- <view class="notice">
-    <view class="row">
-      <view class="notice-headlines">公告</view>
-      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
-        <block wx:key="*this" wx:for="{{notice}}">
-          <navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
-            <swiper-item>
-              <view class="swiper_item">{{item}}</view>
-            </swiper-item>
-          </navigator>
-        </block>
-      </swiper>
-    </view>
-  </view> -->
-</view>
 
-<view class='container'>
-  <view class="index-body">
-    <view class="index-title">
-      <view class="weui-flex">
-        <view class="weui-flex__item">
-          {{slogan.newsTitle}}
-        </view>
-        <view class="weui-flex__item" style="position: absolute;right: 0.8em;padding-top:8px">
-          <view wx:if="{{is_active==0}}">
-            <block wx:if="{{userData.phone==null||userData.phone==''}}">
-              <button class="add-btn label" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-                <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
-                <text class="ad-btn-font">{{btnRegisterName}}</text>
-              </button>
-            </block>
-            <block wx:else>
-              <button class="add-btn label" bindtap="navto">
-                <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
-                <text class="ad-btn-font">{{btnRegisterName}}</text>
-              </button>
-            </block>
-          </view>
-          <view wx:if="{{is_active==1}}">
-            <navigator url="../news/news">
-              <button class="add-btn label">
-                <image class="ad-btn-img" src="../../images/use/seedlingWhite.png"></image>
-                <text class="ad-btn-font">发动态</text>
-              </button>
-            </navigator>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="index-dynamic">{{slogan.newsSlogan}}</view>
-  </view>
-  <view wx:if="{{slogan.btn_order == 'T'}}">
-    <!-- <template is="ub-list" data="{{news:newsList,thumbs_answer:0}}" /> -->
+  <!-- 动态 -->
+  <view>
     <view class="listNews">
       <view class="list-flex">
         <block wx:for="{{newsList}}" wx:key="id">
@@ -142,7 +75,7 @@
                 <image class="listAvatar" src="{{item.shop.avatar}}!mp.v200" />
                 <view class="listNickname ">
                   <text class="nfont fl_l">{{item.shop.title}}</text>
-                  <text class="fl_r cdate">{{item.shop.distance}} {{item.shop.villageInfo}}</text>
+                  <text class="fl_r distance"><text wx:if="{{location.location.lat!=undefind}}">{{item.shop.distance}}</text> {{item.shop.villageInfo}}</text>
                 </view>
                 <view class="listAddress font-28">
                   <text class="fl_l">{{item.fdate}}</text>
@@ -154,9 +87,10 @@
               <view wx:for="{{item.pic}}" wx:for-index="index" wx:if="{{index<8}}" wx:key="*this" class="listImg">
                 <image src="{{item}}!mp.v200" class="listImgText" bindtap="toPic2" data-src="{{item}}" />
               </view>
-              <!-- <video bindtap='startOnPlay' wx:if="{{item.video}}" src="{{item.video}}" class="video-dynamic" data-src="{{item.video}}" mode="widthFix"></video> -->
               <view hidden="{{item.video_thumbnail==null}}" class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
-                <view class='pc iconfont f36 icon-play icon-videoPlay zIndex1'></view>
+                <view class='icon-videoPlay'>
+                  <van-icon name="play" size="36px" />
+                </view>
                 <image src="{{item.video_thumbnail}}!mp.v200260"></image>
               </view>
               <view class="pbbt" hidden="{{item.sorts.length==0}}"></view>
@@ -175,11 +109,6 @@
                   <textarea class="text" placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" bindinput="inputAnswer" bindblur="bindblur" bindconfirm="bindconfirm" focus="{{releaseFocus}}" data-page="{{nextPage}}"
                     data-dynamicid="{{item.id}}" placeholder="请输入评论内容"></textarea>
                 </view>
-                <!-- <view class="listbottom">
-                  <view class="message">
-                    <image src="../../images/use/message.png" data-dynamic="{{item}}" bindtap="thumbsAnswer"></image>
-                  </view>
-                </view> -->
                 <view class="listbottom" wx:if="{{releaseFocus==item.id}}">
                   <view class="thumbs">
                     <image wx:if="{{item.follow ==''}}" src="../../images/use/thumbs.png" data-dynamic="{{item}}" bindtap="thumbs"></image>

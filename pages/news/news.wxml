@@ -1,13 +1,13 @@
 <view class="container" style="background-color:{{condition?pageBackgroundColor:''}}">
   <form bindsubmit="formSubmit">
     <view class="fb-body" hidden="{{condition}}">
-      <textarea class="content" value="{{content}}" maxlength="200" bindinput="bindKeyInput"
-                placeholder="说说此刻的心情..."  />
+      <textarea class="content" value="{{content}}" maxlength="500" bindinput="bindKeyInput"
+                placeholder="此刻，您想说..."  />
       <view class="text-progress">
       <text class="orange" hidden="{{progress=='0'}}">正上传第{{imgSuccess}}张/进度{{progress}}%，正在转存中</text>
      <text hidden="{{uploadResults=='0'}}">上传完成，共{{uploadResults}}张</text>
       </view>
-      <view class="text-count">{{cno}}/200</view>
+      <view class="text-count">{{cno}}/500</view>
     </view>
     <view class="parea" hidden="{{condition}}">
       <span class="pspan" wx:for="{{pics}}" wx:key="*this">
@@ -28,7 +28,7 @@
         <view class="tyitem">{{item.name}}</view>
       </view>
     </view>
-    <button class="fb-btn" formType="submit" hidden="{{condition}}">提交</button>
+    <button class="fb-btn" formType="submit" hidden="{{condition}}">发布</button>
   </form>
 </view>
 <view wx:if="{{condition}}" class="citypicker">

@@ -103,19 +103,19 @@ page {
 }
 
 .font_16 {
-  font-size: 16px;
+  font-size: 32rpx;
 }
 
 .font_14 {
-  font-size: 13px;
+  font-size: 26rpx;
 }
 
 .font_12 {
-  font-size: 12px;
+  font-size: 24rpx;
 }
 
 .font_10 {
-  font-size: 10px;
+  font-size: 20rpx;
 }
 
 .nfont {
@@ -133,7 +133,7 @@ page {
 }
 
 .l_h20 {
-  line-height: 20px;
+  line-height: 40rpx;
 }
 
 /*定位*/
@@ -184,41 +184,41 @@ page {
 }
 
 .mt5 {
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .mt8 {
-  margin-top: 8px;
+  margin-top: 16rpx;
 }
 
 /*.mt10{margin-top: 10px;}*/
 
 .mt15 {
-  margin-top: 15px;
+  margin-top: 30rpx;
 }
 
 .mt20 {
-  margin-top: 20px;
+  margin-top: 40rpx;
 }
 
 .mt25 {
-  margin-top: 25px;
+  margin-top: 50rpx;
 }
 
 .mt30 {
-  margin-top: 30px;
+  margin-top: 60rpx;
 }
 
 .mt35 {
-  margin-top: 35px;
+  margin-top: 70rpx;
 }
 
 .mt40 {
-  margin-top: 40px;
+  margin-top: 80rpx;
 }
 
 .mt60 {
-  margin-top: 60px;
+  margin-top: 120rpx;
 }
 
 .p_all {
@@ -299,9 +299,9 @@ page {
   background: #fff;
   z-index: 100;
   width: 100%;
-  font-size: 14px;
+  font-size: 28rpx;
   border-top: 1px solid #eee;
-  line-height: 50px;
+  line-height: 100rpx;
   /*background: #dd2727;*/
   font-weight: 700;
   color: snow;
@@ -315,31 +315,31 @@ page {
   background: red;
   z-index: 100;
   width: 100%;
-  font-size: 14px;
+  font-size: 28rpx;
   border-top: 1px solid #eee;
-  line-height: 50px;
+  line-height: 100rpx;
   font-weight: 700;
   color: snow;
   text-align: center;
 }
 
 .icon_kf {
-  width: 20px;
-  height: 20px;
+  width: 40rpx;
+  height: 40rpx;
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .dbtext {
-  line-height: 15px;
+  line-height: 30rpx;
   color: #666;
-  font-size: 12px;
+  font-size: 24rpx;
 }
 
 .ad-btn {
   line-height: 3.2;
   border-radius: 0;
-  font-size: 15px;
+  font-size: 30rpx;
 }
 
 .bphone {
@@ -350,14 +350,14 @@ page {
 }
 
 .l_h15 {
-  line-height: 15px;
+  line-height: 30rpx;
   text-align: center;
 }
 
 .cl_h {
   clear: both;
   height: 1px;
-  margin-top: 60px;
+  margin-top: 120rpx;
 }
 
 .shop {
@@ -365,8 +365,8 @@ page {
 }
 
 .video {
-  width: 45px;
-  height: 45px;
+  width: 90rpx;
+  height: 90rpx;
   display: inline-block;
   position: absolute;
   right: 0;
@@ -375,9 +375,9 @@ page {
 }
 
 .video image {
-  width: 45px;
-  height: 45px;
-  background-size: 45px;
+  width: 90rpx;
+  height: 90rpx;
+  background-size: 90rpx;
 }
 
 .search_no {
@@ -385,20 +385,20 @@ page {
   position: absolute;
   color: #666;
   text-align: center;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .scimg {
-  width: 100px;
-  height: 100px;
+  width: 200rpx;
+  height: 200rpx;
   display: inline-block;
-  background-size: 100px;
+  background-size: 200rpx;
 }
 
 .x_right {
-  width: 16px;
-  height: 18px;
-  margin-left: 10px;
+  width: 32rpx;
+  height: 36rpx;
+  margin-left: 20rpx;
 }
 
 button[type="warn"] {
@@ -425,9 +425,9 @@ button[type="warn"] {
 
 .more {
   display: block;
-  padding: 8px 0;
-  line-height: 16px;
+  padding: 16rpx 0;
+  line-height: 32rpx;
   text-align: center;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #a8a8a8;
 }

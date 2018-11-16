@@ -1,38 +1,57 @@
 <!-- pages/user/user.wxml -->
 <view class="page">
-  <view class="userinfo w100">
+  <view wx:if="{{userData.is_active==undefined}}">
+    <swiper class="banner">
+      <swiper-item>
+        <image data-url="{{slogan.host}}" src="{{configs.btn_register}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="userinfo w100" wx:if="{{userData.is_active!=undefined}}">
     <view class="w70 fl_l">
-      <view class="avatar w40 fl_l">
-        <block wx:if="{{userData.is_active==0}}">
-          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-        </block>
-        <block wx:else>
-          <image class="userinfo-avatar" wx:if="{{shop.avatar}}" src="{{shop.avatar}}!mp.v100" background-size="cover" bindtap='changeImage'></image>
-        </block>
-      </view>
-      <view class="nickname fl_l">
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        <text class="userinfo-phone" wx:if='{{userData.is_active==0 && userData.phone!=NULL}}'>{{userData.phone}}</text>
-        <text class="userinfo-phone" wx:if='{{userData.is_active==0 && userData.phone==NULL}}'>苗果微信小程序</text>
-        <text class="userinfo-phone" wx:if='{{userData.is_active==1}}'>{{shop.title}}</text>
-      </view>
+      <block wx:if="{{userData.is_active=='1'}}">
+        <view class="nickname fl_l" bindtap="navTo">
+          <view>
+            <text class="userinfo-nickname">{{userData.nickname}}</text>
+            <image class="shop-edit" src="/images/use/edit.png"></image>
+          </view>
+          <view>
+            <text class="userinfo-phone">{{shop.title}}</text>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="nickname fl_l">
+          <view>
+            <text class="userinfo-nickname">{{userData.nickname}}</text>
+          </view>
+          <view>
+            <text class="userinfo-phone" wx:if='{{userData.phone!=NULL}}'>{{userData.phone}}</text>
+            <text class="userinfo-phone" wx:if='{{userData.phone==NULL}}'>苗果微信小程序</text>
+          </view>
+        </view>
+      </block>
     </view>
     <view class="customer-service">
       <view class="df_1 l_h15">
-      <navigator class="df_1" url="../message/message" hover-class="none">
-        <image class="icon_kf" src="/images/use/logo.png"></image>
-        <view class="dbtext">意见反馈</view>
-      </navigator>
-      <!-- <navigator wx:if="{{userData.is_active==0}}" class="df_1" url="../introduce/introduce" hover-class="none">
-        <image class="icon_kf" src="/images/use/logo.png"></image>
-        <view class="dbtext">关于我们</view>
-      </navigator> -->
+        <!-- <navigator class="df_1" url="../message/message" hover-class="none">
+          <image class="icon_kf" src="/images/use/logo.png"></image>
+          <view class="dbtext">意见反馈</view>
+        </navigator> -->
+        <view class="avatar w40 fl_l">
+          <block wx:if="{{userData.is_active==0}}">
+            <image class="userinfo-avatar" src="{{userData.avatar_url}}" background-size="cover"></image>
+          </block>
+          <block wx:else>
+            <image class="userinfo-avatar" wx:if="{{shop.avatar}}" src="{{shop.avatar}}!mp.v100" background-size="cover" bindtap='changeImage'></image>
+          </block>
+        </view>
       </view>
     </view>
   </view>
   <view class="sc" wx:if="{{userData.is_active==1}}">
     <view class="config-box df tc">
-      <view class="df_1" hover-class="none">
+      <!-- <view class="df_1" hover-class="none">
         <view bindtap="navTo">
           <image src="/images/order-home.png"></image>
           <text class="font_12">
@@ -40,84 +59,48 @@
           </text>
         </view>
 
-      </view>
-      <navigator class="df_1" url="../order/order" hover-class="none">
-        <view>
-          <image src="/images/orders.png"></image>
+      </view> -->
+      <view class="df_1" hover-class="none">
+        <view bindtap="toOrderList">
+          <image src="/images/use/contract.png"></image>
           <text class="font_12">
           合同管理
           </text>
         </view>
-      </navigator>
-      <navigator class="df_1" url="../order/add/order" hover-class="none">
-        <view>
-          <image src="/images/order-add.png"></image>
+      </view>
+      <view class="df_1" hover-class="none">
+        <view bindtap="addOrder">
+          <image src="/images/use/contract-add.png"></image>
           <text class="font_12">
           新建合同
           </text>
         </view>
-      </navigator>
+      </view>
     </view>
   </view>
-  <view class="greenhouse">
-    <view class="config-box df tc">
-      <navigator url="../shop/map/map" class="df_1" hover-class="none">
-        <view bindtap="">
-        <!-- <view class="weui-badge" style="position: absolute;left: 6em;">开发中</view> -->
-          <image src="/images/use/greenhouse.png"></image>
-          <text class="font_12">
-          我的大棚
-          </text>
-        </view>
-
-      </navigator>
-      <navigator class="df_1" url="" hover-class="none">
-        <view>
-        <view class="weui-badge" style="position: absolute;left: 16em;">开发中</view>
-          <image src="/images/use/control.png"></image>
-          <text class="font_12">
-          遥控设备
-          </text>
-        </view>
-      </navigator>
-      <navigator class="df_1" url="" hover-class="none">
-        <view>
-        <view class="weui-badge" style="position: absolute;left: 26em;">开发中</view>
-          <image src="/images/use/ai.png"></image>
-          <text class="font_12">
-          人工智能
-          </text>
-        </view>
-      </navigator>
-      
-    </view>
-  </view>
-  <view class="fui-cell-group fui-cell-click">
+  <!-- <view class="fui-cell-group fui-cell-click"  wx:if="{{userData.is_active!=undefined}}">
     <navigator class="fui-cell" hover-class="none" url="../order/buyer/buyer?phone={{userData.phone}}">
       <image class="fui-cell-icon" src="/images/use/order.png"></image>
-      <view class="fui-cell-text">我的订单</view>
+      <view class="fui-cell-text">农户订单</view>
+      <view class="fui-cell-remark"></view>
+    </navigator>
+  </view> -->
+  <view class="fui-cell-group fui-cell-click" wx:if="{{userData.is_active!=undefined}}">
+    <navigator class="fui-cell" hover-class="none" url="/pages/answer/answer">
+      <image class="fui-cell-icon" src="/images/use/dynamic-hot.png"></image>
+      <view class="fui-cell-text">我的评论</view>
       <view class="fui-cell-remark"></view>
     </navigator>
   </view>
-  <view class="fui-cell-group fui-cell-click">
+
+  <view class="fui-cell-group fui-cell-click" wx:if="{{userData.is_active!=undefined}}">
     <navigator class="fui-cell" hover-class="none" url="./favorite/favorite">
-      <image class="fui-cell-icon" src="/images/use/thumbs-up1.png"></image>
+      <image class="fui-cell-icon" src="/images/use/thumbs.png"></image>
       <view class="fui-cell-text">我的收藏</view>
       <view class="fui-cell-remark"></view>
     </navigator>
   </view>
-  <view class="fui-cell-group fui-cell-click" wx:if="{{userData.is_active==0}}">
-    <view class="fui-cell nopad" hover-class="none">
-      <image class="fui-cell-icon fullpad" src="/images/use/enter.png"></image>
-      <block wx:if="{{userData.phone==null||userData.phone==''}}">
-      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">育苗厂入驻</button>
-    </block>
-    <block wx:else>
-      <button bindtap="register" plain="true">育苗厂入驻</button>
-    </block>
-      <view class="fui-cell-remark"></view>
-    </view>
-  </view>
+
   <!-- <view class="fui-cell-group fui-cell-click">
     <navigator class="fui-cell" hover-class="none" url="">
       <image class="fui-cell-icon" src="/images/use/security.png"></image>
@@ -132,7 +115,20 @@
       <view class="fui-cell-remark"></view>
     </navigator>
   </view>
-  
+  <view class="fui-cell-group fui-cell-click" wx:if="{{userData.is_active!=undefined}}">
+    <navigator class="fui-cell" hover-class="none" url="../message/message">
+      <image class="fui-cell-icon" src="/images/use/opinion.png"></image>
+      <view class="fui-cell-text">意见反馈</view>
+      <view class="fui-cell-remark"></view>
+    </navigator>
+  </view>
+  <view class="fui-cell-group fui-cell-click">
+    <view class="fui-cell" bindtap='makePhoneCall'>
+      <image class="fui-cell-icon" src="/images/use/call.png"></image>
+      <view class="fui-cell-text">联系客服</view>
+      <!-- <view class="fui-cell-remark"></view> -->
+    </view>
+  </view>
   <!-- <view class="fui-cell-group fui-cell-click">
     <view class="fui-cell nopad" hover-class="none">
       <image class="fui-cell-icon fullpad" src="/images/use/shares.png"></image>

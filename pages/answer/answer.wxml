@@ -1,0 +1,73 @@
+<view>
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{newsList}}" wx:key="id">
+        <view class="listBox">
+          <view class="boxPic">
+            <navigator class='shop-url' hover-class="none" url="../detail/detail?id={{item.shop.id}}">
+              <image class="listAvatar" src="{{item.shop.avatar}}!mp.v200" />
+              <view class="listNickname ">
+                <text class="nfont fl_l">{{item.shop.title}}</text>
+                <text class="fl_r distance"><text wx:if="{{location.location.lat!=undefind}}">{{item.shop.distance}}</text> {{item.shop.villageInfo}}</text>
+              </view>
+              <view class="listAddress font-28">
+                <text class="fl_l">{{item.fdate}}</text>
+              </view>
+              <view class="listIntro cfont">
+                <text>{{item.content}}</text>
+              </view>
+            </navigator>
+            <view wx:for="{{item.pic}}" wx:for-index="index" wx:if="{{index<8}}" wx:key="*this" class="listImg">
+              <image src="{{item}}!mp.v200" class="listImgText" bindtap="toPic2" data-src="{{item}}" />
+            </view>
+            <view hidden="{{item.video_thumbnail==null}}" class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
+              <view class='icon-videoPlay'>
+                <van-icon name="play" size="36px" />
+              </view>
+              <image src="{{item.video_thumbnail}}!mp.v200260"></image>
+            </view>
+            <view class="pbbt" hidden="{{item.sorts.length==0}}"></view>
+            <view class="listbottom font-28 tagp" hidden="{{item.sorts.length==0}}">
+              <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+                <text class="stext">{{item.title}}</text>
+              </view>
+            </view>
+            <view class="listbottom font-28">
+              <view class="created-at">{{item.created_at}}</view>
+              <view class="message label">
+                <text wx:if="{{item.answers_count !='0'}}" class="answers-count">{{item.answers_count}}</text>
+                <image src="../../images/use/message.png" data-dynamic="{{item}}" bindtap="thumbsAnswer"></image>
+              </view>
+              <view class="release" wx:if="{{dynamic_id==item.id}}">
+                <textarea class="text" placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" bindinput="inputAnswer" bindblur="bindblur" bindconfirm="bindconfirm" focus="{{releaseFocus}}" data-page="{{nextPage}}"
+                  data-dynamicid="{{item.id}}" placeholder="请输入评论内容"></textarea>
+              </view>
+              <view class="listbottom" wx:if="{{releaseFocus==item.id}}">
+                <view class="thumbs">
+                  <image wx:if="{{item.follow ==''}}" src="../../images/use/thumbs.png" data-dynamic="{{item}}" bindtap="thumbs"></image>
+                  <image wx:if="{{item.follow !=''}}" src="../../images/use/thumbs-up1.png" data-dynamic="{{item}}" bindtap="thumbs"></image>
+                </view>
+                <view class="answer">
+                  <text class="answer-text" data-dynamic="{{item}}" bindtap="bindReply">评论</text>
+                </view>
+              </view>
+            </view>
+
+          </view>
+          <view class="answers-container" wx:if="{{item.answers!=''}}">
+            <view class="answer-list" wx:for="{{item.answers}}" wx:key="*this">
+              <text class="answer-user">{{item.user.nickname}}</text>
+              <text class="answer-body">: {{item.body}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="as-more" hidden="{{!isEnd}}">
+    <text class="more">已显示全部，共{{endPage}}页</text>
+  </view>
+  <view wx:if="{{newsList ==''}}" class="no-answers">
+    您还没有评论任何动态！
+  </view>
+</view>

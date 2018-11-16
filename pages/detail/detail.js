@@ -1,17 +1,19 @@
-import newData from '../../utils/DataURL.js';
+import getData from '../../utils/DataURL.js';
 import moment from '../../utils/moment.js';
 var conf = require('../../config');
 var app = getApp();
 Page({
   data: {
-    // tab切换  
+    // tab切换 
+    userData: {}, 
+    shopData:{},
     currentTab: 0,
-    favorites:'',
+    favorites: '',
     shopId: null,
-    userData: {},
     shopEn: [],
-    shopAvatar:'',
+    shopAvatar: '',
     shopNews: [],
+    meta: [],
     shopPics: [],
     scrollDown: true,
     nextPage: 1,
@@ -20,14 +22,18 @@ Page({
   },
   onLoad: function(options) {
     let self = this;
-    let uData = app.globalData.userData;
     self.setData({
       shopId: options.id,
-      userData: uData
+      userData: wx.getStorageSync("userData"),
+      shopData: wx.getStorageSync("shopData")
     })
+    if (wx.getStorageSync("userData").id == undefined) {
+      wx.switchTab({
+        url: '../../index/index',
+      })
+    }
     self.getShopById(options.id);
-    self.getNewsListById(options.id);
-    self.getPicById(options.id);
+    self.getDynamicsListById(options.id);
     self.isFavoriteShop(options.id)
   },
   onShow: function() {
@@ -56,17 +62,14 @@ Page({
       API_URL: conf.shopUrl + id
     };
 
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       let shop = res.data;
       //确保判断完再加载
       that.setData({
         shopEn: shop,
-        shopAvatar:shop.avatar+'!mp.v200'
+        shopAvatar: shop.avatar + '!mp.v200'
       });
-      console.log(shop)
-      if (that.waitShop) {
-        that.waitShop(shop);
-      }
+
       wx.setNavigationBarTitle({
         title: res.data.title
       });
@@ -74,15 +77,14 @@ Page({
   },
   isFavoriteShop: function(id) {
     let that = this;
-    let data=[]
+    let data = []
     data.shop_id = id
     let param = {
       API_URL: conf.isFavoriteShop,
       data: data,
       method: "POST"
     };
-    newData.result(param).then(res => {
-      console.log(res.data)
+    getData.result(param).then(res => {
       if (res.data.status_code == 200) {
         that.setData({
           favorites: res.data.data
@@ -90,7 +92,7 @@ Page({
       }
     })
   },
-  favoriteShop: function (e) {
+  favoriteShop: function(e) {
     let that = this;
     let data = []
     data.shop_id = e.currentTarget.id
@@ -99,7 +101,7 @@ Page({
       data: data,
       method: "POST"
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       if (res.data.status_code == 200) {
         that.setData({
           favorites: true
@@ -108,13 +110,13 @@ Page({
       }
     })
   },
-  destroyFavorites: function (e) {
+  destroyFavorites: function(e) {
     let that = this;
     let param = {
       API_URL: conf.FavoriteShop + '/' + e.currentTarget.id,
       method: "DELETE"
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       if (res.data.status_code == 201) {
         that.setData({
           favorites: ''
@@ -123,14 +125,14 @@ Page({
       }
     })
   },
-  getNewsListById: function(id) {
+  getDynamicsListById: function(id) {
     let that = this;
     let param = {
-      API_URL: conf.newsListUrl + id,
+      API_URL: conf.dynamicsListUrl + id,
     };
     let nextPage = that.data.nextPage;
 
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       let nList = res.data.data;
       //格式化日期为mmm前
       if (nList == null)
@@ -141,12 +143,16 @@ Page({
         news.month = moment(news.created_at.date).format("M");
         news.day = moment(news.created_at.date).format("DD");
       });
-      console.log(res.data.data)
-      nextPage = nextPage + 1;
       that.setData({
         shopNews: nList,
-        nextPage: nextPage
+        meta: res.data.meta
       });
+      if (res.data.meta.current_page == res.data.meta.last_page) {
+        that.setData({
+          endPage: res.data.meta.last_page,
+          isEnd: true
+        });
+      }
     })
     // 隐藏导航栏加载框  
     wx.hideNavigationBarLoading();
@@ -158,7 +164,7 @@ Page({
     let param = {
       API_URL: conf.shopPicUrl + id,
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
 
       that.setData({
         shopPics: res.data.data
@@ -170,7 +176,7 @@ Page({
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     var self = this;
-    self.getNewsListById(self.data.shopId);
+    self.getDynamicsListById(self.data.shopId);
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -182,41 +188,48 @@ Page({
     //   title: '加载中...',
     // })
     var that = this;
-    let nextPage = that.data.nextPage;
-    let param = {
-      API_URL: conf.newsListUrl + that.data.shopId + "?page=" + nextPage,
-    };
+    let page = that.data.meta.current_page;
+    if (page < that.data.meta.last_page) {
+      let param = {
+        API_URL: that.data.meta.path + "?page=" + (page + 1),
+      };
 
-    newData.result(param).then(res => {
-      let nList = res.data.data;
+      getData.result(param).then(res => {
+        let nList = res.data.data;
 
-      if (nList == undefined) {
+        if (nList == undefined) {
+          that.setData({
+            isEnd: true,
+          })
+          // 隐藏加载框
+          // wx.hideLoading();
+          return;
+        }
+
+        //格式化日期为mmm前
+        nList.forEach(function(news) {
+          news.fdate = moment(news.created_at.date).fromNow();
+          news.year = moment(news.created_at.date).format("YYYY");
+          news.month = moment(news.created_at.date).format("M");
+          news.day = moment(news.created_at.date).format("DD");
+        });
+        let pred = that.data.shopNews;
+        let tdata = pred.concat(nList);
+        
         that.setData({
-          isEnd: true,
-        })
+          shopNews: tdata,
+          meta: res.data.meta
+        });
+        if (res.data.meta.current_page == res.data.meta.last_page) {
+          that.setData({
+            endPage: res.data.meta.last_page,
+            isEnd: true
+          });
+        }
         // 隐藏加载框
-        // wx.hideLoading();
-        return;
-      }
-
-      //格式化日期为mmm前
-      nList.forEach(function(news) {
-        news.fdate = moment(news.created_at.date).fromNow();
-        news.year = moment(news.created_at.date).format("YYYY");
-        news.month = moment(news.created_at.date).format("M");
-        news.day = moment(news.created_at.date).format("DD");
-      });
-      let pred = that.data.shopNews;
-      let tdata = pred.concat(nList);
-      // 页数+1
-      nextPage = nextPage + 1;
-      that.setData({
-        shopNews: tdata,
-        nextPage: nextPage
-      });
-      // 隐藏加载框
-      wx.hideLoading();
-    })
+        wx.hideLoading();
+      })
+    }
   },
   //相册点击放大
   toPic1(e) {
@@ -278,6 +291,13 @@ Page({
       url: '../index/index'
     })
   },
+  showPics: function (event) {
+    if (event.target.dataset.piccount>'0'){
+      wx.navigateTo({
+        url: '../detail/album' + '?id=' + event.target.id
+      })
+    }
+  },
   makePhoneCall: function() {
     let self = this;
     wx.makePhoneCall({
@@ -322,7 +342,7 @@ Page({
       method: "POST"
     };
 
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       if (res.statusCode == 200) {
         wx.showModal({
           title: '订单已发送，待育苗场确认',
@@ -342,18 +362,25 @@ Page({
       }
     })
   },
-  getPhoneNumber: function(e) {
+  
+  getPhoneNumber: function (e) {
     let self = this;
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
       wx.showModal({
-        title: '未授权不能继续操作',
+        title: '请授权获取您的手机号',
         showCancel: false,
-        content: '请在弹出框中点击确认授权！',
-        success: function(res) {}
+        content: '获取手机号后，育苗厂才能知道您有求购意向。',
+        success: function (res) {
+          
+        },
+        fail:function(){
+          console.log(11)
+        }
+        
       })
     } else {
       wx.login({
-        success: function(res) {
+        success: function (res) {
           let data = {};
           data.iv = e.detail.iv;
           data.encryptedData = e.detail.encryptedData;
@@ -365,37 +392,20 @@ Page({
             method: "POST"
           };
 
-          newData.result(param).then(res => {
-            let pno = res.data.phoneNumber;
-            let da = {};
-            da.phoneNumber = res.data.phoneNumber;
-            let pa = {
-              API_URL: conf.upUserUrl,
-              data: da,
+          getData.result(param).then(res => {
+            let userPhone = []
+            userPhone.phoneNumber = res.data.phoneNumber
+            let param = {
+              API_URL: conf.phoneUpdateUrl,
+              data: userPhone,
               method: "POST"
             };
-            newData.result(pa).then(res => {
-              if (res.data.status_code == 200) {
-                //写入缓存
-                getApp().globalData.userData.phone = pno;
-                let uData = app.globalData.userData;
-                self.setData({
-                  userData: uData
-                })
-                //根据传递的值不同处理
-                let type = e.currentTarget.dataset.name;
-                if (type == 1)
-                  self.makeOrder()
-                else if (type == 0)
-                  self.makePhoneCall();
-
-              } else {
-                wx.showToast({
-                  title: '手机号码保存失败，请重试！',
-                  // icon: 'success',
-                  duration: 1000
-                })
-              }
+            getData.result(param).then(response => {
+              wx.setStorageSync('userData', response.data.data)
+              self.setData({
+                userData: response.data.data,
+              })
+              self.makePhoneCall()
             })
           });
 
@@ -424,7 +434,7 @@ Page({
       //没有数据就进行加载
       switch (that.data.currentTab) {
         case 0:
-          !that.data.shopNews.length && that.getNewsListById();
+          !that.data.shopNews.length && that.getDynamicsListById();
           break;
         case 1:
           !that.data.shopPics.length && that.getPicById();

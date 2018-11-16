@@ -1,0 +1,356 @@
+.van-transition {
+  opacity: 0.8;
+}
+
+.banner {
+  height: 112rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+}
+.no-answers {
+  padding: 40rpx;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+  background-color: #fff;
+}
+.module-title {
+  color: #222;
+  font-size: 22rpx;
+  height: 100rpx;
+  line-height: 5s0rpx;
+  text-align: left;
+  background: #fff;
+  padding: 20rpx 20rpx;
+}
+
+.module-title text {
+  color: #222;
+  font-size: 38rpx;
+  text-align: left;
+}
+
+.dark {
+  color: #222;
+  height: 100rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #fff;
+  padding: 15rpx;
+}
+
+.add-btn {
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 100rpx;
+  background-color: #f85e13;
+}
+
+.add-dynamic {
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 100rpx;
+  background-color: #f85e13;
+}
+
+.ad-btn-img {
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 64rpx;
+  float: left;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  top: 2px;
+}
+
+.icon-truck {
+  top: 3px;
+}
+
+.listNews .list-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.listNews .listBox {
+  margin: 2rpx 0 5rpx 0;
+  background: #fff;
+  min-height: 80px;
+  width: 100%;
+}
+
+.listAvatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: #f5fcf6 solid 2px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  float: left;
+  margin-right: 10px;
+}
+
+.listNickname {
+  padding-left: 10rpx;
+}
+
+.listNews .listBox .boxPic {
+  padding: 40rpx 24rpx 20rpx;
+}
+
+.listbottom {
+  position: relative;
+  color: #b3b3b3;
+  line-height: 30rpx;
+}
+
+.listbottom image {
+  height: 30rpx;
+  width: 30rpx;
+  float: left;
+  padding-right: 10rpx;
+}
+
+.listAddress {
+  position: relative;
+  padding-top: 50rpx;
+  color: #b3b3b3;
+}
+
+.listAddress text {
+  padding-right: 10rpx;
+}
+
+.listNews .listBox .listIntro {
+  display: block;
+  padding-top: 60rpx;
+}
+
+.listImg {
+  display: inline-block;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.listImgText {
+  height: 160rpx;
+  width: 160rpx;
+  margin: 0 11rpx 0 0;
+  border-radius: 2px;
+  border: 1px #f3f3f3 solid;
+}
+
+.listTags {
+  display: inline-block;
+  justify-content: space-between;
+}
+
+.listTagText {
+  margin-right: 6rpx;
+  color: #676767;
+  font-size: 0.6rem;
+  font-weight: 300;
+  padding: 6rpx 12rpx;
+  background: #f4f4f4;
+  border: #e5e5e4 solid 0px;
+  border-radius: 20px;
+}
+
+.distance {
+  font-size: 27rpx;
+  padding-right: 10rpx;
+  margin-top: 2px;
+  color: #b3b3b3;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.input_null {
+  color: #c9c9c9;
+}
+
+.release {
+  display: flex;
+  align-items: flex-end; /*底部对齐*/
+  justify-content: space-between; /*两端对齐*/
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 18rpx 30rpx;
+  background-color: #f1f1f1;
+  font-size: 28rpx;
+  z-index: 999;
+}
+
+.release .text {
+  width: 100%;
+  min-height: 34rpx;
+  max-height: 102rpx; /*最多显示三行*/
+  border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
+  border-style: solid;
+  color: #1a232c;
+  border-color: #fff;
+  line-height: 34rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+}
+
+.sortp {
+  margin-right: 6rpx;
+  color: #676767;
+  font-size: 0.6rem;
+  font-weight: 300;
+  padding: 6rpx 12rpx;
+  background: #f4f4f4;
+  border: #e5e5e4 solid 0px;
+  border-radius: 20px;
+  float: left;
+}
+
+.answer {
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  color: #555a77;
+  font-size: 0.7rem;
+  padding: 12rpx 24rpx;
+  background: #f4f4f4;
+  border-radius: 20px;
+  float: right;
+}
+
+.answers-count {
+  font-size: 0.8rem;
+}
+
+.thumbs {
+  padding: 9rpx 24rpx;
+  float: right;
+}
+
+.thumbs image {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.message {
+  margin: 6rpx 12rpx 12px 12rpx;
+  float: right;
+}
+
+.created-at {
+  margin: 12rpx 12rpx 12px 0rpx;
+  float: left;
+}
+
+.message image {
+  height: 43rpx;
+  width: 58rpx;
+  float: right;
+}
+
+.stext {
+  color: #777;
+  padding: 0 5rpx;
+}
+
+.dynamic-content {
+  font-size: 32rpx;
+  color: #333;
+  padding-right: 13px;
+  padding-top: 10rpx;
+}
+
+.answers-count {
+  padding-right: 10rpx;
+  /* color:#f85e13;
+  font-size: 26px; */
+}
+
+.answers-container {
+  margin: 50rpx 24rpx 20rpx;
+  background-color: #f8f8f8;
+}
+
+.answer-list {
+  padding: 0 20rpx;
+  font-size: 14px;
+}
+
+.answer-user {
+  font-size: 32rpx;
+  color: rgb(60, 84, 112);
+  font-weight: 600;
+}
+
+.answer-body {
+  font-size: 32rpx;
+  color: #333;
+}
+
+/* .release .submit {
+  width: 116rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  color: #f85e13;
+} */
+
+.video-dynamic {
+  width: 22%;
+  height: 25vh;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-videoPlay {
+  z-index: 1;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-60%, -50%);
+  color: #fff;
+}
+
+/* 视频缩略图 */
+
+.img_block {
+  width: 100px;
+  height: 130px;
+  line-height: 130px;
+  text-align: center;
+}
+
+.img_block image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+  border-right: #f5fcf6 solid 1px;
+  border-left: #f5fcf6 solid 1px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.to-login {
+  padding: 30rpx 20rpx;
+  text-align: center;
+}

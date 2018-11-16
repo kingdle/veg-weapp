@@ -1,4 +1,4 @@
-import newData from '../../utils/DataURL.js';
+import getData from '../../utils/DataURL.js';
 var conf = require('../../config');
 
 function getRandomColor() {
@@ -16,91 +16,63 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: '',
-    inputValue: '',
-    messageData: {},
-    links: {},
-    meta: {},
-    slogan:[],
-    TabNum: '16',
-    danmuList: []
+    introduce: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadMessageList()
+    // this.loadMessageList()
+    this.getConfigs()
   },
-  //加载留言列表
-  loadMessageList: function () {
-    let that = this;
+  getConfigs: function () {
     let param = {
-      API_URL: conf.messageUrl,
+      API_URL: conf.configUrl,
+      method: "GET"
     };
 
-    newData.result(param).then(res => {
-      console.log(res.data)
-      if (res.data.status_code != 404) {
-        that.setData({
-          messageData: res.data.data,
-          links: res.data.links,
-          meta: res.data.meta,
-          last_page: res.data.meta.last_page,
-          current_page: res.data.meta.current_page,
-          slogan: res.data.slogan,
+    getData.result(param).then(response => {
+      wx.setStorageSync('configs', response.data)
+      console.log(response.data['1'])
+      this.setData({
+        introduce: response.data['1'],
         });
-      } else {
-        that.setData({
-          messageData: []
-        });
-      }
-    });
+    })
   },
+  //加载留言列表
+  // loadMessageList: function () {
+  //   let that = this;
+  //   let param = {
+  //     API_URL: conf.messageUrl,
+  //   };
+
+  //   getData.result(param).then(res => {
+  //     console.log(res.data)
+  //     if (res.data.status_code != 404) {
+  //       that.setData({
+  //         messageData: res.data.data,
+  //         links: res.data.links,
+  //         meta: res.data.meta,
+  //         last_page: res.data.meta.last_page,
+  //         current_page: res.data.meta.current_page,
+  //         slogan: res.data.slogan,
+  //       });
+  //     } else {
+  //       that.setData({
+  //         messageData: []
+  //       });
+  //     }
+  //   });
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (res) {
     this.videoContext = wx.createVideoContext('myVideo')
   },
-  bindInputBlur: function (e) {
-    let that = this;
-    that.data.inputValue = e.detail.value
-    let data = {}
-    if (that.data.inputValue == '') {
-      wx.showToast({
-        title: "建议内容不能为空",
-        icon: 'none',
-        duration: 500
-      })
-      return;
-    }
-    data.messageContent = that.data.inputValue
-    let param = {
-      API_URL: conf.messageUrl,
-      data: data,
-      method: "POST"
-    };
-    newData.result(param).then(res => {
-      if (res.data.status_code != 404) {
-        this.loadMessageList()
-        this.videoContext.sendDanmu({
-          text: that.data.inputValue,
-          color: getRandomColor()
-        })
-        this.setData({
-          inputValue: '',
-        })
-        wx.showToast({
-          title: "留言成功",
-          icon: 'success',
-          duration: 2000
-        })
-      }
-    });
-  },
+  
   bindSendDanmu: function () {
-
 
   },
   bindPlay: function () {
@@ -110,8 +82,7 @@ Page({
     this.videoContext.pause()
   },
   videoErrorCallback: function (e) {
-    console.log('视频错误信息:')
-    console.log(e.detail.errMsg)
+   
   },
   /**
    * 生命周期函数--监听页面显示
@@ -145,22 +116,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var that = this;
-    let page = that.data.meta.current_page;
-    if (page < that.data.meta.last_page) {
-      let param = {
-        API_URL: conf.messageUrl + '?page=' + (page + 1),
-      };
-      newData.result(param).then(res => {
-        let messageData = that.data.messageData.concat(res.data.data)
-        that.setData({
-          messageData: messageData,
-          links: res.data.links,
-          meta: res.data.meta,
-          TabNum: messageData.length,
-        });
-      })
-    }
+    
   },
   goHome: function () {
     wx.switchTab({
@@ -170,27 +126,27 @@ Page({
   makePhoneCall: function () {
     let self = this;
     wx.makePhoneCall({
-      phoneNumber: self.data.slogan.shop_auto_play
+      phoneNumber: self.data.introduce.shop_auto_play
     })
   },
   openlocationS: function () {
     let self = this;
     wx.openLocation({
-      latitude: Number(self.data.slogan.header_auto_play),
-      longitude: Number(self.data.slogan.header_interval),
+      latitude: Number(self.data.introduce.header_auto_play),
+      longitude: Number(self.data.introduce.header_interval),
       scale: 17,
       name: '苗果科技',
-      address: self.data.slogan.header_indicator_dots
+      address: self.data.introduce.header_indicator_dots
     })
   },
   openlocationQ: function () {
     let self = this;
     wx.openLocation({
-      latitude: Number(self.data.slogan.header_circular),
-      longitude: Number(self.data.slogan.shop_indicator_dots),
+      latitude: Number(self.data.introduce.header_circular),
+      longitude: Number(self.data.introduce.shop_indicator_dots),
       scale: 17,
       name: '苗果科技',
-      address: self.data.slogan.header_duration
+      address: self.data.introduce.header_duration
     })
   },
   /**
@@ -198,7 +154,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '苗果1分钟简介',
+      title: '苗果简介',
       // desc: '谢谢您，拿出了生命中的1分钟，来了解我们...',
       // path: '/pages/introduce/introduce',
       // imageUrl: "/images/use/logo.png",

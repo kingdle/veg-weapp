@@ -6,7 +6,7 @@
         <view class="weui-flex__item">
           <view class="placeholder">
             <button ontap="goHome" class="go-home label">
-              <text class="title">{{slogan.title}}</text>
+              <text class="title">{{introduce.title}}</text>
               <image src="/images/use/weappgreen.png"></image>
             </button>
           </view>
@@ -23,7 +23,7 @@
     </view>
     <view class="page m-body">
       <view class="page__hd">
-        <view class="page__desc">{{slogan.newsSlogan}}</view>
+        <view class="page__desc">{{introduce.newsSlogan}}</view>
       </view>
 
       <view class="page__bd">
@@ -41,26 +41,26 @@
         <view class="weui-flex">
           <view class="weui-flex__item">
             <view class="introduce">
-              <text>{{slogan.notice}}</text>
+              <text>{{introduce.notice}}</text>
             </view>
           </view>
         </view>
         <view class="weui-flex">
           <view class="weui-flex__item" bindtap="openlocationS">
             <view class="gray address label">地址：
-              <image src="/images/use/dh.png"></image>{{slogan.header_indicator_dots}}</view>
+              <image src="/images/use/dh.png"></image>{{introduce.header_indicator_dots}}</view>
           </view>
         </view>
         <view class="weui-flex">
           <view class="weui-flex__item" bindtap="openlocationQ">
             <view class="gray address label">　　　
-              <image src="/images/use/dh.png"></image>{{slogan.header_duration}}</view>
+              <image src="/images/use/dh.png"></image>{{introduce.header_duration}}</view>
           </view>
         </view>
         <view class="weui-flex">
           <view class="weui-flex__item" bindtap="makePhoneCall">
             <view class="gray phone label">联系：
-              <image src="/images/use/phone.png"></image>{{slogan.shop_auto_play}}(微信)</view>
+              <image src="/images/use/phone.png"></image>{{introduce.shop_auto_play}}(微信)</view>
           </view>
         </view>
       </view>
