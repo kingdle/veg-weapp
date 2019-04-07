@@ -272,6 +272,23 @@ Page({
       }
     })
   },
+  makePhoneCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: '18661737287'
+    })
+  },
+  copyPhone: function (e) {
+    wx.setClipboardData({
+      data: '18661737287',
+      success: function (res) {
+        wx.showToast({
+          title: '微信号已复制',
+          image: '/images/use/wxphone.png',
+          duration: 2000
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

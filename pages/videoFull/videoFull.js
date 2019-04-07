@@ -21,7 +21,7 @@ Page({
     });
   },
   onShow() {
-    this.videoContext = wx.createVideoContext('myVideo')
+    this.videoContext = wx.createLivePlayerContext('myVideo')
     // 全屏播放
     this.videoContext.requestFullScreen()
     var res = wx.getSystemInfoSync();

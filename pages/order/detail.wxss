@@ -1,6 +1,6 @@
 page {
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 32rpx;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
@@ -18,8 +18,9 @@ page {
   color: #888;
 }
 .page__hd {
-  padding: 10px 20px;
-  border-bottom: 4px solid transparent;
+  padding: 20rpx 40rpx;
+  background-color: #faf9fe;
+  border-bottom: 8rpx solid transparent;
   border-image: 6 repeating-linear-gradient(-50deg, #f06307 0, #f06307 1.5em, transparent 0, transparent 2em, #b9d635 0, #b9d635 3.5em, transparent 0, transparent 4em);
 }
 
@@ -28,13 +29,13 @@ page {
 }
 
 .page__ft {
-  padding-bottom: 10px;
+  padding-bottom: 20rpx;
   text-align: center;
 }
 
 .page__title {
   text-align: left;
-  font-size: 20px;
+  font-size: 40rpx;
   font-weight: 400;
   color: #4f5356;
 }
@@ -45,21 +46,21 @@ page {
 }
 
 .page__desc {
-  margin-top: 5px;
+  margin-top: 10rpx;
   color: #888;
   text-align: left;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .placeholder {
-  padding: 5px;
+  padding: 10rpx;
   /* padding: 0 10px; */
   text-align: center;
   /* background-color: #ebebeb; */
   height: 1.5em;
   line-height: 1.5em;
   /* color: #4F5356; */
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .f_l {
@@ -82,8 +83,8 @@ page {
   height: 2em;
   /* background-color: #ebebeb; */
   margin: 10rpx 0;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
 
 .page__bd .weui-flex {
@@ -114,40 +115,40 @@ page {
 }
 
 .total-price {
-  font-size: 26px;
+  font-size: 52rpx;
 }
 
 .past-total-price {
-  font-size: 18px;
+  font-size: 36rpx;
 }
 
 .product-pic image {
-  width: 80px;
-  height: 80px;
+  width: 160rpx;
+  height: 160rpx;
 }
 
 .sbtn {
   margin: 15rpx 5rpx;
   padding: 0 20rpx;
   border: #e5e5e4 solid 1px;
-  border-radius: 20px;
+  border-radius: 40rpx;
 }
 
 .past-order {
   color: #4f5356;
   padding-top: 40rpx;
   margin-top: 20rpx;
-  border-top: 8px solid #ebebeb;
+  border-top: 16rpx solid #ebebeb;
 }
 
 .past__hd {
-  padding: 10rpx 20px;
+  padding: 10rpx 40rpx;
   border-bottom: 1px solid #ebebeb;
 }
 
 .past__title {
   text-align: left;
-  font-size: 17px;
+  font-size: 34rpx;
   font-weight: 400;
   color: #4f5356;
 }
@@ -155,7 +156,7 @@ page {
 .past__desc {
   color: #888;
   text-align: left;
-  font-size: 12px;
+  font-size: 24rpx;
 }
 
 .footer {
@@ -166,7 +167,7 @@ page {
 }
 
 .weui-media-box {
-  padding: 15px;
+  padding: 30rpx;
   position: relative;
 }
 
@@ -178,7 +179,7 @@ page {
   height: 1px;
   border-top: 1rpx solid #e5e5e5;
   color: #e5e5e5;
-  left: 15px;
+  left: 30rpx;
 }
 
 .weui-media-box:first-child:before {
@@ -187,7 +188,7 @@ page {
 
 .weui-media-box__title {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 32rpx;
   width: auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -198,7 +199,7 @@ page {
 
 .weui-media-box__desc {
   color: #999;
-  font-size: 13px;
+  font-size: 26rpx;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -208,9 +209,9 @@ page {
 }
 
 .weui-media-box__info {
-  margin-top: 15px;
-  padding-bottom: 5px;
-  font-size: 13px;
+  margin-top: 30rpx;
+  padding-bottom: 10rpx;
+  font-size: 26rpx;
   color: #cecece;
   line-height: 1em;
   list-style: none;
@@ -228,7 +229,7 @@ page {
 }
 
 .weui-media-box__title_in-text {
-  margin-bottom: 8px;
+  margin-bottom: 16rpx;
 }
 
 .weui-media-box_appmsg {
@@ -247,14 +248,14 @@ page {
   vertical-align: top;
   border-radius: 50%;
   border-bottom: 2px solid #fff;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 6rpx 6rpx 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .weui-media-box__hd_in-appmsg {
   margin-right: 0.8em;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
 }
 
@@ -272,13 +273,13 @@ page {
 .weui-badge {
   display: inline-block;
   padding: 0.15em 0.4em;
-  min-width: 8px;
-  border-radius: 18px;
+  min-width: 16rpx;
+  border-radius: 36rpx;
   background-color: #f06307;
   color: #fff;
   line-height: 1.2;
   text-align: center;
-  font-size: 12px;
+  font-size: 24rpx;
   vertical-align: middle;
 }
 .note{
@@ -287,8 +288,8 @@ page {
 .note-seller{
   text-align: left;
   margin-left:6rpx; 
-  padding:8px 0;
-  font-size: 12px;
+  padding:16rpx 0;
+  font-size: 28rpx;
   line-height: 1.2em;
 }
 .label {

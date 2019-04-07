@@ -11,9 +11,6 @@ function initChart(canvas, width, height) {
     height: height
   });
   canvas.setChart(chart);
-  
-  console.log(app.globalData)
-  
   var option = {
     title: {
       text: '品种-数量图表展示',
@@ -110,15 +107,15 @@ Page({
    */
   onLoad: function(options) {
     let self = this;
-    let uData = app.globalData.userData;
+    let shopId = wx.getStorageSync('shopData').id
     self.setData({
-      shopId: options.id,
-      userData: uData
+      shopId: wx.getStorageSync('shopData').id,
+      userData: wx.getStorageSync('userData')
     })
-    self.getShopById(options.id)
-    self.getPicById(options.id)
-    self.getProdById(options.id)
-    self.getMoneyById(options.id)
+    self.getShopById(shopId)
+    self.getPicById(shopId)
+    self.getProdById(shopId)
+    self.getMoneyById(shopId)
   },
   getShopById: function(id) {
     let that = this;
@@ -191,6 +188,7 @@ Page({
     };
 
     newData.result(param).then(res => {
+      console.log(res.data)
       let prodSeller = res.data;
       //确保判断完再加载
       that.setData({

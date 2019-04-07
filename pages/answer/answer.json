@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "我的评论",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-icon": "../../vant/icon/index"
+  }
 }

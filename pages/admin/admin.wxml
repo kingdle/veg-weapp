@@ -41,7 +41,7 @@
       <view class="ty" hidden="{{condition}}">
         <text class="tylab">选择育苗厂：<text hidden="{{shops.item!=null}}">({{shops.length}})</text></text>
         <view wx:for="{{shops}}" wx:key="*this" class="tyunit">
-          <view class="tyitem" data-item="{{item}}" bindtap="selectShop">{{item.title}}</view>
+          <view class="tyitem label" data-item="{{item}}" bindtap="selectShop"><image src="{{item.avatar}}!mp.v64" class="avatar"></image><text>{{item.title}}</text></view>
         </view>
       </view>
     <view class="ty footer">

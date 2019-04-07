@@ -1,0 +1,12 @@
+.update{
+  color: #455a64;
+  padding: 60rpx;
+  text-align: center;
+}
+.van-button--large{
+  height: 50rpx;
+}
+.summary{
+  font-size: 30rpx;
+
+}

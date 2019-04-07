@@ -232,6 +232,9 @@ Page({
     self.loadOrderSend()
     self.loadOrderPayment()
     self.loadOrderCount()
+    wx.hideLoading();
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh();
   },
   //取消订单
   removeOrder: function(e) {

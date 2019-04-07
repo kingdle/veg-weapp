@@ -9,7 +9,7 @@ page {
 }
 
 .f12 {
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 
 .gray {
@@ -507,7 +507,7 @@ button::after {
 
 .label {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -701,7 +701,13 @@ button::after {
   margin: 10rpx;
   line-height: 2.6;
 }
-
+.share-btn {
+  margin-top:28rpx;
+  /* margin-left:10rpx; */
+  border-radius: 40rpx !important;
+  font-size: 20rpx !important;
+  line-height: 2.3 !important;
+}
 .bphone {
   display: inline-block;
   width: 30rpx;
@@ -720,7 +726,7 @@ button::after {
 
 .ke {
   text-align: center;
-  background-color: #fff;
+  background-color: #faf9fe;
   line-height: 1;
   font-size: 32rpx;
 }
@@ -749,13 +755,17 @@ button::after {
 }
 
 .news {
-  position: absolute;
+  /* position: absolute; */
   left: 24rpx;
   right: auto;
-  top: 22rpx;
+  margin-top: 28rpx;
+  margin-left: 22rpx;
   font-size: 28rpx;
 }
-
+.news van-button{
+  margin-left: 10rpx;
+  float: right;
+}
 .news-title {
   font-weight: 500;
   padding: 0 12rpx;
@@ -766,6 +776,7 @@ button::after {
 }
 
 .news-notice {
+  /* float:right !important; */
   right: 20rpx;
   padding-left: 40rpx;
 }
@@ -853,6 +864,8 @@ button::after {
   border-left: 1px solid #e9e7e7;
   line-height: 2em;
 }
+
+
 
 .phone .icon image {
   padding-left: 30rpx;
@@ -1031,13 +1044,58 @@ button::after {
   content: "\e60a";
 }
 
-.answers-container {
-  padding-bottom: 10rpx;
+.answers-count {
   padding-right: 10rpx;
+  /* color:#f85e13;
+  font-size: 26px; */
+}
+
+.avatar-list {
+  padding: 5rpx 20rpx;
+  font-size: 14px;
+}
+
+.avatar-list image {
+  margin: 6rpx;
+}
+
+.followerA {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+
+.followerAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 10rpx;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+}
+
+.userAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+  float: left;
+}
+
+.answer-list {
+  padding: 10rpx 20rpx;
+  font-size: 14px;
 }
 
 .answer-user {
   font-size: 32rpx;
   color: rgb(60, 84, 112);
   font-weight: 600;
+}
+
+.answer-body {
+  font-size: 32rpx;
+  color: #333;
 }

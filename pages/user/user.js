@@ -11,6 +11,7 @@ Page({
   data: {
     userData: {},
     shop: {},
+    answers:'',
     configs:{},
   },
   onLoad: function () {
@@ -18,8 +19,12 @@ Page({
     that.setData({
       userData: wx.getStorageSync("userData"),
       shop: wx.getStorageSync("shopData"),
+      answers: wx.getStorageSync("userDot"),
     })
     that.Config()
+    wx.removeTabBarBadge({
+      index: 1
+    })
   },
   onShow: function () {
     this.setData({
@@ -120,7 +125,7 @@ Page({
     }
   },
   toOrderList: function () {
-    let redirectUrl = '/pages/order/order'
+    let redirectUrl = '/pages/order/list'
     if (wx.getStorageSync('location')) {
       wx.navigateTo({
         url: redirectUrl
@@ -130,7 +135,7 @@ Page({
     }
   },
   addOrder: function () {
-    let redirectUrl = '/pages/order/add/order'
+    let redirectUrl = '/pages/order/add/add'
     if (wx.getStorageSync('location')) {
       wx.navigateTo({
         url: redirectUrl
@@ -155,6 +160,17 @@ Page({
         })
       }
     })
+  },
+  editShop: function () {
+    let self = this;
+    let redirectUrl = "../shop/edit/edit?id=" + self.data.shop.id
+    if (wx.getStorageSync('location')) {
+      wx.navigateTo({
+        url: redirectUrl
+      })
+    } else {
+      this.getLocationInfo(redirectUrl)
+    }
   },
   navTo: function () {
     let self = this;
@@ -266,7 +282,8 @@ Page({
         that.doLocal(latitude, longitude, redirectUrl);
       },
       fail: function (e) {
-        if (e.errMsg == 'getLocation:fail auth deny') {
+        let errMsg = e.errMsg
+        if (errMsg.search("getLocation:fail") != -1) {
           wx.showModal({
             title: '请授权获取地理位置',
             content: '点击“确定”，选择“使用我的地理位置”，享受精准服务。',

@@ -1,0 +1,51 @@
+<view>
+  <van-search value="{{ value }}" placeholder="请输入姓名或手机号" use-action-slot bind:search="onSearch" bind:change="inputTyping" background="#faf9fe">
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+
+  <van-tabs color="#f85e13" active="{{ 0 }}" bind:change="onChange" line-width="20">
+    <van-tab wx:for="{{tabNum}}" wx:key="{{index}}" title="{{ item=='4' ? '全部' : (item == '0' ? '未送苗' : (item == '1' ? '已送苗' : '已收款')) }}">
+
+      <view class="content" wx:for="{{orderList}}" wx:key="{{item.id}}">
+        <van-swipe-cell id="{{item.id}}" right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+          <view slot="left">复制</view>
+          <van-cell-group>
+            <navigator url="../order/detail?orderId={{item.id}}&shopId={{item.shop_id}}&phone={{item.phone}}" hover-class="changestyle">
+              <van-card class="card" num="{{item.counts}}株" tag="{{item.id}}" price="{{item.unit_price}}" origin-price="{{item.total_price}}" title="{{item.name}}" thumb="{{item.prod.pic}}!mp.v300">
+                <view slot="desc">
+                  <view class="distance">{{item.prod.introduce}}</view>
+                  <view class="distance" wx:if="{{item.note_sell != NULL}}">备注:{{item.note_sell}}</view>
+                  <view class="distance">{{item.end_at}} {{item.end_time}}要苗</view>
+                </view>
+              </van-card>
+            </navigator>
+            <view class="foot" slot="footer">
+              <van-row>
+                <van-col span="12">
+                  <view class="address label" wx:if="{{item.is_true_location=='0'}}" bindtap="openlocation" id="{{item.id}}" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}" data-name="{{item.name}}" data-address="{{item.address}}" data-village="{{item.villageInfo}}">
+                    <van-icon name="location" color="#28a745" size="0.8em" />
+                    <view class="village">{{item.villageInfo}}</view>
+                  </view>
+                </van-col>
+                <van-col span="12">
+                  <view class="status-button">
+                  <van-button wx:if="{{item.state=='1'}}" bindtap="paymentOrder" id="{{item.id}}" class="footer" round size="mini">标记为已收款</van-button>
+              <van-button wx:if="{{item.state=='1'}}" bindtap="noStateOrder" id="{{item.id}}" class="footer" round size="mini">标记为未送苗</van-button>
+                    <van-button wx:if="{{item.state=='0'}}" class="footer" round size="mini" bindtap="stateOrder" id="{{item.id}}">标记为已送苗</van-button>
+                    <van-button wx:if="{{item.state=='0'}}" class="footer" round size="mini" bindtap="editOrder" id="{{item.id}}">编辑</van-button>
+                  </view>
+
+                </van-col>
+              </van-row>
+            </view>
+          </van-cell-group>
+          <view slot="right">删除</view>
+        </van-swipe-cell>
+      </view>
+
+    </van-tab>
+  </van-tabs>
+  <view wx:if="{{is_all==true}}" class="as-more">
+      <text class="more">已显示全部</text>
+    </view>
+</view>

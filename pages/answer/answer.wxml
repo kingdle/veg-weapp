@@ -17,7 +17,7 @@
                 <text>{{item.content}}</text>
               </view>
             </navigator>
-            <view wx:for="{{item.pic}}" wx:for-index="index" wx:if="{{index<8}}" wx:key="*this" class="listImg">
+            <view wx:for="{{item.pic}}" wx:for-index="index" wx:if="{{index<4}}" wx:key="*this" class="listImg">
               <image src="{{item}}!mp.v200" class="listImgText" bindtap="toPic2" data-src="{{item}}" />
             </view>
             <view hidden="{{item.video_thumbnail==null}}" class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
@@ -54,10 +54,15 @@
             </view>
 
           </view>
-          <view class="answers-container" wx:if="{{item.answers!=''}}">
+          <view class="answers-container" wx:if="{{item.answers!='' || item.followers!=''}}">
+            <view class="avatar-list" wx:if="{{item.followers!=''}}">
+              <image class="followerA" src="../../images/use/thumbs-up1.png"></image>
+              <image wx:for="{{item.followers}}" wx:key="*this" class="followerAvatar" src="{{item.user.avatar_url}}" />
+            </view>
             <view class="answer-list" wx:for="{{item.answers}}" wx:key="*this">
-              <text class="answer-user">{{item.user.nickname}}</text>
-              <text class="answer-body">: {{item.body}}</text>
+              <image class="userAvatar" src="{{item.user.avatar_url}}" />
+              <text class="answer-user">{{item.user.nickname}}:</text>
+              <text class="answer-body">{{item.body}}</text>
             </view>
           </view>
         </view>

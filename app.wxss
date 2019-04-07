@@ -296,7 +296,7 @@ page {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #fff;
+  background: #faf9fe;
   z-index: 100;
   width: 100%;
   font-size: 28rpx;
@@ -332,8 +332,8 @@ page {
 
 .dbtext {
   line-height: 30rpx;
-  color: #666;
-  font-size: 24rpx;
+  color: #f85e13;
+  font-size: 22rpx;
 }
 
 .ad-btn {

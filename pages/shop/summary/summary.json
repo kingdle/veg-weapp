@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑苗厂简介",
+  "usingComponents": {
+    "van-field": "/vant/field/index",
+    "van-button": "/vant/button/index"
+  }
+}

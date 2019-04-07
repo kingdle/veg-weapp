@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "订单合同信息",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "编辑合同",
+  "usingComponents": {
+    "van-field": "/vant/field/index",
+    "van-button": "/vant/button/index"
+  }
 }

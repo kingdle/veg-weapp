@@ -62,7 +62,11 @@
   align-items: center;
   justify-content: center;
 }
-
+.user-avatar-url{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 100rpx;
+}
 .icon {
   top: 2px;
 }
@@ -81,7 +85,7 @@
 .listNews .listBox {
   margin: 2rpx 0 5rpx 0;
   background: #fff;
-  min-height: 80px;
+  min-height: 160rpx;
   width: 100%;
 }
 
@@ -90,10 +94,11 @@
   height: 80rpx;
   border-radius: 50%;
   border: #f5fcf6 solid 2px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 20rpx rgba(0, 0, 0, 0.1);
   float: left;
-  margin-right: 10px;
+  margin-right: 20rpx;
 }
+
 
 .listNickname {
   padding-left: 10rpx;
@@ -102,7 +107,13 @@
 .listNews .listBox .boxPic {
   padding: 40rpx 24rpx 20rpx;
 }
-
+.listsorts {
+  position: relative;
+  display: flex;
+  color: #b3b3b3;
+  line-height: 30rpx;
+  padding: 10rpx 0;
+}
 .listbottom {
   position: relative;
   color: #b3b3b3;
@@ -158,7 +169,7 @@
   padding: 6rpx 12rpx;
   background: #f4f4f4;
   border: #e5e5e4 solid 0px;
-  border-radius: 20px;
+  border-radius: 40rpx;
 }
 
 .distance {
@@ -166,7 +177,7 @@
   padding-right: 10rpx;
   margin-top: 2px;
   color: #b3b3b3;
-  max-width: 200px;
+  max-width: 400rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -213,7 +224,7 @@
   padding: 6rpx 12rpx;
   background: #f4f4f4;
   border: #e5e5e4 solid 0px;
-  border-radius: 20px;
+  border-radius: 40rpx;
   float: left;
 }
 
@@ -224,7 +235,7 @@
   font-size: 0.7rem;
   padding: 12rpx 24rpx;
   background: #f4f4f4;
-  border-radius: 20px;
+  border-radius: 40rpx;
   float: right;
 }
 
@@ -266,7 +277,7 @@
 .dynamic-content {
   font-size: 32rpx;
   color: #333;
-  padding-right: 13px;
+  padding-right: 26rpx;
   padding-top: 10rpx;
 }
 
@@ -275,15 +286,49 @@
   /* color:#f85e13;
   font-size: 26px; */
 }
-
+.followers-container {
+  margin: 50rpx 20rpx 0 20rpx;
+  background-color: #f8f8f8;
+  min-height: 46rpx;
+}
 .answers-container {
   margin: 50rpx 24rpx 20rpx;
+  padding: 10rpx 0;
   background-color: #f8f8f8;
 }
-
-.answer-list {
-  padding: 0 20rpx;
+.avatar-list{
+  padding: 5rpx 20rpx;
   font-size: 14px;
+  
+}
+.avatar-list image{
+  margin: 6rpx;
+}
+.followerA {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+.followerAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 10rpx;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+}
+.userAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+  float: left;
+}
+.answer-list {
+  padding: 10rpx 20rpx;
+  font-size: 28rpx;
 }
 
 .answer-user {
@@ -329,9 +374,9 @@
 /* 视频缩略图 */
 
 .img_block {
-  width: 100px;
-  height: 130px;
-  line-height: 130px;
+  width: 200rpx;
+  height: 260rpx;
+  line-height: 260rpx;
   text-align: center;
 }
 
@@ -347,4 +392,7 @@
 .to-login {
   padding: 30rpx 20rpx;
   text-align: center;
+}
+.search-more{
+  padding: 100rpx 30rpx;
 }

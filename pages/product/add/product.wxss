@@ -1,32 +1,32 @@
 page {
-  font-size: 16px;
+  font-size: 32rpx;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
 .page__bd_spacing {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
 
 .page__ft {
-  padding-bottom: 10px;
+  padding-bottom: 20rpx;
   text-align: center;
 }
 
 .page__desc {
-  margin-top: 5px;
+  margin-top: 10rpx;
   color: #888;
   text-align: left;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .weui-cells__title {
   margin-top: 0.77em;
   margin-bottom: 0.3em;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
   color: #999;
-  font-size: 12px;
+  font-size: 24rpx;
   background-color: #f8f8f8;
 }
 
@@ -37,7 +37,7 @@ page {
 }
 
 .weui-cell {
-  padding: 0px 15px;
+  padding: 0px 30rpx;
   position: relative;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@ page {
 }
 
 .weui-label {
-  width: 90px;
+  width: 180rpx;
   word-wrap: break-word;
   word-break: break-all;
 }
@@ -89,7 +89,7 @@ page {
 }
 
 .weui-select {
-  /* font-size: 14px; */
+  /* font-size: 28rpx; */
   line-height: 36rpx;
   margin-right: 10rpx;
 }
@@ -101,9 +101,9 @@ page {
 .weui-cells__tips {
   margin-top: 0.3em;
   color: #999;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 16px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-size: 32rpx;
 }
 
 textarea {
@@ -114,7 +114,7 @@ textarea {
 .textarea-wrp {
   padding: 0 25rpx;
   background-color: #fff;
-  margin-bottom: 15px;
+  margin-bottom: 30rpx;
   border-top: 1rpx solid #f8f8f8;
 }
 
@@ -152,7 +152,7 @@ textarea {
 
 .search_arr input {
   margin-left: 60rpx;
-  /* height: 60rpx; *//* border-radius: 5px; */
+  /* height: 60rpx; *//* border-radius: 10rpx; */
 }
 
 .bc_text {
@@ -179,8 +179,8 @@ textarea {
   margin: 10rpx 10rpx 10rpx 10rpx;
   position: absolute;
   z-index: 2;
-  width: 20px;
-  height: 20px;
+  width: 40rpx;
+  height: 40rpx;
   text-align: center;
 }
 
@@ -191,14 +191,14 @@ textarea {
 
 .fui-cell-icon {
   padding-top: 10rpx;
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .fui-cell-text {
   margin-top: -15rpx;
   margin-bottom: 5rpx;
-  font-size: 10px;
+  font-size: 20rpx;
   color: #8a8a8a;
 }
 
@@ -208,52 +208,52 @@ textarea {
 
 .sign {
   position: absolute;
-  padding: 0 5px 0 0;
-  height: 30px;
-  line-height: 30px;
+  padding: 0 10rpx 0 0;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 
 .label-text {
-  margin: 0 0 0 10px;
+  margin: 0 0 0 20rpx;
 }
 
 .location-select {
   padding-top: 20rpx;
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .location-text {
-  /* padding: 8px 0 10px 5px;
+  /* padding: 8px 0 20rpx 10rpx;
   position: absolute; */
   color: #8a8a8a;
 }
 
 .user-content {
   /* min-height: 43px; */
-  padding: 10px 10px 10px 0;
-  font-size: 14px;
+  padding: 20rpx 20rpx 20rpx 0;
+  font-size: 28rpx;
 }
 
 .location-content {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding: 10px 10px 10px 0;
-  font-size: 14px;
-  width: 180px;
+  padding: 20rpx 20rpx 20rpx 0;
+  font-size: 28rpx;
+  width: 360rpx;
 }
 
 .add-user {
   padding: 25rpx 0 15rpx 0;
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .add-address {
   padding: 25rpx 0 15rpx 0;
-  width: 22px;
-  height: 22px;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .parea {
@@ -290,4 +290,29 @@ textarea {
   position: absolute;
   right: 5rpx;
   /*top: 5rpx;*/
+}
+button {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28rpx;
+  padding-right: 28rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2.55555556;
+  border-radius: 10rpx;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000;
+  background-color: #f8f8f8;
+}
+
+.remarks {
+  padding: 25rpx;
+  font-size: 24rpx;
+  color: #888;
+  line-height: 1.2em;
 }

@@ -56,6 +56,7 @@ Page({
       API_URL: conf.shopList,
     };
     newData.result(param).then(res => {
+      console.log(res.data)
       that.setData({
         'shops': res.data,
       })
@@ -431,9 +432,10 @@ Page({
     let cont = that.data.content;
     let cno = that.data.cno;
     let img = that.data.rtImgUrl;
-    if (cno == 0 && img.length == 0) {
+    let video = that.data.videoId
+    if (cno == 0 && img.length == 0 && video.length == 0) {
       wx.showToast({
-        title: "动态或图片不能全为空！",
+        title: "内容不能全为空！",
         image: '/images/use/tip.png',
         duration: 2000
       })

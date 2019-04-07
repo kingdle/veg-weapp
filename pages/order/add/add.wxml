@@ -1,0 +1,186 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-cells__title">农户信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">姓名</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>
+            <input class="weui-input" bindinput="listenerNameInput" placeholder="农户姓名" value="{{farmerData.name}}" />
+          </view>
+        </view>
+        <!-- <view class="fui-cell-group fui-cell-click" bindtap="selectUser">
+            <image class="fui-cell-icon add-user" src="/images/use/user.png"></image>
+        </view> -->
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">手机</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="输入手机号" bindinput="listenerPhoneInput" value="{{farmerData.phone}}" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">位置</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd" bindtap="setLocation">
+          <view hidden="{{farmerData.address !=''}}">
+            <text class="location-text">选择坐标，准确导航</text>
+          </view>
+          <view class="location-content" hidden="{{farmerData.address ==''}}">
+            {{farmerData.address}}{{farmerData.villageInfo}}
+          </view>
+        </view>
+        <view class="fui-cell-group fui-cell-click" bindtap="setLocation">
+        <view class="fui-cell">
+        <image class="fui-cell-icon add-product" src="/images/use/addressSelect.png"></image>
+            <view class="fui-cell-text">选择位置</view>
+        </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">苗子及费用信息</view>
+        </view>
+        <view class="weui-flex__item">
+          <view hidden="{{seedlingData.total_price=='0'}}" class="placeholder fl_r orange">总价：{{seedlingData.total_price}}元</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">选择品种</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker class="picker" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+              {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        <view class="fui-cell-group fui-cell-click">
+          <navigator class="fui-cell" hover-class="none" url="../../product/add/product">
+            <!--新增-->
+            <image class="fui-cell-icon add-product" src="/images/use/add.png"></image>
+            <view class="fui-cell-text">新增品种</view>
+          </navigator>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">播种日期</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{seedlingData.start_at}}" start="2015-09-01" end="2917-09-01" bindchange="bindStartDateChange">
+            <view class="weui-input">
+              <text class="">{{seedlingData.start_at}} </text>
+              <text class="orange">{{startWeekDay}}</text>
+            </view>
+          </picker>
+          <picker class="date-time" mode="time" value="{{seedlingData.start_time}}" bindchange="bindStartTimeChange">
+            <view class="weui-input">{{seedlingData.start_time}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">送苗日期</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{seedlingData.end_at}}" start="2015-09-01" end="2917-09-01" bindchange="bindEndDateChange">
+            <view class="weui-input">
+              <text class="">{{seedlingData.end_at}} </text>
+              <text class="orange">{{endWeekDay}}</text>
+            </view>
+          </picker>
+          <picker class="date-time" mode="time" value="{{seedlingData.end_time}}" bindchange="bindEndTimeChange">
+            <view class="weui-input">{{seedlingData.end_time}}</view>
+             </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign">*</text>
+            <text class="label-text">数量(株)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" bindinput="listenerCountsInput" placeholder="如：2000" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">单价(元)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" bindinput="listenerUnitPriceInput" placeholder="如：1.5" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">订金(元)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" bindinput="listenerFeeEarnestInput" placeholder="如：200" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">
+            <text class="orange sign"></text>
+            <text class="label-text">待收(元)</text>
+          </view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" bindinput="listenerFeeActualInput" value="{{seedlingData.fee_actual}}" placeholder="如：1600" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">备注</view>
+    <view class="textarea-wrp">
+      <textarea style="height: 3.5em" bindinput="listenerNoteSellInput" placeholder="填写更多备注信息，如：嫁接，第3代品种，7包。" value="{{note_sell}}" />
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" bindtap="addOrder">保存</button>
+    </view>
+    <view class="remarks">
+      注：合同信息仅您的微信才能看到，为确保数据安全，请保管好您的手机。
+    </view>
+  </view>
+</view>

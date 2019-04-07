@@ -1,0 +1,75 @@
+.header {
+  padding: 20rpx;
+  text-align: center;
+  user-select: none;
+  background-color: #faf9fe;
+}
+
+.phone {
+  margin-right: 10rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button::after {
+  border: none;
+}
+
+button[size=mini] {
+  display: inline-block;
+  line-height: 2;
+  font-size: 26rpx;
+  padding-left: 30rpx;
+  padding-right: 0;
+  background-color: #fff;
+  overflow: unset;
+}
+
+.logo, .title-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.title-text {
+  font-size: 46rpx;
+  margin-left: 10rpx;
+  font-weight: 400;
+  font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+.logo {
+  width: 174rpx;
+  height: 174rpx;
+  border-radius: 50%;
+  border: #f5fcf6 solid 2px;
+  box-shadow: 6rpx 6rpx 20rpx rgba(109, 108, 108, 0.1);
+}
+
+.desc {
+  font-size: 28rpx;
+  color: #333;
+  padding-bottom: 60rpx;
+  text-align: center;
+  background-color: #faf9fe;
+}
+
+.footer {
+  font-size: 28rpx;
+  color: #333;
+  padding: 60rpx;
+  text-align: center;
+  background-color: #faf9fe;
+}
+
+.van-icon-aim {
+  line-height: 3;
+}
+.edit{
+  color:#fff;
+padding:0 2px;
+overflow:hidden;
+border-radius:40%;
+margin-right:4%;
+top: 30rpx;
+
+}

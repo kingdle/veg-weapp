@@ -1,4 +1,4 @@
-import newData from '../../../utils/DataURL.js';
+import getData from '../../../utils/DataURL.js';
 var conf = require('./../../../config');
 var app = getApp();
 Page({
@@ -42,6 +42,54 @@ Page({
       detailInfo: '北慈村'
     },
     note_sell:''
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    //获取40天以后的endDate日期
+    var myDate = new Date();
+    myDate.setDate(myDate.getDate() + 40);
+    var smonth = myDate.getMonth() + 1;
+    var sdate = myDate.getDate();
+    if (smonth < 10) {
+      smonth = "0" + smonth;
+    }
+    if (sdate < 10) {
+      sdate = "0" + sdate;
+    }
+    var endD = myDate.getFullYear() + '-' + smonth + '-' + sdate
+    this.setData({
+      endDate: endD,
+    })
+    //获取prods列表
+    let param = {
+      API_URL: conf.ProductUrl,
+      method: "GET"
+    };
+    getData.result(param).then(res => {
+      let res_data = res.data
+      let Sort = [];
+      let SortData = [];
+
+      for (let i = 0; i < res_data.length; i++) {
+        Sort.push(res_data[i].sort);
+        if (res_data[0].sort_id == res_data[i].sort_id) {
+          SortData.push(res_data[i].title);
+        }
+      }
+      let Sorts = new Set(Sort);
+      this.setData({
+        multiArray: [
+          [...Sorts], SortData
+        ],
+        productTitle: this.data.multiArray[1][0],
+        productId: res_data[0]['id'],
+        products: res_data
+      })
+      console.log(this.data.productId)
+    })
+
   },
   bindMultiPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', this.data.productTitle)
@@ -137,54 +185,7 @@ Page({
     console.log(this.data.tagsIndex)
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    //获取40天以后的endDate日期
-    var myDate = new Date();
-    myDate.setDate(myDate.getDate() + 40);
-    var smonth = myDate.getMonth() + 1;
-    var sdate = myDate.getDate();
-    if (smonth < 10) {
-      smonth = "0" + smonth;
-    }
-    if (sdate < 10) {
-      sdate = "0" + sdate;
-    }
-    var endD = myDate.getFullYear() + '-' + smonth + '-' + sdate
-    this.setData({
-      endDate: endD,
-    })
-    //获取prods列表
-    let param = {
-      API_URL: conf.ProductUrl,
-      method: "GET"
-    };
-    newData.result(param).then(res => {
-      let res_data = res.data
-      let Sort = [];
-      let SortData = [];
-
-      for (let i = 0; i < res_data.length; i++) {
-        Sort.push(res_data[i].sort);
-        if (res_data[0].sort_id == res_data[i].sort_id) {
-          SortData.push(res_data[i].title);
-        }
-      }
-      let Sorts = new Set(Sort);
-      this.setData({
-        multiArray: [
-          [...Sorts], SortData
-        ],
-        productTitle: this.data.multiArray[1][0],
-        productId: res_data[0]['id'],
-        products: res_data
-      })
-      console.log(this.data.productId)
-    })
-
-  },
+  
   moveToLocation: function() {
     var that = this;
     wx.chooseLocation({
@@ -322,7 +323,7 @@ Page({
       data: data,
       method: "POST"
     };
-    newData.result(param).then(res => {
+    getData.result(param).then(res => {
       // wx.navigateTo({
       //   url: '../order'
       // })
@@ -374,11 +375,4 @@ Page({
   onReachBottom: function() {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

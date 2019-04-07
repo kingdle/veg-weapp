@@ -5,8 +5,8 @@ var app = getApp();
 Page({
   data: {
     // tab切换 
-    userData: {}, 
-    shopData:{},
+    userData: {},
+    shopData: {},
     currentTab: 0,
     favorites: '',
     shopId: null,
@@ -50,6 +50,20 @@ Page({
       }
     };
   },
+  editShop: function() {
+    let self = this;
+    let redirectUrl = "/pages/shop/edit/edit?id=" + self.data.shopId
+    wx.navigateTo({
+      url: redirectUrl
+    })
+  },
+  myShop: function () {
+    let self = this;
+    let redirectUrl = "/pages/user/user"
+    wx.switchTab({
+      url: redirectUrl
+    })
+  },
   onPageScroll: function(e) {
     // console.log(e);
   },
@@ -73,6 +87,18 @@ Page({
       wx.setNavigationBarTitle({
         title: res.data.title
       });
+    })
+  },
+  copyPhone: function(e) {
+    wx.setClipboardData({
+      data: this.data.shopEn.user.phone,
+      success: function(res) {
+        wx.showToast({
+          title: '号码已复制',
+          image: '../../images/use/smile.png',
+          duration: 2000
+        })
+      }
     })
   },
   isFavoriteShop: function(id) {
@@ -176,7 +202,9 @@ Page({
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     var self = this;
-    self.getDynamicsListById(self.data.shopId);
+    let options=[]
+    options.id = self.data.shopId
+    self.onLoad(options);
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -215,7 +243,7 @@ Page({
         });
         let pred = that.data.shopNews;
         let tdata = pred.concat(nList);
-        
+
         that.setData({
           shopNews: tdata,
           meta: res.data.meta
@@ -291,8 +319,8 @@ Page({
       url: '../index/index'
     })
   },
-  showPics: function (event) {
-    if (event.target.dataset.piccount>'0'){
+  showPics: function(event) {
+    if (event.target.dataset.piccount > '0') {
       wx.navigateTo({
         url: '../detail/album' + '?id=' + event.target.id
       })
@@ -303,6 +331,26 @@ Page({
     wx.makePhoneCall({
       phoneNumber: self.data.shopEn.user.phone
     })
+  },
+  addWechat: function (e) {
+    let self = this;
+    wx.setClipboardData({
+      data: self.data.shopEn.user.phone,
+      success: function (res) {
+        wx.showModal({
+          title: '微信号已复制成功',
+          content: '请通过微信通讯录-添加朋友',
+          success: function (res) {
+            if (res.confirm) {
+              
+            } else if (res.cancel) {
+
+            }
+          }
+        })
+      }
+    })
+    
   },
   makeOrder: function(e) {
     let self = this;
@@ -321,6 +369,7 @@ Page({
       }
     })
   },
+  
   orderAdd: function() {
     let that = this;
     let mpoi = app.globalData.locationInfo;
@@ -362,25 +411,25 @@ Page({
       }
     })
   },
-  
-  getPhoneNumber: function (e) {
+
+  getPhoneNumber: function(e) {
     let self = this;
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
       wx.showModal({
         title: '请授权获取您的手机号',
         showCancel: false,
         content: '获取手机号后，育苗厂才能知道您有求购意向。',
-        success: function (res) {
-          
+        success: function(res) {
+
         },
-        fail:function(){
+        fail: function() {
           console.log(11)
         }
-        
+
       })
     } else {
       wx.login({
-        success: function (res) {
+        success: function(res) {
           let data = {};
           data.iv = e.detail.iv;
           data.encryptedData = e.detail.encryptedData;

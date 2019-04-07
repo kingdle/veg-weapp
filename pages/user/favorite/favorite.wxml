@@ -18,7 +18,7 @@
             <!-- <view class="weui-media-box__desc">{{item.user.phone}}
             </view> -->
             <view class="weui-media-box__desc">
-              <text class="fui-cell-title">距您：{{item.distance}}</text>
+              <text wx:if="{{location.location.lat!=undefind}}">距您：{{item.distance}}</text>
             </view>
           </view>
         </view>

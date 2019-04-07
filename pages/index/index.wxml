@@ -13,31 +13,39 @@
   <view>
     <swiper class="banner">
       <!-- <navigator url="/pages/{{slogan.host}}" hover-class="none"> -->
-        <block wx:for="{{slide}}" wx:key="*this">
-          <swiper-item>
-            <image bindtap="toShopList" data-url="{{slogan.host}}" src="{{item}}" />
-          </swiper-item>
-        </block>
+      <block wx:for="{{slide}}" wx:key="*this">
+        <swiper-item>
+          <image bindtap="toShopList" data-url="{{slogan.host}}" src="{{item}}" />
+        </swiper-item>
+      </block>
       <!-- </navigator> -->
     </swiper>
   </view>
   <!-- 搜索 -->
-  <van-search value="{{ inputVal }}" placeholder="找苗" use-action-slot bind:search="onSearch" bind:change="inputTyping" background="#faf9fe">
+  <van-search value="{{ inputVal }}" placeholder="找苗、找育苗厂" use-action-slot bind:search="onSearch" bind:change="inputTyping" background="#faf9fe">
     <view slot="action" bind:tap="onSearch">搜索</view>
   </van-search>
   <!-- 功能 -->
   <view class="fun-button">
     <van-row>
-      <van-col span="10" custom-class="module-title">
+      <van-col span="13" custom-class="module-title">
         <text class="title-text">{{slogan.newsTitle}}</text>
         <!-- <van-button type="default" round bind:click="showNotify">
           <van-icon custom-class="icon-truck" name="logistics" size="16px" /> 找大车
         </van-button> -->
       </van-col>
-      <van-col span="6" custom-class="dark">
-        <!-- <van-button type="primary" bind:click="showNotify" round>
-          <van-icon custom-class="icon" name="point-gift" size="14px" /> 苗厂
-        </van-button> -->
+      <van-col span="3" custom-class="dark">
+        <view wx:if="{{userData!=default}}">
+          <block wx:if="{{userData.is_active=='1'}}">
+            <navigator class='shop-url' hover-class="none" url="/pages/detail/detail?id={{shopData.id}}">
+              <image class="user-avatar-url" src="{{userData.avatar_url}}"></image>
+            </navigator>
+          </block>
+          <block wx:else>
+            <image class="user-avatar-url" src="{{userData.avatar_url}}"></image>
+          </block>
+        </view>
+
       </van-col>
       <van-col span="8" custom-class="dark">
         <view hidden="{{userData.is_active==1}}">
@@ -68,7 +76,7 @@
   <view>
     <view class="listNews">
       <view class="list-flex">
-        <block wx:for="{{newsList}}" wx:key="id">
+        <block wx:for="{{newsList}}" wx:key="{{item.id}}">
           <view class="listBox">
             <view class="boxPic">
               <navigator class='shop-url' hover-class="none" url="../detail/detail?id={{item.shop.id}}">
@@ -89,12 +97,12 @@
               </view>
               <view hidden="{{item.video_thumbnail==null}}" class='pr img_block' bindtap='startOnPlay' wx:if="{{item.video}}" data-src="{{item.video}}" data-shoptitle="{{item.shop.title}}">
                 <view class='icon-videoPlay'>
-                  <van-icon name="play" size="36px" />
+                  <van-icon name="play" size="2.5em" />
                 </view>
                 <image src="{{item.video_thumbnail}}!mp.v200260"></image>
               </view>
               <view class="pbbt" hidden="{{item.sorts.length==0}}"></view>
-              <view class="listbottom font-28 tagp" hidden="{{item.sorts.length==0}}">
+              <view class="listsorts font-28 tagp" hidden="{{item.sorts.length==0}}">
                 <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
                   <text class="stext">{{item.title}}</text>
                 </view>
@@ -121,10 +129,15 @@
               </view>
 
             </view>
-            <view class="answers-container" wx:if="{{item.answers!=''}}">
+            <view class="answers-container" wx:if="{{item.answers!='' || item.followers!=''}}">
+              <view class="avatar-list" wx:if="{{item.followers!=''}}">
+                <image class="followerA" src="../../images/use/fabulous.png"></image>
+                <image wx:for="{{item.followers}}" wx:key="*this" class="followerAvatar" src="{{item.user.avatar_url}}"/>
+              </view>
               <view class="answer-list" wx:for="{{item.answers}}" wx:key="*this">
-                <text class="answer-user">{{item.user.nickname}}</text>
-                <text class="answer-body">: {{item.body}}</text>
+                  <image class="userAvatar" src="{{item.user.avatar_url}}"/>
+                   <text class="answer-user">{{item.user.nickname}}:</text>
+                  <text class="answer-body">{{item.body}}</text>
               </view>
             </view>
           </view>
@@ -133,6 +146,9 @@
     </view>
     <view class="as-more" hidden="{{!isEnd}}">
       <text class="more">已显示全部，共{{endPage}}页</text>
+    </view>
+    <view class="search-more" hidden="{{!searchNull}}">
+      <text class="more">没找到您搜索的苗子或育苗厂，我们会努力为您找寻的,下拉刷新可查看最新苗子信息。</text>
     </view>
   </view>
 </view>

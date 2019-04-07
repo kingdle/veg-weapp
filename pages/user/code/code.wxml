@@ -1,7 +1,7 @@
 <view class="container">
   <view class="weapp">
     <navigator url="../../detail/detail?id={{shop.id}}" hover-class="navigator-hover">
-      <image class="userinfo-avatar" src="{{shop.code}}!mp.v200" ></image>
+      <image class="userinfo-avatar" src="{{shop.code}}" ></image>
     </navigator>
     <view class="code">{{shop.title}} <text wx:if="{{shop.code =='https://images.veg.kim/mp/mg-code-mp.jpg'}}">
       您的小程序码未生成
@@ -21,7 +21,7 @@
 
 
   <view class="userinfo" bindtap="makePhoneCallMiaoguo">
-    <image class="userinfo-avatar" src="{{shop.avatar}}!mp.v200" background-size="cover"></image>
+    <image class="userinfo-avatar" src="{{shop.avatar}}" background-size="cover"></image>
     <view>
       <text class="userinfo-nickname">苗果期待与您合作：</text>
       <text class="userinfo-nickname">18661737287(同微信)</text>

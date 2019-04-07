@@ -95,10 +95,26 @@
       </view>
       <view class="weui-flex__item">
         <view class="placeholder f_r ">
-          <text class="total-price orange">￥{{orderData.total_price}}</text>元</view>
+          ￥{{orderData.total_price}}元</view>
       </view>
     </view>
-
+    <view class="weui-flex" wx:if='{{orderData.fee_earnest!= NULL}}'>
+      <view>
+        <view class="placeholder gray f_l">定金:</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder f_r">￥{{orderData.fee_earnest}}元</view>
+      </view>
+    </view>
+    <view class="weui-flex" wx:if='{{orderData.fee_actual!= NULL}}'>
+      <view>
+        <view class="placeholder gray f_l">未支付:</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder f_r">
+          <text class="total-price orange">￥{{orderData.fee_actual}}</text>元</view>
+      </view>
+    </view>
     <view wx:if="{{orderData.note_sell!=null && orderData.note_sell!=''}}" class="weui-flex note">
       <view>
         <view class="placeholder gray f_l">备注:</view>
@@ -147,9 +163,9 @@
     </block>
   </view>
   <view class="footer">
-        <view class="placeholder gray label">
-          <image class="fui-cell-icon" src="/images/use/logo.png"></image>
-          <text>苗果微信小程序提供技术支持</text>
-        </view>
+    <view class="placeholder gray label">
+      <image class="fui-cell-icon" src="/images/use/logo.png"></image>
+      <text>苗果微信小程序提供技术支持</text>
+    </view>
   </view>
 </view>

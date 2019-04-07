@@ -58,6 +58,14 @@
     </view>
     <view class="weui-btn-area">
       <button class="weui-btn" bindtap="addOrder">入驻</button>
+      <view bindtap="copyPhone" class="weui-cells__title copy-phone">如有问题，点击复制加微信好友处理：18661737287(同微信)</view>
     </view>
+    
   </view>
+  
+</view>
+<view class="bg">
+    <view>
+      <image src="/images/garden.png"></image>
+    </view>
 </view>

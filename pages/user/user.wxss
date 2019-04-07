@@ -37,7 +37,7 @@
 
 .nickname {
   width:50%;
-  font-size: 14px;
+  font-size: 28rpx;
   /* display: flex; */
   /* flex-direction: column; */
   margin: 50rpx 0 0 35rpx;
@@ -66,35 +66,35 @@
 .sc {
   background: #fff;
   width: 100%;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 24rpx;
+  line-height: 32rpx;
   color: #666;
   padding: 2% 0 2% 0;
 }
 .greenhouse {
   background: #fff;
   width: 100%;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 24rpx;
+  line-height: 32rpx;
   color: #666;
   padding: 0 0 2% 0;
 }
 .config-box {
   padding: 5% 0;
   margin: 0 20rpx;
-  border-radius: 10px;
+  border-radius: 20rpx;
   border: 1px solid #f0fde8;
-  box-shadow: 1px 3px 20px #f1f1f1;
+  box-shadow: 1px 3px 40rpx #f1f1f1;
 }
 
 .sc image {
-  width: 24px;
-  height: 24px;
+  width: 48rpx;
+  height: 48rpx;
   display: inline-block;
 }
 .greenhouse image {
-  width: 24px;
-  height: 24px;
+  width: 48rpx;
+  height: 48rpx;
   display: inline-block;
 }
 .bte {
@@ -105,7 +105,7 @@
 .qbdd {
   background: #fff;
   width: 92%;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #666;
   padding: 4%;
   /* border-bottom: 1px solid #eee */
@@ -125,8 +125,8 @@
   top: 60rpx;
   right:75rpx;
   opacity: 0; 
-  height: 40px;
-  width: 40px;
+  height: 80rpx;
+  width: 80rpx;
 }
 
 .icon_kf {
@@ -297,12 +297,19 @@
 .weui-badge {
   display: inline-block;
   padding: 0.15em 0.4em;
-  min-width: 8px;
-  border-radius: 18px;
+  min-width: 16rpx;
+  border-radius: 36rpx;
   background-color: #c7c5c4;
   color: #fff;
   line-height: 1.2;
   text-align: center;
-  font-size: 12px;
+  font-size: 24rpx;
   vertical-align: middle;
+}
+.answers{
+  color: #fff;
+  background-color: #f04907;
+  padding: 0 10rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
 }

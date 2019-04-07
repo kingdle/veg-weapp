@@ -10,6 +10,7 @@ Page({
     meta:{},
     endPage: 0,
     isEnd: false,
+    location: ''
   },
 
   /**
@@ -17,6 +18,9 @@ Page({
    */
   onLoad: function () {
     this.loadFavoriteList()
+    this.setData({
+      location: wx.getStorageSync('location')
+    })
   },
   loadFavoriteList: function () {
     let that = this;

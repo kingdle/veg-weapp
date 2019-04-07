@@ -1,6 +1,6 @@
 <view class="page">
   <view class="weui-panel__bd">
-    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+    <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
         <navigator url="../detail/album?id={{shopEn.id}}">
           <image class="weui-media-box__thumb" src="{{shopEn.avatar}}" />
@@ -17,7 +17,7 @@
           查看:{{shopEn.click_count}}次 / 已有{{shopEn.followers_count}}人收藏
         </view>
       </view>
-    </navigator>
+    </div>
   </view>
 
   <view class="page__bd page__bd_spacing money-box">
@@ -96,94 +96,16 @@
     <view class="weui-flex">
       <view class="">
         <view class="prod-list">
-          <view class="sort-title">
-            <text class="sort-text">我的品种</text>
-          </view>
-          <view wx:key="*this" wx:for="{{prodSeller}}" wx:for-index="index" wx:if="{{index}}" class="sortp">
+          
+
+          <view wx:key="" wx:for="{{prodSeller}}" wx:for-index="index"  class="sortp">
             <text class="stext">{{item.title}}</text>
           </view>
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
-<view class="page">
-  <view class="page__bd page__bd_spacing">
-    <view class="weui-flex">
-      <view class="address" bindtap="navto">
-        <view class="placeholder icon">
-          <image src="../../images/use/introduce.png"></image>
-        </view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder">
-          苗厂简介
-          <text class="f12 gray">(限500字，请直接编辑)：</text>
-
-          <textarea placeholder="请填写一句话简介.." maxlength='500' name='summary' value='{{shopEn.summary}}' bindblur="summaryUpdate" class="summary-update"></textarea>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <navigator url="../user/security/security">
-      <view class="weui-flex label">
-        <view class="address security">
-          <view class="placeholder icon">
-            <image class="fui-cell-icon" src="/images/use/security.png"></image>
+          <navigator class="fui-cell" hover-class="none" url="/pages/product/add/product">
+          <view class="sort-title">
+            <text class="sort-text">我的品种 {{prodSeller.length}}个 +</text>
           </view>
-        </view>
-        <view class="weui-flex__item">
-          <view class="placeholder">
-            安全设置
-            <text class="fui-cell-remark"></text>
-          </view>
-        </view>
-        <view>
-          <view class="placeholder icon">
-            <image class="fui-cell-icon" src="/images/x_right.png"></image>
-          </view>
-        </view>
-      </view>
-    </navigator>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <navigator url="../user/code/code">
-      <view class="weui-flex label">
-        <view class="address security">
-          <view class="placeholder icon">
-            <image class="fui-cell-icon" src="/images/use/weapp.png"></image>
-          </view>
-        </view>
-        <view class="weui-flex__item">
-          <view class="placeholder">
-            苗厂小程序码
-            <text class="fui-cell-remark"></text>
-          </view>
-        </view>
-        <view>
-          <view class="placeholder icon">
-            <image class="fui-cell-icon" src="/images/x_right.png"></image>
-          </view>
-        </view>
-      </view>
-    </navigator>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="weui-flex">
-      <view class="address" bindtap="navto">
-        <view class="placeholder icon">
-          <image src="../../images/use/address.png"></image>
-        </view>
-      </view>
-      <view class="weui-flex__item" bindtap="navto">
-        <view class="placeholder">
-          {{shopEn.address}}
-        </view>
-      </view>
-      <view class="label phone" bindtap="makePhoneCall">
-        <view class="placeholder icon">
-          <image src="../../images/use/phoneOrange.png"></image>
+          </navigator>
         </view>
       </view>
     </view>

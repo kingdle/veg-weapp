@@ -2,7 +2,7 @@
   <form bindsubmit="formSubmit">
     <view class="fb-body" hidden="{{condition}}">
       <textarea class="content" value="{{content}}" maxlength="500" bindinput="bindKeyInput"
-                placeholder="此刻，您想说..."  />
+                placeholder="每一条动态，都有机会代表千万棵苗生命的成长，此刻，您想说..."  />
       <view class="text-progress">
       <text class="orange" hidden="{{progress=='0'}}">正上传第{{imgSuccess}}张/进度{{progress}}%，正在转存中</text>
      <text hidden="{{uploadResults=='0'}}">上传完成，共{{uploadResults}}张</text>

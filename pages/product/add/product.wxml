@@ -78,5 +78,8 @@
     <view class="weui-btn-area">
       <button class="weui-btn" bindtap="addProduct">保存</button>
     </view>
+    <view class="remarks">
+      注：您创建的品种信息，只有您的微信能看到。
+    </view>
   </view>
 </view>

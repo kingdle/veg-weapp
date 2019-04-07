@@ -1,0 +1,12 @@
+<van-cell-group>
+  <van-field value="{{summary}}" icon="records" type="textarea" placeholder="请输入简介，内容不能为空" autosize border="{{ false }}" confirm-type="保存更新" bind:input="summaryInput" focus value-class="summary"/>
+</van-cell-group>
+
+<view class="update">
+  <black wx:if="{{disabled}}">
+    <van-button size="large" type="danger" round disabled>保存</van-button>
+  </black>
+  <black wx:else>
+    <van-button size="large" type="danger" bind:click="summaryUpdate" round>保存</van-button>
+  </black>
+</view>

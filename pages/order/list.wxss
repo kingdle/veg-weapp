@@ -1,0 +1,71 @@
+.content {
+  /* padding: 0 0 20rpx 0; */
+  margin-bottom: 10rpx;
+  background-color: #fafafa;
+  border-bottom:5px solid #f1f1f1;
+}
+.label {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+van-button {
+  margin-right: 20rpx;
+}
+
+.van-card__thumb image {
+  border-radius: 10rpx;
+}
+
+.van-card__tag {
+  position: absolute;
+  top: 8rpx;
+}
+
+.van-swipe-cell__left, .van-swipe-cell__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130rpx;
+  /* height: 88rpx; */
+  font-size: 30rpx;
+  /* line-height: 88rpx; */
+  color: #fff;
+  text-align: center;
+  background-color: #f85e13;
+}
+
+.van-button-order {
+  display: inline-block;
+  min-width: 100rpx;
+  height: 44rpx;
+  line-height: 40rpx;
+  font-size: 20rpx;
+}
+
+.distance {
+  font-size: 24rpx;
+  padding-right: 10rpx;
+  margin-top: 2rpx;
+  color: #666;
+  max-width: 400rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.footer{
+  float: right;
+  margin-bottom: 10rpx;
+}
+.address{
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.village{
+  padding-left: 5rpx;
+  color: #666;
+  line-height: 1.2em;
+}

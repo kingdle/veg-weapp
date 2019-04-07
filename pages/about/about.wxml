@@ -1,13 +1,13 @@
 <view class="page-body">
 <view class="program">
               <swiper class="banner" indicator-dots="{{headerindicatorDots}}" autoplay="{{headerautoplay}}" interval="{{headerinterval}}" duration="{{headerduration}}" circular="{{headercircular}}">
-                <navigator url="" hover-class="none">
+                <view hover-class="none">
                   <block wx:for="{{miaoguoslide}}" wx:key="*this">
                     <swiper-item>
                       <image bindtap="tapBanner" src="{{item}}" />
                     </swiper-item>
                   </block>
-                </navigator>
+                </view>
               </swiper>
             </view>
   <view class="page-section tc">

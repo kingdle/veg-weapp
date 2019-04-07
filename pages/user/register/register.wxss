@@ -6,9 +6,8 @@ page {
   display: flex;
   align-items: center;
 }
-.id-card-front{
-}
-.id-card-back{
+.copy-phone{
+  margin-top: 50rpx !important;
 }
 .page__bd_spacing {
   padding-left: 30rpx;
@@ -336,4 +335,14 @@ border: none;
 .date-time{
   padding-left:20rpx;
   color: #f85e13;
+}
+.bg {
+  bottom: 0;
+}
+
+.bg image {
+  width: 100%;
+  height: 160rpx;
+  position: fixed;
+  bottom: 0;
 }

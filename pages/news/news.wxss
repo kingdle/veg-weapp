@@ -46,7 +46,7 @@ page{
 }
 .fb-body{
   background: #fff;
-  height: 220rpx;
+  height: 320rpx;
   padding: 20rpx 30rpx 64rpx 30rpx;
 }
 
@@ -55,7 +55,7 @@ page{
   height: 100%;
   color: #333;
   line-height: 40rpx;
-  font-size: 36rpx;
+  font-size: 28rpx;
 }
 
 .text-count{

@@ -83,18 +83,18 @@
             </navigator>
             <view class="list-btn">
             <view class="copy fl_r mr_5">
-                <navigator url="../order/copy/copy?id={{item.id}}">
+                <navigator url="../order/copy?id={{item.id}}"  hover-class="none">
                   <image class="fui-cell-icon" src="/images/use/copy.png"></image>
                 </navigator>
               </view>
-              <view class="sbtn font_12 orange fl_r mr_5" bindtap="removeOrder" id="{{item.id}}">取消订单</view>
-              <view bindtap="stateOrder" id="{{item.id}}" class="sbtn font_12 orange fl_r mr_5">标记为已送苗</view>
-
-              <view class="sbtn font_12 orange fl_r mr_5">
-                <navigator url="../order/edit/edit?id={{item.id}}">
+              <view class="sbtn font_12 fl_r mr_5" bindtap="removeOrder" id="{{item.id}}">取消订单</view>
+              <view bindtap="stateOrder" id="{{item.id}}" class="sbtn font_12 fl_r mr_5">标记为已送苗</view>
+<navigator url="../order/edit?id={{item.id}}" hover-class="none">
+              <view class="sbtn font_12 fl_r mr_5">
                   编辑
-                </navigator>
               </view>
+                </navigator>
+
             </view>
           </view>
         </view>
@@ -168,12 +168,12 @@
             </navigator>
             <view class="list-btn">
               <view class="copy fl_r mr_5">
-                <navigator url="../order/copy/copy?id={{item.id}}">
+                <navigator url="../order/copy?id={{item.id}}"  hover-class="none">
                   <image class="fui-cell-icon" src="/images/use/copy.png"></image>
                 </navigator>
               </view>
-              <view bindtap="paymentOrder" id="{{item.id}}" class="sbtn font_12 orange fl_r mr_5">标记为已收款</view>
-              <view bindtap="noStateOrder" id="{{item.id}}" class="sbtn font_12 orange fl_r mr_5">标记为未送苗</view>
+              <view bindtap="paymentOrder" id="{{item.id}}" class="sbtn font_12 fl_r mr_5">标记为已收款</view>
+              <view bindtap="noStateOrder" id="{{item.id}}" class="sbtn font_12 fl_r mr_5">标记为未送苗</view>
 
             </view>
           </view>
@@ -248,7 +248,7 @@
             </navigator>
             <view class="list-btn">
               <view class="copy fl_r mr_5">
-                <navigator url="../order/copy/copy?id={{item.id}}">
+                <navigator url="../order/copy?id={{item.id}}"  hover-class="none">
                   <image class="fui-cell-icon" src="/images/use/copy.png"></image>
                 </navigator>
               </view>

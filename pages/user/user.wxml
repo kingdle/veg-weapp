@@ -10,7 +10,7 @@
   <view class="userinfo w100" wx:if="{{userData.is_active!=undefined}}">
     <view class="w70 fl_l">
       <block wx:if="{{userData.is_active=='1'}}">
-        <view class="nickname fl_l" bindtap="navTo">
+        <view class="nickname fl_l" bindtap="editShop">
           <view>
             <text class="userinfo-nickname">{{userData.nickname}}</text>
             <image class="shop-edit" src="/images/use/edit.png"></image>
@@ -51,15 +51,14 @@
   </view>
   <view class="sc" wx:if="{{userData.is_active==1}}">
     <view class="config-box df tc">
-      <!-- <view class="df_1" hover-class="none">
+      <view class="df_1" hover-class="none">
         <view bindtap="navTo">
-          <image src="/images/order-home.png"></image>
+          <image src="/images/use/contract-charts.png"></image>
           <text class="font_12">
-          我的苗厂
+          合同统计
           </text>
         </view>
-
-      </view> -->
+      </view>
       <view class="df_1" hover-class="none">
         <view bindtap="toOrderList">
           <image src="/images/use/contract.png"></image>
@@ -88,8 +87,10 @@
   <view class="fui-cell-group fui-cell-click" wx:if="{{userData.is_active!=undefined}}">
     <navigator class="fui-cell" hover-class="none" url="/pages/answer/answer">
       <image class="fui-cell-icon" src="/images/use/dynamic-hot.png"></image>
-      <view class="fui-cell-text">我的评论</view>
-      <view class="fui-cell-remark"></view>
+      <view class="fui-cell-text">我的评论留言</view>
+      <view class="fui-cell-remark">
+        <text wx:if="{{answers!='0'}}" class="answers">{{answers=='0'?'':answers}}</text>
+      </view>
     </navigator>
   </view>
 
@@ -111,7 +112,7 @@
   <view class="fui-cell-group fui-cell-click">
     <navigator class="fui-cell" hover-class="none" url="../introduce/introduce">
       <image class="fui-cell-icon" src="/images/use/about.png"></image>
-      <view class="fui-cell-text">关于我们</view>
+      <view class="fui-cell-text">关于苗果</view>
       <view class="fui-cell-remark"></view>
     </navigator>
   </view>

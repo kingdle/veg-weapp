@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="header">
+    <image bindtap='changeAvatar' class="logo" src="{{avatar}}" />
+    <view class="edit" style="position: absolute;top: 1.6em;left: 60%;">
+    <van-tag bindtap='changeAvatar' round type="success">修改头像</van-tag>
+    </view>
+  </view>
+  <view class="desc">
+    <view>
+      动态
+      <text class="orange f16">{{shopEn.dynamic_count}}</text> / 相片
+      <text class="orange f16">{{shopEn.pic_count}}</text>
+    </view>
+    <view>
+      查看:{{shopEn.click_count}}次 / 已有{{shopEn.followers_count}}人收藏
+    </view>
+  </view>
+
+
+  <van-cell-group>
+    <van-cell title="{{shopTitle}}" icon="shop" clickable="false" is-link url="/pages/shop/title/title?id={{shopEn.id}}"/>
+    <van-cell title="相册照片" icon="photo" is-link url="/pages/detail/album?id={{shopEn.id}}" />
+    <van-cell title="苗厂简介" icon="info-o" is-link url="/pages/shop/summary/summary?id={{shopEn.id}}" />
+    <van-cell icon="location" clickable>
+      <van-icon slot="right-icon" bindtap="setlocation" color="#f85e13" name="aim" custom-style="line-height:3em;padding-left:20rpx;"/>
+      <view slot="title" bindtap="navto">
+        <view class="title">{{shopEn.province}}{{shopEn.cityInfo}}{{shopEn.address}}</view>
+        <label>{{shopEn.villageInfo}}</label>
+      </view>
+    </van-cell>
+    <van-cell value="" icon="phone">
+      <view slot="title" bindtap="makePhoneCall">
+        <view class="phone">{{phoneNum}}</view>
+        <van-tag round type="success">微信号</van-tag>
+      </view>
+      <button size="mini" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+        <van-icon slot="right-icon" color="#f85e13" name="setting" /></button>
+
+    </van-cell>
+    <!-- <van-cell title="安全设置" icon="warn" is-link url="/pages/user/security/security" /> -->
+    <van-cell title="苗厂小程序码" icon="qr" is-link url="/pages/user/code/code" />
+  </van-cell-group>
+</view>
+
+<view class="footer">
+  <view class="links">
+    <navigator url="/pages/about/about" hover-class="none" class="link">苗果科技</navigator>
+  </view>
+  <view class="text">Copyright © 2018-2022 veg.kim</view>
+</view>

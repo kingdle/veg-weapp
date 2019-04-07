@@ -16,6 +16,7 @@ Page({
     userData: {
       is_active: '0'
     },
+    shopData: '',
     location: {},
     slogan: [],
     slide: [],
@@ -46,6 +47,7 @@ Page({
     shopduration: 500,
     shopcircular: true,
     dynamic_id: '0',
+    to_user_id: '',
     answer: '',
     dynamicIndex: '',
     thumbs_answer: false,
@@ -55,7 +57,8 @@ Page({
     inputVal: "",
     queryText: '',
     message: '请点击确认，允许授权登录',
-    show: false
+    show: false,
+    searchNull: false
   },
   showNotify: function() {
     Notify({
@@ -72,8 +75,15 @@ Page({
     }
     self.setData({
       userData: wx.getStorageSync("userData"),
-      location: wx.getStorageSync('location')
+      location: wx.getStorageSync('location'),
+      shopData: wx.getStorageSync('shopData') ? wx.getStorageSync('shopData') : '',
+      inputVal: ''
     })
+    setTimeout(function () {
+      self.setData({
+        shopData: wx.getStorageSync('shopData') ? wx.getStorageSync('shopData') : '',
+      })
+    },5000)
     self.getDynamics();
   },
   onLogin() {
@@ -204,6 +214,11 @@ Page({
             isEnd: true
           });
         }
+        if (res.data.meta.current_page != res.data.meta.last_page) {
+          that.setData({
+            isEnd: false
+          });
+        }
         wx.hideLoading();
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
@@ -254,7 +269,6 @@ Page({
               method: "POST"
             };
             getData.result(param).then(response => {
-              console.log(response.data.data)
               wx.setStorageSync('userData', response.data.data)
               self.setData({
                 userData: response.data.data,
@@ -269,6 +283,14 @@ Page({
     }
   },
   //动态图片
+  toPic(e) {
+    let self = this;
+    let current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+  },
   toPic2(e) {
     let self = this;
     let current = e.target.dataset.src;
@@ -356,8 +378,10 @@ Page({
           news.fdate = moment(news.shop.user.updated_at.date).fromNow() + "来过";
           news.created_at = moment(news.created_at.date).fromNow() + "发布";
         });
+        console.log(nList[0])
         this.setData({
-          ["newsList[" + this.data.dynamicIndex + "]"]: nList[0]
+          ["newsList[" + this.data.dynamicIndex + "]"]: nList[0],
+          releaseFocus: false,
         })
 
         // this.setData({
@@ -375,9 +399,11 @@ Page({
     })
   },
   bindReply: function(e) {
+    console.log(e)
     this.setData({
       releaseFocus: e.currentTarget.dataset.dynamic.id,
-      dynamic_id: e.currentTarget.dataset.dynamic.id
+      dynamic_id: e.currentTarget.dataset.dynamic.id,
+      to_user_id: e.currentTarget.dataset.dynamic.userid
     })
   },
   inputAnswer: function(e) {
@@ -389,6 +415,7 @@ Page({
     this.setData({
       releaseFocus: false,
       dynamic_id: '',
+      to_user_id: '',
       answer: '',
       thumbs_answer: false
     })
@@ -400,8 +427,9 @@ Page({
     if (this.data.answer != '') {
       var data = []
       data.body = this.data.answer
-      data.user_id = app.globalData.userData.id
+      data.user_id = wx.getStorageSync("userData").id
       data.dynamic_id = this.data.dynamic_id
+      data.to_user_id = this.data.to_user_id
       if (wx.getStorageSync('location')) {
         data.latitude = wx.getStorageSync('location').location.lat;
         data.longitude = wx.getStorageSync('location').location.lng;
@@ -479,7 +507,7 @@ Page({
       }
       data.userId = wx.getStorageSync("userData").id;
       let param = {
-        API_URL: conf.dynamicQuery,
+        API_URL: conf.dynamicWithShopQuery,
         method: "POST",
         data: data
       };
@@ -490,7 +518,14 @@ Page({
           news.fdate = moment(news.shop.user.updated_at.date).fromNow() + "来过";
           news.created_at = moment(news.created_at.date).fromNow() + "发布";
         });
-        console.log(res.data)
+        if (res.data.data != '') {
+          wx.showToast({
+            title: '查询成功',
+            icon: 'success',
+            duration: 500
+          })
+        }
+
         that.setData({
           newsList: newsList,
           meta: res.data.meta
@@ -498,7 +533,20 @@ Page({
         if (res.data.meta.current_page == res.data.meta.last_page) {
           that.setData({
             endPage: res.data.meta.last_page,
-            isEnd: true
+            isEnd: true,
+            searchNull: false
+          });
+        }
+        if (res.data.meta.current_page != res.data.meta.last_page) {
+          that.setData({
+            isEnd: false,
+            searchNull: false
+          });
+        }
+        if (res.data.data == '') {
+          that.setData({
+            searchNull: true,
+            isEnd: false
           });
         }
       })
@@ -520,7 +568,8 @@ Page({
         that.doLocal(latitude, longitude, redirectUrl);
       },
       fail: function(e) {
-        if (e.errMsg == 'getLocation:fail auth deny') {
+        let errMsg=e.errMsg
+        if (errMsg.search("getLocation:fail") != -1) {
           wx.showModal({
             title: '请授权获取地理位置',
             content: '点击“确定”，选择“使用我的地理位置”，享受精准服务。',

@@ -10,18 +10,12 @@
   width: 100%;
   height: 100%;
 }
-.no-answers {
-  padding: 40rpx;
-  text-align: center;
-  color: #999;
-  font-size: 24rpx;
-  background-color: #fff;
-}
+
 .module-title {
   color: #222;
   font-size: 22rpx;
   height: 100rpx;
-  line-height: 5s0rpx;
+  line-height: 50rpx;
   text-align: left;
   background: #fff;
   padding: 20rpx 20rpx;
@@ -68,7 +62,11 @@
   align-items: center;
   justify-content: center;
 }
-
+.user-avatar-url{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 100rpx;
+}
 .icon {
   top: 2px;
 }
@@ -100,6 +98,7 @@
   float: left;
   margin-right: 10px;
 }
+
 
 .listNickname {
   padding-left: 10rpx;
@@ -281,14 +280,48 @@
   /* color:#f85e13;
   font-size: 26px; */
 }
-
+.followers-container {
+  margin: 50rpx 20rpx 0 20rpx;
+  background-color: #f8f8f8;
+  min-height: 46rpx;
+}
 .answers-container {
   margin: 50rpx 24rpx 20rpx;
+  padding: 10rpx 0;
   background-color: #f8f8f8;
 }
-
+.avatar-list{
+  padding: 5rpx 20rpx;
+  font-size: 14px;
+  
+}
+.avatar-list image{
+  margin: 6rpx;
+}
+.followerA {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+.followerAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 10rpx;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+}
+.userAvatar {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  border: #f5fcf6 solid 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10rpx;
+  float: left;
+}
 .answer-list {
-  padding: 0 20rpx;
+  padding: 10rpx 20rpx;
   font-size: 14px;
 }
 
@@ -353,4 +386,11 @@
 .to-login {
   padding: 30rpx 20rpx;
   text-align: center;
+}
+.no-answers {
+  padding: 40rpx;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+  background-color: #fff;
 }

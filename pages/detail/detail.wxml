@@ -1,17 +1,19 @@
 <import src="../common/comtemp.wxml" />
 
-<!-- 店铺详情页面 -->
+<!-- 苗厂详情页面 -->
 <view class="wrapper">
   <view class="weui-panel__bd">
     <view hover-class="none" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
         <!-- <navigator hover-class="none" url="../detail/album?id={{shopEn.id}}"> -->
-          <image bindtap="showPics" id="{{shopEn.id}}" data-piccount="{{shopEn.pic_count}}" class="weui-media-box__thumb" src="{{shopAvatar}}" />
-          <view wx:if="{{shopEn.pic_count !='0'}}" class="weui-badge" style="position: absolute;left: 5.7em;top:6em;">{{shopEn.pic_count}}</view>
+        <image bindtap="showPics" id="{{shopEn.id}}" data-piccount="{{shopEn.pic_count}}" class="weui-media-box__thumb" src="{{shopAvatar}}" />
+        <view wx:if="{{shopEn.pic_count !='0'}}" class="weui-badge" style="position: absolute;left: 5.7em;top:6em;">{{shopEn.pic_count}}</view>
         <!-- </navigator> -->
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title {{shopEn.title.length>='9' ? 'if16' : ''}}">{{shopEn.title}}</view>
+        <view class="weui-media-box__title {{shopEn.title.length>='9' ? 'if16' : ''}}">{{shopEn.title}}
+        <text wx:if="{{shopId==''}}">请返回首页下拉刷新</text>
+        </view>
         <view class="weui-media-box__desc">
           {{shopEn.villageInfo}}
         </view>
@@ -35,7 +37,9 @@
   </view>
   <view class="info-li" wx:if="{{shopEn.summary!=null}}">
     <image class="location" src="/images/use/introduce.png"></image>
-    <view class="info-span w90">{{shopEn.summary==null?'请在【我的苗厂】中添加简介信息':shopEn.summary}}</view>
+    <view class="info-span w90">
+      <text>{{shopEn.summary==null?'请在【我的苗厂】中添加简介信息':shopEn.summary}}</text>
+    </view>
   </view>
   <!-- 首图 -->
   <!-- <view class="top">
@@ -60,6 +64,7 @@
       <view class="weui-flex__item" bindtap="navto">
         <view class="placeholder address-text">
           {{shopEn.province}}{{shopEn.cityInfo}}{{shopEn.address}}
+          <text wx:if="{{shopId==''}}">重新进入后加载您的苗厂信息</text>
         </view>
         <!-- <view class="village">
           {{shopEn.villageInfo}}
@@ -75,18 +80,31 @@
   <!-- 动态列表 -->
   <view class="content">
     <view class="comment">
-      <view class="news label">
-        <image class="time" src="/images/use/xinxi.png"></image>
-        <text class="news-title">最新动态</text>
-        <text class="news-count　gray f12">共{{shopEn.dynamic_count}}条</text>
-        <text wx:if="{{shopData.id == shopId}}" class="news-notice　orange f12"> 请点击苗子返回首页发动态</text>
-      </view>
+      <van-row>
+        <van-col span="19">
+          <view class="news label">
+            <image class="time" src="/images/use/xinxi.png"></image>
+            <text class="news-title">最新动态</text>
+            <text class="news-count　gray f12">共{{shopEn.dynamic_count}}条</text>
+        <van-button wx:if="{{shopData.id == shopId}}" bind:click="myShop" type="default" size="mini" round>我的苗厂</van-button>
+        <van-button wx:if="{{shopData.id == shopId}}" bind:click="editShop" type="default" size="mini" round>更多设置</van-button>
+          </view>
+        </van-col>
+        <van-col span="5">
+        <view class="config-button label">
+        
+        <button class="share-btn bg_cheng white" open-type="share" size="mini">
+        分享
+        </button>
+        </view>
+        </van-col>
+      </van-row>
     </view>
   </view>
   <!-- <template is="news-shop" data="{{news:shopNews}}" /> -->
   <view class="assess">
     <view class="assess-ul">
-      <view class="assess-li" wx:for="{{shopNews}}" wx:key="*this">
+      <view class="assess-li" wx:for="{{shopNews}}" wx:key="{{item.id}}">
         <view class="head-md">
           <text class="name-day">{{item.day}}</text>
           <text class="name-month">{{item.month}}月</text>
@@ -102,22 +120,27 @@
               <image src="{{item.video_thumbnail}}!mp.v200260"></image>
             </view>
             <view class="assess-pic" wx:if="{{item.pic}}">
-              <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="*this">
+              <view class="assess-pic-content" wx:for="{{item.pic}}" wx:key="{{item.id}}">
                 <image bindtap="toPic2" data-src="{{item}}" class="assess-pimg" src="{{item}}!mp.v9080"></image>
               </view>
             </view>
             <view class="listbottom tagp" wx:if="{{item.sorts !=''}}">
-              <view class="sortp" wx:for="{{item.sorts}}" wx:key="*this">
+              <view class="sortp" wx:for="{{item.sorts}}" wx:key="{{item.id}}">
                 <text class="stext">{{item.title}}</text>
               </view>
             </view>
             <view class="com-time">
               <text class="fl_l assess-time">{{item.fdate}}</text>
             </view>
-            <view class="answers-container" wx:if="{{item.answers!=''}}">
-              <view class="answer-list" wx:for="{{item.answers}}" wx:key="*this">
-                <text class="answer-user">{{item.user.nickname}}</text>
-                <text class="answer-body">: {{item.body}}</text>
+            <view class="answers-container" wx:if="{{item.answers!='' || item.followers!=''}}">
+              <view class="avatar-list" wx:if="{{item.followers!=''}}">
+                <image class="followerA" src="../../images/use/thumbs-up1.png"></image>
+                <image wx:for="{{item.followers}}" wx:key="{{item.id}}" class="followerAvatar" src="{{item.user.avatar_url}}" />
+              </view>
+              <view class="answer-list" wx:for="{{item.answers}}" wx:key="{{item.id}}">
+                <image class="userAvatar" src="{{item.user.avatar_url}}" />
+                <text class="answer-user">{{item.user.nickname}}:</text>
+                <text class="answer-body">{{item.body}}</text>
               </view>
             </view>
           </view>
@@ -141,52 +164,52 @@
 -->
   <!--- 底部开始 -->
   <view class="footfixed tc">
-    <view class="fl_l w50 font_12 hui03 df">
+    <view class="fl_l w20 font_12 hui03 df">
       <view class="df_1 l_h15 pt5 bre">
         <view bindtap="toHome">
-          <image class="icon_kf" src="../../images/icons/seedling.png"></image>
-          <view class="dbtext">苗子</view>
+          <image class="icon_kf" src="../../images/icons/seedlingS.png"></image>
+          <view class="dbtext">找苗</view>
         </view>
       </view>
-      <view class="df_1 l_h15 pt5">
+      <!-- <view class="df_1 l_h15 pt5">
         <button class="ke" open-type="share">
           <image class="icon_kf" src="../../images/use/shares3.png"></image>
           <view class="dbtext" style="line;margin-bottom:7rpx">分享</view>
         </button>
-      </view>
+      </view> -->
 
     </view>
     <block wx:if="{{userData.phone==null||userData.phone==''}}">
-      <view class="fl_l w50">
-        <view class="white w100 fl_l">
+      <view class="fl_l w80">
+        <view class="white w50 fl_l">
           <button class="ad-btn bg_cheng white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='0'>
-            <image class="bphone" src="/images/use/tel.png"></image>
+            <image class="bphone" src="/images/use/phone-w.png"></image>
             <block class="btext">打电话</block>
           </button>
         </view>
-        <!-- <view class="w50 fl_l ">
+        <view class="w50 fl_l">
           <button class="ad-btn bg_green white" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" data-name='1'>
-            <image class="bphone" src="/images/use/bi.png"></image>
-            <block class="btext">订苗</block>
+            <image class="bphone" src="/images/use/wechat-w.png"></image>
+            <block class="btext">复制加微信</block>
           </button>
-        </view> -->
+        </view>
 
       </view>
     </block>
     <block wx:else>
-      <view class="fl_l w50">
-        <view class="white w100 fl_l" bindtap="makePhoneCall" data-status="1">
+      <view class="fl_l w80">
+        <view class="white w50 fl_l" bindtap="makePhoneCall" data-status="1">
           <button class="ad-btn bg_cheng white">
-            <image class="bphone" src="/images/use/tel.png"></image>
+            <image class="bphone" src="/images/use/phone-w.png"></image>
             <block class="btext">打电话</block>
           </button>
         </view>
-        <!-- <view class="w50 fl_l " bindtap="makeOrder">
+        <view class="w50 fl_l " bindtap="addWechat">
           <button form-type='submit' class="ad-btn bg_green white">
-            <image class="bphone" src="/images/use/bi.png"></image>
-            <block class="btext">订苗</block>
+            <image class="bphone" src="/images/use/wechat-w.png"></image>
+            <block class="btext">复制加微信</block>
           </button>
-        </view> -->
+        </view>
       </view>
     </block>
   </view>
